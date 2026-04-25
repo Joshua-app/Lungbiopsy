@@ -187,6 +187,7 @@ function save(d){try{localStorage.setItem(SK,JSON.stringify(d))}catch{}}
 let STATE = load();
 let UI = {
   tab:'dashboard', expandedLog:null, selectedHospital:null, showPending:false,
+  searchQuery:'', filterLesionType:'', filterLobe:'', filterDiagnosis:'', filterComp:'', showFilters:false,
   addModal:false, addStep:0,
   addForm:{hospitalName:'',hospitalNumber:'',datePerformed:'',age:'',sex:'',supervision:'',lobe:'',lesionType:'',lesionSize:'',distance:'',emphysemaTrack:false,needleSize:'',passes:'',comments:''},
   addComps:{},
@@ -559,12 +560,173 @@ function renderApp(){
 
   // ════════ LOG ════════
   else if(UI.tab==='log'){
-    const st=div('sec-title',`Procedure Log (${log.length} entries)`);main.appendChild(st);
-    if(log.length===0){
-      const e=div('');e.style.cssText='text-align:center;color:#6b7280;padding:36px 20px;font-style:italic';e.textContent='No entries yet. Tap + to add your first case.';main.appendChild(e);
+
+    // ── Search bar ──
+    const searchWrap=div('');searchWrap.style.cssText='position:relative;margin-bottom:10px';
+    const searchIcon=div('');searchIcon.style.cssText='position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none';searchIcon.textContent='🔍';
+    const searchInput=document.createElement('input');
+    searchInput.type='text';searchInput.className='fi';searchInput.placeholder='Search diagnosis, histology notes, comments...';
+    searchInput.value=UI.searchQuery;searchInput.style.paddingLeft='34px';searchInput.style.paddingRight='36px';
+    searchInput.addEventListener('input',e=>{UI.searchQuery=e.target.value;renderLog()});
+    const clearSearch=div('');clearSearch.style.cssText=`position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:16px;cursor:pointer;color:#6b7280;display:${UI.searchQuery?'block':'none'}`;
+    clearSearch.textContent='✕';clearSearch.addEventListener('click',()=>{UI.searchQuery='';searchInput.value='';renderLog()});
+    searchWrap.appendChild(searchIcon);searchWrap.appendChild(searchInput);searchWrap.appendChild(clearSearch);
+    main.appendChild(searchWrap);
+
+    // ── Filter toggle button ──
+    const filterToggle=div('');filterToggle.style.cssText='display:flex;align-items:center;justify-content:space-between;margin-bottom:8px';
+    const ftBtn=div('');
+    const hasFilters=UI.filterLesionType||UI.filterLobe||UI.filterDiagnosis||UI.filterComp;
+    ftBtn.style.cssText=`display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;border:1px solid ${hasFilters?'rgba(91,155,213,0.5)':'rgba(255,255,255,0.1)'};background:${hasFilters?'rgba(91,155,213,0.12)':'rgba(255,255,255,0.04)'};color:${hasFilters?'#5b9bd5':'#6b7280'}`;
+    ftBtn.innerHTML=`<span>⚙️</span><span>${hasFilters?'Filters active':'Filter & Analyse'}</span><span>${UI.showFilters?'▲':'▼'}</span>`;
+    ftBtn.addEventListener('click',()=>{UI.showFilters=!UI.showFilters;render()});
+    if(hasFilters){
+      const clearAll=div('');clearAll.style.cssText='font-size:11px;color:#e05252;cursor:pointer;font-weight:700;padding:4px 8px;border:1px solid rgba(224,82,82,0.3);border-radius:6px;background:rgba(224,82,82,0.08)';
+      clearAll.textContent='Clear filters';
+      clearAll.addEventListener('click',()=>{UI.filterLesionType='';UI.filterLobe='';UI.filterDiagnosis='';UI.filterComp='';render()});
+      filterToggle.appendChild(ftBtn);filterToggle.appendChild(clearAll);
+    } else {filterToggle.appendChild(ftBtn);}
+    main.appendChild(filterToggle);
+
+    // ── Filter panel ──
+    if(UI.showFilters){
+      const fp=div('');fp.style.cssText='background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;margin-bottom:12px';
+
+      // Lesion type filter
+      const ltlbl=div('');ltlbl.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px';ltlbl.textContent='Lesion Type';
+      fp.appendChild(ltlbl);
+      fp.appendChild(segPicker(['Solid','Subsolid','Ground Glass','Cavitating'],UI.filterLesionType,v=>{UI.filterLesionType=v;renderLog();}));
+
+      const loblbl=div('');loblbl.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin:10px 0 6px';loblbl.textContent='Lobe';
+      fp.appendChild(loblbl);
+      fp.appendChild(segPicker(LOBES,UI.filterLobe,v=>{UI.filterLobe=v;renderLog();}));
+
+      const complbl=div('');complbl.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin:10px 0 6px';complbl.textContent='Complication';
+      fp.appendChild(complbl);
+      fp.appendChild(segPicker(COMPS.map(c=>c.label),UI.filterComp,v=>{UI.filterComp=v;renderLog();}));
+
+      const dglbl=div('');dglbl.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin:10px 0 6px';dglbl.textContent='Search Diagnosis';
+      const dginput=document.createElement('input');dginput.type='text';dginput.className='fi';
+      dginput.placeholder='e.g. Adenocarcinoma, Small cell...';dginput.value=UI.filterDiagnosis;
+      dginput.addEventListener('input',e=>{UI.filterDiagnosis=e.target.value;renderLog()});
+      fp.appendChild(dglbl);fp.appendChild(dginput);
+      main.appendChild(fp);
     }
-    log.forEach((entry,i)=>{
-      const idx=log.length-i;
+
+    // ── Apply filters + search ──
+    function matchesFilters(entry){
+      const q=UI.searchQuery.toLowerCase();
+      if(q){
+        const haystack=[entry.diagnosis,entry.histologyNotes,entry.comments,entry.complicationNotes,entry.hospitalName,entry.lobe,entry.lesionType].filter(Boolean).join(' ').toLowerCase();
+        if(!haystack.includes(q))return false;
+      }
+      if(UI.filterLesionType && entry.lesionType!==UI.filterLesionType)return false;
+      if(UI.filterLobe && entry.lobe!==UI.filterLobe)return false;
+      if(UI.filterDiagnosis){
+        const dq=UI.filterDiagnosis.toLowerCase();
+        const dh=[(entry.diagnosis||''),(entry.histologyNotes||'')].join(' ').toLowerCase();
+        if(!dh.includes(dq))return false;
+      }
+      if(UI.filterComp){
+        const comp=COMPS.find(c=>c.label===UI.filterComp);
+        if(comp&&!(entry.complications||[]).includes(comp.id))return false;
+      }
+      return true;
+    }
+
+    const filtered=log.filter(matchesFilters);
+
+    // ── Analysis summary (when filters active) ──
+    if(hasFilters||UI.searchQuery){
+      const summary=div('');summary.style.cssText='background:rgba(91,155,213,0.08);border:1px solid rgba(91,155,213,0.2);border-radius:10px;padding:12px 14px;margin-bottom:12px';
+      const sttl=div('');sttl.style.cssText='font-size:13px;font-weight:700;color:#5b9bd5;margin-bottom:8px';
+      sttl.textContent=`📊 ${filtered.length} of ${log.length} cases match`;
+      summary.appendChild(sttl);
+
+      // Diagnosis breakdown for filtered set
+      const diagMap={};
+      filtered.forEach(e=>{if(e.diagnosis){const d=e.diagnosis.trim();diagMap[d]=(diagMap[d]||0)+1}});
+      const withDiag=filtered.filter(e=>e.diagnosis).length;
+      if(Object.keys(diagMap).length>0){
+        const dtlbl=div('');dtlbl.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px';dtlbl.textContent='Diagnosis breakdown';
+        summary.appendChild(dtlbl);
+        Object.entries(diagMap).sort((a,b)=>b[1]-a[1]).forEach(([diag,count])=>{
+          const pctVal=withDiag?((count/withDiag)*100).toFixed(0):0;
+          const dr=div('');dr.style.cssText='margin-bottom:5px';
+          const drow=div('');drow.style.cssText='display:flex;justify-content:space-between;align-items:center;margin-bottom:2px';
+          const dlbl=div('');dlbl.style.cssText='font-size:12px;color:#e0e0e0;font-weight:600';dlbl.textContent=diag;
+          const dcnt=div('');dcnt.style.cssText='font-size:12px;color:#5b9bd5;font-weight:700';dcnt.textContent=`${count} (${pctVal}%)`;
+          drow.appendChild(dlbl);drow.appendChild(dcnt);
+          const dbar=div('');dbar.style.cssText='height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden';
+          const dfill=div('');dfill.style.cssText=`height:100%;width:${pctVal}%;background:#5b9bd5;border-radius:2px`;
+          dbar.appendChild(dfill);dr.appendChild(drow);dr.appendChild(dbar);summary.appendChild(dr);
+        });
+      }
+
+      // Lesion type breakdown for filtered set
+      if(!UI.filterLesionType){
+        const ltMap={};
+        filtered.forEach(e=>{if(e.lesionType)ltMap[e.lesionType]=(ltMap[e.lesionType]||0)+1});
+        if(Object.keys(ltMap).length>1){
+          const ltlbl2=div('');ltlbl2.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin:8px 0 5px';ltlbl2.textContent='Lesion types in results';
+          summary.appendChild(ltlbl2);
+          const ltrow=div('');ltrow.style.cssText='display:flex;flex-wrap:wrap;gap:5px';
+          Object.entries(ltMap).sort((a,b)=>b[1]-a[1]).forEach(([lt,n])=>{
+            const ltt=div('');ltt.style.cssText='font-size:11px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 8px;color:#ccc';
+            ltt.textContent=`${lt}: ${n}`;ltrow.appendChild(ltt);
+          });
+          summary.appendChild(ltrow);
+        }
+      }
+      main.appendChild(summary);
+    }
+
+    // ── Render log entries ──
+    function renderLog(){
+      // just re-render filtered list without full page render
+      // we update the existing logContainer
+      const lc2=document.getElementById('log-container');
+      if(!lc2)return render();
+      lc2.innerHTML='';
+      const filt=log.filter(matchesFilters);
+      if(filt.length===0){
+        const e=document.createElement('div');e.style.cssText='text-align:center;color:#6b7280;padding:24px 20px;font-style:italic';
+        e.textContent=UI.searchQuery||hasFilters?'No cases match your search or filters.':'No entries yet. Tap + to add your first case.';
+        lc2.appendChild(e);return;
+      }
+      filt.forEach(entry=>{
+        const idx=log.length-log.indexOf(entry);
+        lc2.appendChild(buildLogCard(entry,idx));
+      });
+      // update count title
+      const countEl=document.getElementById('log-count');
+      if(countEl)countEl.textContent=`Procedure Log (${filt.length}${filt.length!==log.length?' of '+log.length:''} entries)`;
+      // update search clear button
+      const clr=document.getElementById('search-clear');
+      if(clr)clr.style.display=UI.searchQuery?'block':'none';
+    }
+
+    // live search without full re-render
+    searchInput.addEventListener('input',e=>{UI.searchQuery=e.target.value;renderLog()},true);
+
+    const stDiv=div('');stDiv.id='log-count';stDiv.className='sec-title';stDiv.textContent=`Procedure Log (${filtered.length}${filtered.length!==log.length?' of '+log.length:''} entries)`;
+    main.appendChild(stDiv);
+
+    const logContainer=div('');logContainer.id='log-container';main.appendChild(logContainer);
+
+    if(filtered.length===0){
+      const e=div('');e.style.cssText='text-align:center;color:#6b7280;padding:24px 20px;font-style:italic';
+      e.textContent=UI.searchQuery||hasFilters?'No cases match your search or filters.':'No entries yet. Tap + to add your first case.';
+      logContainer.appendChild(e);
+    }
+
+    function buildLogCard(entry,idx){
+      const isOpen=UI.expandedLog===entry.id;
+      const histoPend=entry.diagnosticSample===null||entry.diagnosticSample===undefined;
+      const isDeath=(entry.complications||[]).includes('death');
+
+      const lc=div('log-card');
+      lc.style.borderColor=isDeath?'rgba(107,114,128,0.4)':histoPend?'rgba(240,165,0,0.25)':'rgba(255,255,255,0.07)';
       const isOpen=UI.expandedLog===entry.id;
       const histoPend=entry.diagnosticSample===null||entry.diagnosticSample===undefined;
       const isDeath=(entry.complications||[]).includes('death');
@@ -672,7 +834,12 @@ function renderApp(){
         hp.appendChild(hbtn);ld.appendChild(hp);
         lc.appendChild(ld);
       }
-      main.appendChild(lc);
+      return lc;
+    } // end buildLogCard
+
+    filtered.forEach(entry=>{
+      const idx=log.length-log.indexOf(entry);
+      logContainer.appendChild(buildLogCard(entry,idx));
     });
   }
 
