@@ -599,7 +599,7 @@ function App() {
           {/* Search */}
           <div style={{position:"relative",marginBottom:9}}>
             <span style={{position:"absolute",left:11,top:"50%",transform:"translateY(-50%)",fontSize:13,pointerEvents:"none"}}>🔍</span>
-            <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search diagnosis, notes, hospital..." style={{...inputSt,paddingLeft:33,paddingRight:search?32:12}}/>
+            <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="" style={{...inputSt,paddingLeft:33,paddingRight:search?32:12}}/>
             {search&&<button onClick={()=>setSearch("")} style={{position:"absolute",right:10,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",color:"#6b7280",fontSize:15,cursor:"pointer",padding:0}}>✕</button>}
           </div>
 
@@ -621,7 +621,7 @@ function App() {
               <div style={{fontSize:10,fontWeight:700,color:"#6b7280",textTransform:"uppercase",letterSpacing:"1px",margin:"9px 0 5px"}}>Complication</div>
               <Seg options={COMPS.map(c=>c.label)} value={fComp} onChange={setFComp}/>
               <div style={{fontSize:10,fontWeight:700,color:"#6b7280",textTransform:"uppercase",letterSpacing:"1px",margin:"9px 0 5px"}}>Diagnosis Contains</div>
-              <input value={fDiag} onChange={e=>setFDiag(e.target.value)} placeholder="e.g. Adenocarcinoma..." style={inputSt}/>
+              <input value={fDiag} onChange={e=>setFDiag(e.target.value)} placeholder="" style={inputSt}/>
             </div>
           )}
 
@@ -811,26 +811,26 @@ function App() {
           {addStep===0 ? (
             <>
               <ModalTitle main="New Biopsy Case" sub="Step 1 of 2 — Procedure details"/>
-              <FL label="Hospital Name"><input value={addForm.hospitalName} onChange={e=>setAddForm(p=>({...p,hospitalName:e.target.value}))} placeholder="e.g. Royal Marsden, UCLH..." style={inputSt}/></FL>
-              <FL label="Case Reference" hint="(your own code only)"><input value={addForm.caseRef} onChange={e=>setAddForm(p=>({...p,caseRef:e.target.value}))} placeholder="e.g. 150125-JB" style={inputSt}/></FL>
+              <FL label="Hospital Name"><input value={addForm.hospitalName} onChange={e=>setAddForm(p=>({...p,hospitalName:e.target.value}))} placeholder="" style={inputSt}/></FL>
+              <FL label="Case Reference" hint="(your own code only)"><input value={addForm.caseRef} onChange={e=>setAddForm(p=>({...p,caseRef:e.target.value}))} placeholder="" style={inputSt}/></FL>
               <FL label="Date Performed"><input type="date" value={addForm.datePerformed} onChange={e=>setAddForm(p=>({...p,datePerformed:e.target.value}))} style={{...inputSt,colorScheme:"dark"}}/></FL>
               <div style={{display:"flex",gap:10}}>
-                <div style={{flex:1}}><FL label="Age"><input type="number" value={addForm.age} onChange={e=>setAddForm(p=>({...p,age:e.target.value}))} placeholder="67" min="0" style={inputSt}/></FL></div>
+                <div style={{flex:1}}><FL label="Age"><input type="number" value={addForm.age} onChange={e=>setAddForm(p=>({...p,age:e.target.value}))} placeholder="" min="0" style={inputSt}/></FL></div>
                 <div style={{flex:1}}><FL label="Sex"><Seg options={["M","F"]} value={addForm.sex} onChange={v=>setAddForm(p=>({...p,sex:v}))}/></FL></div>
               </div>
               <FL label="Supervision"><Seg options={SUPS} value={addForm.supervision} onChange={v=>setAddForm(p=>({...p,supervision:v}))}/></FL>
               <FL label="Lobe"><Seg options={LOBES} value={addForm.lobe} onChange={v=>setAddForm(p=>({...p,lobe:v}))}/></FL>
               <FL label="Lesion Type"><Seg options={LTYPES} value={addForm.lesionType} onChange={v=>setAddForm(p=>({...p,lesionType:v}))}/></FL>
               <div style={{display:"flex",gap:10}}>
-                <div style={{flex:1}}><FL label="Lesion Size (mm)"><input type="number" value={addForm.lesionSize} onChange={e=>setAddForm(p=>({...p,lesionSize:e.target.value}))} placeholder="18" min="0" style={inputSt}/></FL></div>
-                <div style={{flex:1}}><FL label="Distance (mm)"><input type="number" value={addForm.distance} onChange={e=>setAddForm(p=>({...p,distance:e.target.value}))} placeholder="22" min="0" style={inputSt}/></FL></div>
+                <div style={{flex:1}}><FL label="Lesion Size (mm)"><input type="number" value={addForm.lesionSize} onChange={e=>setAddForm(p=>({...p,lesionSize:e.target.value}))} placeholder="" min="0" style={inputSt}/></FL></div>
+                <div style={{flex:1}}><FL label="Distance (mm)"><input type="number" value={addForm.distance} onChange={e=>setAddForm(p=>({...p,distance:e.target.value}))} placeholder="" min="0" style={inputSt}/></FL></div>
               </div>
               <FL label="Emphysema in Needle Track"><Tog value={addForm.emphysemaTrack} onChange={v=>setAddForm(p=>({...p,emphysemaTrack:v}))} label="Emphysema Present"/></FL>
               <div style={{display:"flex",gap:10}}>
-                <div style={{flex:1}}><FL label="Needle Size"><input value={addForm.needleSize} onChange={e=>setAddForm(p=>({...p,needleSize:e.target.value}))} placeholder="e.g. 18G" style={inputSt}/></FL></div>
-                <div style={{flex:1}}><FL label="Passes"><input type="number" value={addForm.passes} onChange={e=>setAddForm(p=>({...p,passes:e.target.value}))} placeholder="3" min="1" style={inputSt}/></FL></div>
+                <div style={{flex:1}}><FL label="Needle Size"><input value={addForm.needleSize} onChange={e=>setAddForm(p=>({...p,needleSize:e.target.value}))} placeholder="" style={inputSt}/></FL></div>
+                <div style={{flex:1}}><FL label="Passes"><input type="number" value={addForm.passes} onChange={e=>setAddForm(p=>({...p,passes:e.target.value}))} placeholder="" min="1" style={inputSt}/></FL></div>
               </div>
-              <FL label="Comments" hint="(optional)"><textarea value={addForm.comments} onChange={e=>setAddForm(p=>({...p,comments:e.target.value}))} placeholder="Any additional notes..." style={taSt}/></FL>
+              <FL label="Comments" hint="(optional)"><textarea value={addForm.comments} onChange={e=>setAddForm(p=>({...p,comments:e.target.value}))} placeholder="" style={taSt}/></FL>
               <div style={{display:"flex",gap:8,marginTop:14}}>
                 <button style={cancelBt} onClick={()=>setAddOpen(false)}>Cancel</button>
                 <button style={saveBt} onClick={()=>setAddStep(1)}>Next →</button>
@@ -844,7 +844,7 @@ function App() {
                 <CompToggle key={c.id} comp={c} selected={!!addComps[c.id]} onToggle={()=>setAddComps(p=>({...p,[c.id]:!p[c.id]}))}/>
               ))}
               <FL label="Complication Notes" hint="(optional)">
-                <textarea value={addCompNotes} onChange={e=>setAddCompNotes(e.target.value)} placeholder="e.g. Small pneumothorax, resolved spontaneously..." style={taSt}/>
+                <textarea value={addCompNotes} onChange={e=>setAddCompNotes(e.target.value)} placeholder="" style={taSt}/>
               </FL>
               <div style={{display:"flex",gap:8,marginTop:14}}>
                 <button style={cancelBt} onClick={()=>setAddStep(0)}>← Back</button>
@@ -869,24 +869,24 @@ function App() {
 
           {editSec==="details" && <>
             <ModalTitle main="Edit Case Details"/>
-            <FL label="Hospital Name"><input value={editForm.hospitalName} onChange={e=>setEditForm(p=>({...p,hospitalName:e.target.value}))} placeholder="e.g. Royal Marsden..." style={inputSt}/></FL>
-            <FL label="Case Reference" hint="(your own code only)"><input value={editForm.caseRef} onChange={e=>setEditForm(p=>({...p,caseRef:e.target.value}))} placeholder="e.g. 150125-JB" style={inputSt}/></FL>
+            <FL label="Hospital Name"><input value={editForm.hospitalName} onChange={e=>setEditForm(p=>({...p,hospitalName:e.target.value}))} placeholder="" style={inputSt}/></FL>
+            <FL label="Case Reference" hint="(your own code only)"><input value={editForm.caseRef} onChange={e=>setEditForm(p=>({...p,caseRef:e.target.value}))} placeholder="" style={inputSt}/></FL>
             <FL label="Date Performed"><input type="date" value={editForm.datePerformed} onChange={e=>setEditForm(p=>({...p,datePerformed:e.target.value}))} style={{...inputSt,colorScheme:"dark"}}/></FL>
             <div style={{display:"flex",gap:10}}>
-              <div style={{flex:1}}><FL label="Age"><input type="number" value={editForm.age} onChange={e=>setEditForm(p=>({...p,age:e.target.value}))} placeholder="67" style={inputSt}/></FL></div>
+              <div style={{flex:1}}><FL label="Age"><input type="number" value={editForm.age} onChange={e=>setEditForm(p=>({...p,age:e.target.value}))} placeholder="" style={inputSt}/></FL></div>
               <div style={{flex:1}}><FL label="Sex"><Seg options={["M","F"]} value={editForm.sex} onChange={v=>setEditForm(p=>({...p,sex:v}))}/></FL></div>
             </div>
             <FL label="Supervision"><Seg options={SUPS} value={editForm.supervision} onChange={v=>setEditForm(p=>({...p,supervision:v}))}/></FL>
             <FL label="Lobe"><Seg options={LOBES} value={editForm.lobe} onChange={v=>setEditForm(p=>({...p,lobe:v}))}/></FL>
             <FL label="Lesion Type"><Seg options={LTYPES} value={editForm.lesionType} onChange={v=>setEditForm(p=>({...p,lesionType:v}))}/></FL>
             <div style={{display:"flex",gap:10}}>
-              <div style={{flex:1}}><FL label="Lesion Size (mm)"><input type="number" value={editForm.lesionSize} onChange={e=>setEditForm(p=>({...p,lesionSize:e.target.value}))} placeholder="18" style={inputSt}/></FL></div>
-              <div style={{flex:1}}><FL label="Distance (mm)"><input type="number" value={editForm.distance} onChange={e=>setEditForm(p=>({...p,distance:e.target.value}))} placeholder="22" style={inputSt}/></FL></div>
+              <div style={{flex:1}}><FL label="Lesion Size (mm)"><input type="number" value={editForm.lesionSize} onChange={e=>setEditForm(p=>({...p,lesionSize:e.target.value}))} placeholder="" style={inputSt}/></FL></div>
+              <div style={{flex:1}}><FL label="Distance (mm)"><input type="number" value={editForm.distance} onChange={e=>setEditForm(p=>({...p,distance:e.target.value}))} placeholder="" style={inputSt}/></FL></div>
             </div>
             <FL label="Emphysema in Needle Track"><Tog value={editForm.emphysemaTrack} onChange={v=>setEditForm(p=>({...p,emphysemaTrack:v}))} label="Emphysema Present"/></FL>
             <div style={{display:"flex",gap:10}}>
-              <div style={{flex:1}}><FL label="Needle Size"><input value={editForm.needleSize} onChange={e=>setEditForm(p=>({...p,needleSize:e.target.value}))} placeholder="e.g. 18G" style={inputSt}/></FL></div>
-              <div style={{flex:1}}><FL label="Passes"><input type="number" value={editForm.passes} onChange={e=>setEditForm(p=>({...p,passes:e.target.value}))} placeholder="3" style={inputSt}/></FL></div>
+              <div style={{flex:1}}><FL label="Needle Size"><input value={editForm.needleSize} onChange={e=>setEditForm(p=>({...p,needleSize:e.target.value}))} placeholder="" style={inputSt}/></FL></div>
+              <div style={{flex:1}}><FL label="Passes"><input type="number" value={editForm.passes} onChange={e=>setEditForm(p=>({...p,passes:e.target.value}))} placeholder="" style={inputSt}/></FL></div>
             </div>
             <FL label="Comments" hint="(optional)"><textarea value={editForm.comments} onChange={e=>setEditForm(p=>({...p,comments:e.target.value}))} style={taSt}/></FL>
             <div style={{display:"flex",gap:8,marginTop:14}}>
@@ -901,7 +901,7 @@ function App() {
               <CompToggle key={c.id} comp={c} selected={!!editComps[c.id]} onToggle={()=>setEditComps(p=>({...p,[c.id]:!p[c.id]}))}/>
             ))}
             <FL label="Complication Notes" hint="(optional)">
-              <textarea value={editCompNotes} onChange={e=>setEditCompNotes(e.target.value)} placeholder="e.g. Small pneumothorax, resolved spontaneously..." style={taSt}/>
+              <textarea value={editCompNotes} onChange={e=>setEditCompNotes(e.target.value)} placeholder="" style={taSt}/>
             </FL>
             <div style={{display:"flex",gap:8,marginTop:14}}>
               <button style={cancelBt} onClick={()=>setEditEntry(null)}>Cancel</button>
@@ -911,8 +911,8 @@ function App() {
 
           {editSec==="histology" && <>
             <ModalTitle main="Histology Result" sub={`Biopsy: ${fmtD(editEntry.createdAt)}${editEntry.lobe?` · ${editEntry.lobe}`:""}`}/>
-            <FL label="Diagnosis"><input value={editHisto.diagnosis} onChange={e=>setEditHisto(p=>({...p,diagnosis:e.target.value}))} placeholder="e.g. Adenocarcinoma, SCC, Benign..." style={inputSt}/></FL>
-            <FL label="Histology Notes" hint="(optional)"><textarea value={editHisto.histologyNotes} onChange={e=>setEditHisto(p=>({...p,histologyNotes:e.target.value}))} placeholder="e.g. Grade, mutation status, TNM staging..." style={taSt}/></FL>
+            <FL label="Diagnosis"><input value={editHisto.diagnosis} onChange={e=>setEditHisto(p=>({...p,diagnosis:e.target.value}))} placeholder="" style={inputSt}/></FL>
+            <FL label="Histology Notes" hint="(optional)"><textarea value={editHisto.histologyNotes} onChange={e=>setEditHisto(p=>({...p,histologyNotes:e.target.value}))} placeholder="" style={taSt}/></FL>
             <FL label="Diagnostic Sample Obtained?">
               <div style={{display:"flex",gap:8}}>
                 {[{label:"✅ Yes — Diagnostic",val:true,c:C.green},{label:"❌ No — Non-diagnostic",val:false,c:C.red}].map(opt=>(
