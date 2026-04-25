@@ -10,12 +10,6 @@
   <meta name="apple-mobile-web-app-title" content="Lung Biopsy"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
   <meta name="format-detection" content="telephone=no"/>
-  <style>
-    /* Force dark splash on Samsung/Android */
-    @media (display-mode: standalone) {
-      body { background: #0d1117 !important; }
-    }
-  </style>
   <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiTHVuZyBCaW9wc3kgVHJhY2tlciIsInNob3J0X25hbWUiOiJMdW5nIEJpb3BzeSIsImRlc2NyaXB0aW9uIjoiQ1QtZ3VpZGVkIGx1bmcgYmlvcHN5IGNvbXBsaWNhdGlvbiB0cmFja2VyIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwZDExMTciLCJ0aGVtZV9jb2xvciI6IiMwZDExMTciLCJvcmllbnRhdGlvbiI6InBvcnRyYWl0IiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0ExTVRJZ05URXlJajRLSUNBOGNtVmpkQ0IzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdjbmc5SWprMklpQm1hV3hzUFNJak1HUXhNVEUzSWk4K0NpQWdQQ0V0TFNCTVpXWjBJR3gxYm1jZ0xTMCtDaUFnUEhCaGRHZ2daRDBpVFRJME1pQXhNRGdnUXpJME1pQXhNRGdnTWpFNElEazRJREU1TmlBeE1UQWdRekUyTWlBeE1qZ2dNVFF3SURFMU9DQXhNamdnTVRreUlFTXhNVElnTWpNMElERXdPQ0F5TnpnZ01URTBJRE14T0NCRE1USXdJRE0xTWlBeE16WWdNemd5SURFMU9DQXpPVGdnUXpFM05TQTBNVEFnTVRrMklEUXdOeUF5TVRJZ016a3pJRU15TWpZZ016Z3dJREl6TkNBek5qQWdNalF3SURNek9DQk1NalF5SURFd09Gb2lJR1pwYkd3OUlpTTFZamxpWkRVaUlHOXdZV05wZEhrOUlqQXVPVFVpTHo0S0lDQThjR0YwYUNCa1BTSk5NalF5SURFME1DQkRNak13SURFek5DQXlNVElnTVRJNElESXdNaUF4TXpnZ1F6RTROQ0F4TlRJZ01UY3dJREUzTmlBeE5qSWdNakEySUVNeE5EZ2dNalEwSURFME5pQXlPRFFnTVRVeUlETXhOaUJETVRVNElETTBOaUF4TnpBZ016WTRJREU0T0NBek9EQWdRekl3TUNBek9Ea2dNakUwSURNNE5pQXlNalFnTXpjMklFTXlNelFnTXpZMUlESTBNQ0F6TkRjZ01qUXlJRE15TmlCTU1qUXlJREUwTUZvaUlHWnBiR3c5SWlNM1lXSTRaVGdpSUc5d1lXTnBkSGs5SWpBdU5UVWlMejRLSUNBOElTMHRJRkpwWjJoMElHeDFibWNnTFMwK0NpQWdQSEJoZEdnZ1pEMGlUVEkzTUNBeE1EZ2dRekkzTUNBeE1EZ2dNamswSURrNElETXhOaUF4TVRBZ1F6TTFNQ0F4TWpnZ016Y3lJREUxT0NBek9EUWdNVGt5SUVNME1EQWdNak0wSURRd05DQXlOemdnTXprNElETXhPQ0JETXpreUlETTFNaUF6TnpZZ016Z3lJRE0xTkNBek9UZ2dRek16TnlBME1UQWdNekUySURRd055QXpNREFnTXpreklFTXlPRFlnTXpnd0lESTNPQ0F6TmpBZ01qY3lJRE16T0NCTU1qY3dJREV3T0ZvaUlHWnBiR3c5SWlNMVlqbGlaRFVpSUc5d1lXTnBkSGs5SWpBdU9UVWlMejRLSUNBOGNHRjBhQ0JrUFNKTk1qY3dJREUwTUNCRE1qZ3lJREV6TkNBek1EQWdNVEk0SURNeE1DQXhNemdnUXpNeU9DQXhOVElnTXpReUlERTNOaUF6TlRBZ01qQTJJRU16TmpRZ01qUTBJRE0yTmlBeU9EUWdNell3SURNeE5pQkRNelUwSURNME5pQXpORElnTXpZNElETXlOQ0F6T0RBZ1F6TXhNaUF6T0RrZ01qazRJRE00TmlBeU9EZ2dNemMySUVNeU56Z2dNelkxSURJM01pQXpORGNnTWpjd0lETXlOaUJNTWpjd0lERTBNRm9pSUdacGJHdzlJaU0zWVdJNFpUZ2lJRzl3WVdOcGRIazlJakF1TlRVaUx6NEtJQ0E4SVMwdElGUnlZV05vWldFZ0xTMCtDaUFnUEhKbFkzUWdlRDBpTWpRM0lpQjVQU0kyTWlJZ2QybGtkR2c5SWpFNElpQm9aV2xuYUhROUlqVTRJaUJ5ZUQwaU9TSWdabWxzYkQwaUl6VmlPV0prTlNJdlBnb2dJRHdoTFMwZ1RHVm1kQ0JpY205dVkyaDFjeUF0TFQ0S0lDQThjR0YwYUNCa1BTSk5NalE0SURFeE5TQlJNakl5SURFeE9DQXlNRGdnTVRNeUlpQnpkSEp2YTJVOUlpTTFZamxpWkRVaUlITjBjbTlyWlMxM2FXUjBhRDBpTVRJaUlHWnBiR3c5SW01dmJtVWlJSE4wY205clpTMXNhVzVsWTJGd1BTSnliM1Z1WkNJdlBnb2dJRHdoTFMwZ1VtbG5hSFFnWW5KdmJtTm9kWE1nTFMwK0NpQWdQSEJoZEdnZ1pEMGlUVEkyTkNBeE1UVWdVVEk1TUNBeE1UZ2dNekEwSURFek1pSWdjM1J5YjJ0bFBTSWpOV0k1WW1RMUlpQnpkSEp2YTJVdGQybGtkR2c5SWpFeUlpQm1hV3hzUFNKdWIyNWxJaUJ6ZEhKdmEyVXRiR2x1WldOaGNEMGljbTkxYm1RaUx6NEtJQ0E4SVMwdElFSnBiM0J6ZVNCdVpXVmtiR1VnS0dkdmJHUXBJQzB0UGdvZ0lEeHNhVzVsSUhneFBTSXpPRGdpSUhreFBTSXhORGdpSUhneVBTSXpNRGdpSUhreVBTSXlNamdpSUhOMGNtOXJaVDBpSTJZd1lUVXdNQ0lnYzNSeWIydGxMWGRwWkhSb1BTSTRJaUJ6ZEhKdmEyVXRiR2x1WldOaGNEMGljbTkxYm1RaUx6NEtJQ0E4Y0c5c2VXZHZiaUJ3YjJsdWRITTlJak13T0N3eU1qQWdNekF5TERJek9DQXpNakFzTWpNeUlpQm1hV3hzUFNJalpqQmhOVEF3SWk4K0Nqd3ZjM1puUGc9PSIsInNpemVzIjoiNTEyeDUxMiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIiwicHVycG9zZSI6ImFueSBtYXNrYWJsZSJ9XX0="/>
   <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9Ijk2IiBmaWxsPSIjMGQxMTE3Ii8+CiAgPCEtLSBMZWZ0IGx1bmcgLS0+CiAgPHBhdGggZD0iTTI0MiAxMDggQzI0MiAxMDggMjE4IDk4IDE5NiAxMTAgQzE2MiAxMjggMTQwIDE1OCAxMjggMTkyIEMxMTIgMjM0IDEwOCAyNzggMTE0IDMxOCBDMTIwIDM1MiAxMzYgMzgyIDE1OCAzOTggQzE3NSA0MTAgMTk2IDQwNyAyMTIgMzkzIEMyMjYgMzgwIDIzNCAzNjAgMjQwIDMzOCBMMjQyIDEwOFoiIGZpbGw9IiM1YjliZDUiIG9wYWNpdHk9IjAuOTUiLz4KICA8cGF0aCBkPSJNMjQyIDE0MCBDMjMwIDEzNCAyMTIgMTI4IDIwMiAxMzggQzE4NCAxNTIgMTcwIDE3NiAxNjIgMjA2IEMxNDggMjQ0IDE0NiAyODQgMTUyIDMxNiBDMTU4IDM0NiAxNzAgMzY4IDE4OCAzODAgQzIwMCAzODkgMjE0IDM4NiAyMjQgMzc2IEMyMzQgMzY1IDI0MCAzNDcgMjQyIDMyNiBMMjQyIDE0MFoiIGZpbGw9IiM3YWI4ZTgiIG9wYWNpdHk9IjAuNTUiLz4KICA8IS0tIFJpZ2h0IGx1bmcgLS0+CiAgPHBhdGggZD0iTTI3MCAxMDggQzI3MCAxMDggMjk0IDk4IDMxNiAxMTAgQzM1MCAxMjggMzcyIDE1OCAzODQgMTkyIEM0MDAgMjM0IDQwNCAyNzggMzk4IDMxOCBDMzkyIDM1MiAzNzYgMzgyIDM1NCAzOTggQzMzNyA0MTAgMzE2IDQwNyAzMDAgMzkzIEMyODYgMzgwIDI3OCAzNjAgMjcyIDMzOCBMMjcwIDEwOFoiIGZpbGw9IiM1YjliZDUiIG9wYWNpdHk9IjAuOTUiLz4KICA8cGF0aCBkPSJNMjcwIDE0MCBDMjgyIDEzNCAzMDAgMTI4IDMxMCAxMzggQzMyOCAxNTIgMzQyIDE3NiAzNTAgMjA2IEMzNjQgMjQ0IDM2NiAyODQgMzYwIDMxNiBDMzU0IDM0NiAzNDIgMzY4IDMyNCAzODAgQzMxMiAzODkgMjk4IDM4NiAyODggMzc2IEMyNzggMzY1IDI3MiAzNDcgMjcwIDMyNiBMMjcwIDE0MFoiIGZpbGw9IiM3YWI4ZTgiIG9wYWNpdHk9IjAuNTUiLz4KICA8IS0tIFRyYWNoZWEgLS0+CiAgPHJlY3QgeD0iMjQ3IiB5PSI2MiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjU4IiByeD0iOSIgZmlsbD0iIzViOWJkNSIvPgogIDwhLS0gTGVmdCBicm9uY2h1cyAtLT4KICA8cGF0aCBkPSJNMjQ4IDExNSBRMjIyIDExOCAyMDggMTMyIiBzdHJva2U9IiM1YjliZDUiIHN0cm9rZS13aWR0aD0iMTIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gUmlnaHQgYnJvbmNodXMgLS0+CiAgPHBhdGggZD0iTTI2NCAxMTUgUTI5MCAxMTggMzA0IDEzMiIgc3Ryb2tlPSIjNWI5YmQ1IiBzdHJva2Utd2lkdGg9IjEyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEJpb3BzeSBuZWVkbGUgKGdvbGQpIC0tPgogIDxsaW5lIHgxPSIzODgiIHkxPSIxNDgiIHgyPSIzMDgiIHkyPSIyMjgiIHN0cm9rZT0iI2YwYTUwMCIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8cG9seWdvbiBwb2ludHM9IjMwOCwyMjAgMzAyLDIzOCAzMjAsMjMyIiBmaWxsPSIjZjBhNTAwIi8+Cjwvc3ZnPg=="/>
   <title>Lung Biopsy Tracker</title>
@@ -26,8 +20,8 @@
     input,textarea,button,select{font-family:inherit;-webkit-appearance:none;appearance:none;border:none;outline:none}
     ::-webkit-scrollbar{display:none}
     *{scrollbar-width:none}
-    /* Prevent any white flash on launch */
     #root{background:#0d1117;min-height:100vh}
+    @media (display-mode:standalone){body{background:#0d1117 !important}}
   </style>
   <script>
     if('serviceWorker' in navigator){
@@ -217,7 +211,7 @@ function Disclaimer({ onAccept }) {
   return (
     <div style={{minHeight:"100%",background:C.bg,display:"flex",flexDirection:"column",alignItems:"center",padding:"24px 16px",overflowY:"auto"}}>
       <div style={{fontSize:40,marginBottom:8}}>🫁</div>
-      <div style={{fontSize:20,fontWeight:800,color:"#fff",marginBottom:2}}>Lung Biopsy Tracker</div>
+      <div style={{fontSize:20,fontWeight:800,color:"#fff",marginBottom:2}}>LungBiopsy Tracker</div>
       <div style={{fontSize:11,color:"#6b7fa3",textTransform:"uppercase",letterSpacing:"1px",marginBottom:22}}>Preview Mode</div>
       <div style={{width:"100%",maxWidth:400,background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:14,overflow:"hidden"}}>
         <div style={{background:"rgba(224,82,82,0.12)",padding:"11px 15px",display:"flex",alignItems:"center",gap:8}}>
@@ -270,7 +264,11 @@ function App() {
   const [selHosp, setSelHosp] = useState(null);
   const [showPending, setShowPending] = useState(false);
   const [toast, setToast] = useState(null);
-  const [confirmClear, setConfirmClear] = useState(false);
+  const [confirmClear, setConfirmClear] = useState(0); // 0=off, 1=first check, 2=second check
+
+  // Settings / defaults
+  const [settings, setSettings] = useState(()=>{ try{const r=localStorage.getItem('lb_settings');return r?JSON.parse(r):{defaultHospital:"",defaultSupervision:"",defaultNeedleSize:"",defaultPasses:"",yourName:""};}catch{return{defaultHospital:"",defaultSupervision:"",defaultNeedleSize:"",defaultPasses:"",yourName:""};} });
+  function setSetting(key, val) { setSettings(p => { const n={...p,[key]:val}; try{localStorage.setItem('lb_settings',JSON.stringify(n));}catch{} return n; }); }
 
   // Search / filter
   const [search, setSearch] = useState("");
@@ -300,9 +298,40 @@ function App() {
     setTimeout(() => setToast(null), 2200);
   }
 
+  function exportData() {
+    try {
+      const blob = new Blob([JSON.stringify({ cases, total, exportedAt: new Date().toISOString() }, null, 2)], { type:"application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "LungBiopsy_Backup_" + new Date().toISOString().slice(0,10) + ".json";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url); showToast("Backup downloaded ✓");
+    } catch { showToast("Export failed"); }
+  }
+
+  function importData(e) {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const parsed = JSON.parse(ev.target.result);
+        if (!parsed.cases || !Array.isArray(parsed.cases)) throw new Error();
+        setCases(parsed.cases); setTotal(parsed.total || parsed.cases.length);
+        showToast("Restored " + parsed.cases.length + " cases ✓");
+      } catch { showToast("Import failed — invalid file"); }
+    };
+    reader.readAsText(file); e.target.value = "";
+  }
+
   // ── Add case ──
   function openAdd() {
-    setAddForm({ ...EMPTY_FORM });
+    setAddForm({
+      ...EMPTY_FORM,
+      hospitalName: settings.defaultHospital,
+      supervision: settings.defaultSupervision,
+      needleSize: settings.defaultNeedleSize,
+      passes: settings.defaultPasses,
+    });
     setAddComps({});
     setAddCompNotes("");
     setAddStep(0);
@@ -446,8 +475,8 @@ function App() {
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <span style={{fontSize:30}}>🫁</span>
             <div>
-              <div style={{fontSize:19,fontWeight:800,color:"#fff",letterSpacing:"-0.5px"}}>Lung Biopsy Tracker</div>
-              <div style={{fontSize:10,color:"#6b7fa3",textTransform:"uppercase",letterSpacing:"1px"}}>Tracker</div>
+              <div style={{fontSize:19,fontWeight:800,color:"#fff",letterSpacing:"-0.5px"}}>Lung Biopsy</div>
+              <div style={{fontSize:10,color:"#6b7fa3",textTransform:"uppercase",letterSpacing:"1px"}}>{settings.yourName ? settings.yourName + " · Tracker" : "Tracker"}</div>
             </div>
           </div>
           <div style={{background:"rgba(91,155,213,0.15)",border:"1px solid rgba(91,155,213,0.3)",borderRadius:10,padding:"6px 14px",textAlign:"center"}}>
@@ -464,7 +493,7 @@ function App() {
 
       {/* Tabs */}
       <div style={{display:"flex",background:"#111827",borderBottom:`1px solid ${C.border}`,position:"sticky",top:73,zIndex:40}}>
-        {[["dashboard","📊 Dashboard"],["log","📋 Log"],["rates","📈 Rates"]].map(([id,lbl])=>(
+        {[["dashboard","📊 Dashboard"],["log","📋 Log"],["rates","📈 Rates"],["settings","⚙️ Settings"]].map(([id,lbl])=>(
           <button key={id} onClick={()=>setTab(id)} style={{flex:1,padding:"11px 4px",background:"none",border:"none",fontSize:12,fontWeight:600,cursor:"pointer",color:tab===id?C.blue:"#6b7280",borderBottom:`2px solid ${tab===id?C.blue:"transparent"}`}}>{lbl}</button>
         ))}
       </div>
@@ -790,7 +819,120 @@ function App() {
           </div>
 
           <div style={{textAlign:"center",marginTop:14}}>
-            <button onClick={()=>setConfirmClear(true)} style={{background:"rgba(224,82,82,0.1)",border:"1px solid rgba(224,82,82,0.3)",color:C.red,padding:"8px 20px",borderRadius:7,fontSize:13,fontWeight:600,cursor:"pointer"}}>🗑 Reset All Data</button>
+            <button onClick={()=>setConfirmClear(1)} style={{background:"rgba(224,82,82,0.1)",border:"1px solid rgba(224,82,82,0.3)",color:C.red,padding:"8px 20px",borderRadius:7,fontSize:13,fontWeight:600,cursor:"pointer"}}>🗑 Reset All Data</button>
+          </div>
+        </>}
+
+        {/* ═══ SETTINGS ═══ */}
+        {tab==="settings" && <>
+
+          {/* Who you are */}
+          <div style={{...secTitle,marginTop:0}}>Your Profile</div>
+          <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
+            <FL label="Your Name / Initials">
+              <input value={settings.yourName} onChange={e=>setSetting("yourName",e.target.value)}
+                placeholder="" style={inputSt}/>
+            </FL>
+            <div style={{fontSize:12,color:"#6b7280",marginTop:-6}}>Shown in the app header</div>
+          </div>
+
+          {/* Default values */}
+          <div style={secTitle}>Default Values</div>
+          <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
+            <div style={{fontSize:12,color:"#6b7280",marginBottom:14,lineHeight:1.5}}>
+              These auto-fill each new case. You can always change them when entering a case.
+            </div>
+
+            <FL label="Default Hospital">
+              <input value={settings.defaultHospital} onChange={e=>setSetting("defaultHospital",e.target.value)}
+                placeholder="" style={inputSt}/>
+            </FL>
+
+            <FL label="Default Supervision">
+              <Seg options={SUPS} value={settings.defaultSupervision} onChange={v=>setSetting("defaultSupervision",v)}/>
+            </FL>
+
+            <FL label="Default Needle Size">
+              <input value={settings.defaultNeedleSize} onChange={e=>setSetting("defaultNeedleSize",e.target.value)}
+                placeholder="" style={inputSt}/>
+            </FL>
+
+            <FL label="Default Passes">
+              <input type="number" value={settings.defaultPasses} onChange={e=>setSetting("defaultPasses",e.target.value)}
+                placeholder="" min="1" style={inputSt}/>
+            </FL>
+
+            <div style={{background:"rgba(34,197,94,0.08)",border:"1px solid rgba(34,197,94,0.2)",borderRadius:8,padding:"10px 12px",marginTop:4,fontSize:12,color:"#22c55e"}}>
+              ✓ Defaults active — will pre-fill your next new case
+            </div>
+          </div>
+
+          {/* Data management */}
+          <div style={secTitle}>Data Management</div>
+          <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${C.border}`,borderRadius:12,padding:"14px",display:"flex",flexDirection:"column",gap:10}}>
+            <div style={{fontSize:12,color:"#6b7280",marginBottom:2,lineHeight:1.5}}>
+              Export a backup before swapping phones or as a safety copy.
+            </div>
+            <button onClick={exportData} style={{background:"rgba(34,197,94,0.1)",border:"1px solid rgba(34,197,94,0.3)",color:"#22c55e",padding:"11px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer"}}>
+              📤 Export All Data (Backup)
+            </button>
+            <label style={{background:"rgba(91,155,213,0.1)",border:"1px solid rgba(91,155,213,0.3)",color:C.blue,padding:"11px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer",textAlign:"center",display:"block"}}>
+              📥 Import Data (Restore)
+              <input type="file" accept=".json" onChange={importData} style={{display:"none"}}/>
+            </label>
+            <button onClick={()=>setConfirmClear(1)} style={{background:"rgba(224,82,82,0.1)",border:"1px solid rgba(224,82,82,0.3)",color:C.red,padding:"11px",borderRadius:8,fontSize:13,fontWeight:600,cursor:"pointer"}}>
+              🗑 Reset All Data
+            </button>
+          </div>
+
+          {/* Legal */}
+          <div style={secTitle}>Legal & Info</div>
+          <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${C.border}`,borderRadius:12,overflow:"hidden"}}>
+            {[
+              ["📋 View Disclaimer", ()=>setAccepted(false)],
+              ["🔒 Privacy Policy", ()=>setTab("settings")],
+            ].map(([label, action], i)=>(
+              <button key={label} onClick={action} style={{
+                width:"100%",padding:"13px 14px",background:"none",border:"none",cursor:"pointer",
+                display:"flex",alignItems:"center",justifyContent:"space-between",
+                borderBottom:i===0?`1px solid ${C.border}`:"none",
+                color:"#e0e0e0",fontSize:13,fontWeight:600,
+              }}>
+                <span>{label}</span>
+                <span style={{color:"#6b7280",fontSize:12}}>›</span>
+              </button>
+            ))}
+          </div>
+
+          {/* About */}
+          <div style={secTitle}>About</div>
+          <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:10}}>
+              <span style={{fontSize:36}}>🫁</span>
+              <div>
+                <div style={{fontSize:15,fontWeight:800,color:"#fff"}}>Lung Biopsy Tracker</div>
+                <div style={{fontSize:12,color:"#6b7280"}}>Version 1.0 · For personal audit use only</div>
+              </div>
+            </div>
+            <div style={{fontSize:12,color:"#6b7280",lineHeight:1.7,borderTop:`1px solid ${C.border}`,paddingTop:10}}>
+              Built with AI assistance (Claude, Anthropic). Not a medical device. Not assessed by the MHRA. Data stored locally on this device.
+            </div>
+          </div>
+
+          <div style={{height:20}}/>
+
+          {/* Save button */}
+          <button onClick={()=>{ try{localStorage.setItem('lb_settings',JSON.stringify(settings));}catch{} showToast("Settings saved ✓"); }} style={{
+            width:"100%", padding:"15px", borderRadius:12,
+            background:"linear-gradient(135deg,#5b9bd5,#3b7abf)",
+            border:"none", color:"#fff", fontSize:16, fontWeight:700,
+            cursor:"pointer", boxShadow:"0 4px 14px rgba(91,155,213,0.35)",
+            marginBottom:8,
+          }}>
+            Save Settings ✓
+          </button>
+          <div style={{textAlign:"center",fontSize:11,color:"#4b5563",marginBottom:20}}>
+            Settings are saved to this device
           </div>
         </>}
       </div>
@@ -931,12 +1073,48 @@ function App() {
       )}
 
       {/* Confirm clear */}
-      {confirmClear && (
-        <Overlay onClose={()=>setConfirmClear(false)}>
-          <ModalTitle main="Reset All Data?" sub={`Permanently delete all ${total} records?`}/>
-          <div style={{display:"flex",gap:8,marginTop:14}}>
-            <button style={cancelBt} onClick={()=>setConfirmClear(false)}>Cancel</button>
-            <button style={{...saveBt,background:"#e05252"}} onClick={()=>{setCases([]);setTotal(0);setConfirmClear(false);showToast("All data cleared");}}>Delete All</button>
+      {confirmClear===1 && (
+        <Overlay onClose={()=>setConfirmClear(0)}>
+          <div style={{textAlign:"center",marginBottom:16}}>
+            <div style={{fontSize:44,marginBottom:8}}>⚠️</div>
+            <div style={{fontSize:19,fontWeight:800,color:"#fff",marginBottom:6}}>Reset All Data?</div>
+            <div style={{fontSize:13,color:"#aaa",lineHeight:1.6}}>
+              This will permanently delete all <span style={{color:"#e05252",fontWeight:700}}>{total} case{total!==1?"s":""}</span> and cannot be undone.
+            </div>
+          </div>
+          <div style={{background:"rgba(224,82,82,0.08)",border:"1px solid rgba(224,82,82,0.2)",borderRadius:10,padding:"12px 14px",marginBottom:16,fontSize:12,color:"#e05252",lineHeight:1.6}}>
+            ⛔ All your complication data, histology results and case notes will be lost forever.
+          </div>
+          <div style={{display:"flex",gap:8}}>
+            <button style={cancelBt} onClick={()=>setConfirmClear(0)}>Cancel — Keep My Data</button>
+            <button style={{...saveBt,background:"rgba(224,82,82,0.2)",color:"#e05252",border:"1px solid rgba(224,82,82,0.4)"}} onClick={()=>setConfirmClear(2)}>Yes, Delete Everything</button>
+          </div>
+        </Overlay>
+      )}
+
+      {confirmClear===2 && (
+        <Overlay onClose={()=>setConfirmClear(0)}>
+          <div style={{textAlign:"center",marginBottom:16}}>
+            <div style={{fontSize:44,marginBottom:8}}>🚨</div>
+            <div style={{fontSize:19,fontWeight:800,color:"#e05252",marginBottom:6}}>Are You Absolutely Sure?</div>
+            <div style={{fontSize:13,color:"#aaa",lineHeight:1.6}}>
+              This is your <span style={{color:"#e05252",fontWeight:700}}>final warning</span>. There is no undo.
+            </div>
+          </div>
+          <div style={{background:"rgba(224,82,82,0.1)",border:"1px solid rgba(224,82,82,0.35)",borderRadius:10,padding:"14px",marginBottom:16}}>
+            <div style={{fontSize:13,color:"#e0e0e0",fontWeight:700,marginBottom:6}}>You are about to delete:</div>
+            <div style={{fontSize:13,color:"#e05252",lineHeight:2}}>
+              • {total} biopsy case{total!==1?"s":""}<br/>
+              • All complication records<br/>
+              • All histology results<br/>
+              • All case notes
+            </div>
+          </div>
+          <div style={{display:"flex",gap:8}}>
+            <button style={cancelBt} onClick={()=>setConfirmClear(0)}>No — Keep My Data</button>
+            <button style={{...saveBt,background:"#c0392b",border:"none"}} onClick={()=>{setCases([]);setTotal(0);setConfirmClear(0);showToast("All data deleted");}}>
+              🗑 Delete All Data
+            </button>
           </div>
         </Overlay>
       )}
