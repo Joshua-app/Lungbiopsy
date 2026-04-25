@@ -460,7 +460,7 @@ function App() {
   const hasFilter = !!(search||fType||fLobe||fDiag||fComp);
 
   if (!accepted) {
-    return <div style={{height:"100vh",overflow:"auto",background:C.bg}}><Disclaimer onAccept={()=>setAccepted(true)}/></div>;
+    return <div style={{height:"100vh",overflow:"auto",background:C.bg}}><Disclaimer onAccept={()=>{ try{localStorage.setItem('lb_disc','accepted');}catch{} setAccepted(true); }}/></div>;
   }
 
   return (
