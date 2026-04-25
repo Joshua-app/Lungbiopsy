@@ -1,1080 +1,947 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<meta name="theme-color" content="#0d1117"/>
-<meta name="mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="LungBiopsy"/>
-<link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIkx1bmdCaW9wc3kgVHJhY2tlciIsCiAgInNob3J0X25hbWUiOiAiTHVuZ0Jpb3BzeSIsCiAgImRlc2NyaXB0aW9uIjogIkNULWd1aWRlZCBsdW5nIGJpb3BzeSBjb21wbGljYXRpb24gdHJhY2tlciIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMGQxMTE3IiwKICAidGhlbWVfY29sb3IiOiAiIzBkMTExNyIsCiAgIm9yaWVudGF0aW9uIjogInBvcnRyYWl0IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhacFpYZENiM2c5SWpBZ01DQTFNVElnTlRFeUlqNEtJQ0E4Y21WamRDQjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ2NuZzlJakV3TUNJZ1ptbHNiRDBpSXpCa01URXhOeUl2UGdvZ0lEeHdZWFJvSUdROUlrMHlOREFnTVRJd0lFTXlOREFnTVRJd0lESXlNQ0F4TVRBZ01qQXdJREV5TUNCRE1UY3dJREV6TlNBeE5UQWdNVFl3SURFME1DQXhPVEFnUXpFeU5TQXlNekFnTVRJd0lESTNNQ0F4TWpVZ016RXdJRU14TXpBZ016UTFJREUwTlNBek56VWdNVFkxSURNNU1DQkRNVGd3SURRd01DQXlNREFnTXprNElESXhOU0F6T0RVZ1F6SXlPQ0F6TnpNZ01qTTFJRE0xTlNBeU5EQWdNek0xSUV3eU5EQWdNVEl3V2lJZ1ptbHNiRDBpSXpWaU9XSmtOU0lnYjNCaFkybDBlVDBpTUM0NUlpOCtDaUFnUEhCaGRHZ2daRDBpVFRJME1DQXhOVEFnUXpJek1DQXhORFVnTWpFMUlERTBNQ0F5TURVZ01UUTRJRU14T1RBZ01UVTRJREUzT0NBeE56Z2dNVGN3SURJd05TQkRNVFU0SURJME1DQXhOVFVnTWpjNElERTJNQ0F6TVRJZ1F6RTJOU0F6TkRBZ01UYzFJRE0yTWlBeE9UQWdNemMwSUVNeU1EQWdNemd5SURJeE1pQXpPREFnTWpJd0lETTNNU0JETWpNd0lETTJNU0F5TXpZZ016UTFJREkwTUNBek1qZ2dUREkwTUNBeE5UQmFJaUJtYVd4c1BTSWpOMkZpTTJVd0lpQnZjR0ZqYVhSNVBTSXdMallpTHo0S0lDQThjR0YwYUNCa1BTSk5NamN5SURFeU1DQkRNamN5SURFeU1DQXlPVElnTVRFd0lETXhNaUF4TWpBZ1F6TTBNaUF4TXpVZ016WXlJREUyTUNBek56SWdNVGt3SUVNek9EY2dNak13SURNNU1pQXlOekFnTXpnM0lETXhNQ0JETXpneUlETTBOU0F6TmpjZ016YzFJRE0wTnlBek9UQWdRek16TWlBME1EQWdNekV5SURNNU9DQXlPVGNnTXpnMUlFTXlPRFFnTXpjeklESTNOeUF6TlRVZ01qY3lJRE16TlNCTU1qY3lJREV5TUZvaUlHWnBiR3c5SWlNMVlqbGlaRFVpSUc5d1lXTnBkSGs5SWpBdU9TSXZQZ29nSUR4d1lYUm9JR1E5SWsweU56SWdNVFV3SUVNeU9ESWdNVFExSURJNU55QXhOREFnTXpBM0lERTBPQ0JETXpJeUlERTFPQ0F6TXpRZ01UYzRJRE0wTWlBeU1EVWdRek0xTkNBeU5EQWdNelUzSURJM09DQXpOVElnTXpFeUlFTXpORGNnTXpRd0lETXpOeUF6TmpJZ016SXlJRE0zTkNCRE16RXlJRE00TWlBek1EQWdNemd3SURJNU1pQXpOekVnUXpJNE1pQXpOakVnTWpjMklETTBOU0F5TnpJZ016STRJRXd5TnpJZ01UVXdXaUlnWm1sc2JEMGlJemRoWWpObE1DSWdiM0JoWTJsMGVUMGlNQzQySWk4K0NpQWdQSEpsWTNRZ2VEMGlNalE0SWlCNVBTSTRNQ0lnZDJsa2RHZzlJakUySWlCb1pXbG5hSFE5SWpVMUlpQnllRDBpT0NJZ1ptbHNiRDBpSXpWaU9XSmtOU0l2UGdvZ0lEeHdZWFJvSUdROUlrMHlORGdnTVRNd0lGRXlNakFnTVRNd0lESXhNQ0F4TkRVaUlITjBjbTlyWlQwaUl6VmlPV0prTlNJZ2MzUnliMnRsTFhkcFpIUm9QU0l4TUNJZ1ptbHNiRDBpYm05dVpTSWdjM1J5YjJ0bExXeHBibVZqWVhBOUluSnZkVzVrSWk4K0NpQWdQSEJoZEdnZ1pEMGlUVEkyTkNBeE16QWdVVEk1TWlBeE16QWdNekF5SURFME5TSWdjM1J5YjJ0bFBTSWpOV0k1WW1RMUlpQnpkSEp2YTJVdGQybGtkR2c5SWpFd0lpQm1hV3hzUFNKdWIyNWxJaUJ6ZEhKdmEyVXRiR2x1WldOaGNEMGljbTkxYm1RaUx6NEtJQ0E4YkdsdVpTQjRNVDBpTXpnd0lpQjVNVDBpTVRZd0lpQjRNajBpTXpFd0lpQjVNajBpTWpNd0lpQnpkSEp2YTJVOUlpTm1NR0UxTURBaUlITjBjbTlyWlMxM2FXUjBhRDBpTlNJZ2MzUnliMnRsTFd4cGJtVmpZWEE5SW5KdmRXNWtJaTgrQ2lBZ1BHTnBjbU5zWlNCamVEMGlNekV3SWlCamVUMGlNak13SWlCeVBTSTJJaUJtYVd4c1BTSWpaakJoTlRBd0lpOCtDand2YzNablBnPT0iLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXQp9"/>
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEwMCIgZmlsbD0iIzBkMTExNyIvPgogIDxwYXRoIGQ9Ik0yNDAgMTIwIEMyNDAgMTIwIDIyMCAxMTAgMjAwIDEyMCBDMTcwIDEzNSAxNTAgMTYwIDE0MCAxOTAgQzEyNSAyMzAgMTIwIDI3MCAxMjUgMzEwIEMxMzAgMzQ1IDE0NSAzNzUgMTY1IDM5MCBDMTgwIDQwMCAyMDAgMzk4IDIxNSAzODUgQzIyOCAzNzMgMjM1IDM1NSAyNDAgMzM1IEwyNDAgMTIwWiIgZmlsbD0iIzViOWJkNSIgb3BhY2l0eT0iMC45Ii8+CiAgPHBhdGggZD0iTTI0MCAxNTAgQzIzMCAxNDUgMjE1IDE0MCAyMDUgMTQ4IEMxOTAgMTU4IDE3OCAxNzggMTcwIDIwNSBDMTU4IDI0MCAxNTUgMjc4IDE2MCAzMTIgQzE2NSAzNDAgMTc1IDM2MiAxOTAgMzc0IEMyMDAgMzgyIDIxMiAzODAgMjIwIDM3MSBDMjMwIDM2MSAyMzYgMzQ1IDI0MCAzMjggTDI0MCAxNTBaIiBmaWxsPSIjN2FiM2UwIiBvcGFjaXR5PSIwLjYiLz4KICA8cGF0aCBkPSJNMjcyIDEyMCBDMjcyIDEyMCAyOTIgMTEwIDMxMiAxMjAgQzM0MiAxMzUgMzYyIDE2MCAzNzIgMTkwIEMzODcgMjMwIDM5MiAyNzAgMzg3IDMxMCBDMzgyIDM0NSAzNjcgMzc1IDM0NyAzOTAgQzMzMiA0MDAgMzEyIDM5OCAyOTcgMzg1IEMyODQgMzczIDI3NyAzNTUgMjcyIDMzNSBMMjcyIDEyMFoiIGZpbGw9IiM1YjliZDUiIG9wYWNpdHk9IjAuOSIvPgogIDxwYXRoIGQ9Ik0yNzIgMTUwIEMyODIgMTQ1IDI5NyAxNDAgMzA3IDE0OCBDMzIyIDE1OCAzMzQgMTc4IDM0MiAyMDUgQzM1NCAyNDAgMzU3IDI3OCAzNTIgMzEyIEMzNDcgMzQwIDMzNyAzNjIgMzIyIDM3NCBDMzEyIDM4MiAzMDAgMzgwIDI5MiAzNzEgQzI4MiAzNjEgMjc2IDM0NSAyNzIgMzI4IEwyNzIgMTUwWiIgZmlsbD0iIzdhYjNlMCIgb3BhY2l0eT0iMC42Ii8+CiAgPHJlY3QgeD0iMjQ4IiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzViOWJkNSIvPgogIDxwYXRoIGQ9Ik0yNDggMTMwIFEyMjAgMTMwIDIxMCAxNDUiIHN0cm9rZT0iIzViOWJkNSIgc3Ryb2tlLXdpZHRoPSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPHBhdGggZD0iTTI2NCAxMzAgUTI5MiAxMzAgMzAyIDE0NSIgc3Ryb2tlPSIjNWI5YmQ1IiBzdHJva2Utd2lkdGg9IjEwIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iMzgwIiB5MT0iMTYwIiB4Mj0iMzEwIiB5Mj0iMjMwIiBzdHJva2U9IiNmMGE1MDAiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iMzEwIiBjeT0iMjMwIiByPSI2IiBmaWxsPSIjZjBhNTAwIi8+Cjwvc3ZnPg=="/>
-<title>LungBiopsy Tracker</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{background:#0d1117;color:#e0e0e0;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;overscroll-behavior:none;user-select:none}
-input,textarea,button,select{font-family:inherit;-webkit-appearance:none;appearance:none;border:none;outline:none}
-::-webkit-scrollbar{display:none}
-*{scrollbar-width:none}
-#app{padding-bottom:90px}
-/* Header */
-.hdr{background:linear-gradient(135deg,#111827,#1a2744);padding:16px;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:50}
-.hdr-row{display:flex;justify-content:space-between;align-items:center}
-.hdr-left{display:flex;align-items:center;gap:10px}
-.hdr-icon{font-size:32px}
-.hdr-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.5px}
-.hdr-sub{font-size:11px;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px}
-.badge{background:rgba(91,155,213,.15);border:1px solid rgba(91,155,213,.3);border-radius:10px;padding:6px 14px;text-align:center}
-.badge-num{display:block;font-size:24px;font-weight:800;color:#5b9bd5;line-height:1}
-.badge-lbl{font-size:10px;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px}
-.pending-banner{margin-top:8px;background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.25);border-radius:8px;padding:7px 12px;font-size:13px;color:#f0a500;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
-/* Tabs */
-.tabs{display:flex;background:#111827;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:73px;z-index:40}
-.tab{flex:1;padding:11px 4px;background:none;color:#6b7280;font-size:12px;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
-.tab.active{color:#5b9bd5;border-bottom-color:#5b9bd5}
-/* Main */
-.main{padding:14px}
-.sec-title{font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1.5px;margin:18px 0 8px}
-/* Cards */
-.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;margin-bottom:8px}
-.summary-row{display:flex;gap:8px;margin-bottom:16px}
-.summary-card{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 6px;text-align:center}
-.summary-num{font-size:20px;font-weight:800;color:#5b9bd5}
-.summary-lbl{font-size:10px;color:#6b7280;margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
-/* Comp cards */
-.comp-card{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:11px 13px;margin-bottom:7px;border-left-width:4px}
-.comp-name{font-size:14px;font-weight:700}
-.comp-rate{font-size:18px;font-weight:800}
-.comp-count{font-size:11px;color:#6b7280}
-/* Bar chart */
-.bar-chart{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:14px}
-.bar-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
-.bar-lbl{width:130px;font-size:11px;color:#aaa;white-space:nowrap;overflow:hidden}
-.bar-track{flex:1;height:7px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px;transition:width .5s}
-.bar-pct{width:38px;font-size:11px;font-weight:700;text-align:right}
-/* Log */
-.log-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 13px;margin-bottom:8px}
-.log-hdr{cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start}
-.log-case{font-weight:700;font-size:14px}
-.log-hosp{font-size:12px;color:#6b7fa3}
-.log-lobe{font-size:12px;color:#5b9bd5;margin-top:2px}
-.log-histo{font-size:11px;margin-top:2px;font-weight:600}
-.log-date{font-size:11px;color:#6b7280}
-.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
-.chip{border-radius:20px;padding:3px 9px;font-size:11px;font-weight:600;border:1px solid}
-.log-detail{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.07)}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
-.detail-item .dl{font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:.8px}
-.detail-item .dv{font-size:13px;font-weight:700;color:#e0e0e0;margin-top:1px}
-.edit-btns{display:flex;gap:6px;margin-bottom:10px}
-.edit-btn{flex:1;padding:8px;border-radius:7px;border:1px solid rgba(91,155,213,.3);background:rgba(91,155,213,.08);color:#5b9bd5;font-size:11px;font-weight:700;cursor:pointer}
-.histo-panel{border-radius:9px;padding:11px 13px}
-.histo-btn{width:100%;margin-top:8px;padding:8px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;background:transparent}
-/* Rates */
-.rates-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.rate-card{border-radius:12px;padding:14px 10px;text-align:center;border:1px solid rgba(255,255,255,.06)}
-.rate-icon{font-size:24px;margin-bottom:4px}
-.rate-pct{font-size:24px;font-weight:900;line-height:1}
-.rate-lbl{font-size:11px;font-weight:700;color:#ccc;margin-top:3px}
-.rate-cnt{font-size:10px;color:#6b7280;margin-top:1px}
-.avg-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:13px 14px}
-.avg-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:13px}
-.avg-lbl{color:#aaa}
-.avg-val{font-weight:700;color:#5b9bd5}
-.bench-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:13px 14px}
-.bench-row{display:flex;justify-content:space-between;margin-bottom:7px}
-.bench-lbl{font-size:12px;color:#aaa}
-.bench-ref{font-size:13px;font-weight:700}
-.bench-note{margin-top:10px;font-size:10px;color:#6b7280;border-top:1px solid rgba(255,255,255,.07);padding-top:8px}
-/* Hospital drill */
-.hosp-row{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:9px;padding:10px 13px;margin-bottom:4px;cursor:pointer}
-.hosp-name{font-size:13px;font-weight:600}
-.hosp-cnt{font-size:12px;color:#6b7280}
-.sub-case{background:rgba(255,255,255,.02);border:1px solid rgba(91,155,213,.15);border-radius:9px;padding:9px 11px;margin-bottom:5px;margin-left:6px}
-.view-btn{font-size:11px;color:#5b9bd5;background:rgba(91,155,213,.1);border:1px solid rgba(91,155,213,.25);border-radius:5px;padding:3px 7px;cursor:pointer;font-weight:700}
-/* Lobes */
-.lobe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:4px}
-.lobe-card{background:rgba(91,155,213,.08);border:1px solid rgba(91,155,213,.2);border-radius:9px;padding:9px 6px;text-align:center}
-.lobe-num{font-size:20px;font-weight:800;color:#5b9bd5}
-.lobe-lbl{font-size:10px;color:#6b7fa3;font-weight:700;margin-top:1px}
-/* FAB */
-.fab{position:fixed;bottom:24px;right:20px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#5b9bd5,#3b7abf);color:#fff;font-size:28px;cursor:pointer;box-shadow:0 4px 18px rgba(91,155,213,.5);display:flex;align-items:center;justify-content:center;z-index:100;line-height:1}
-/* Modal */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);display:flex;align-items:flex-end;z-index:200}
-.modal{width:100%;background:#161d2b;border-radius:20px 20px 0 0;padding:22px 16px;max-height:92vh;overflow-y:auto;border:1px solid rgba(255,255,255,.08)}
-.modal-title{font-size:19px;font-weight:800;color:#fff;text-align:center;margin-bottom:3px}
-.modal-sub{font-size:12px;color:#6b7280;text-align:center;margin-bottom:18px}
-.field-lbl{font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
-.field-hint{font-weight:400;text-transform:none;letter-spacing:0;margin-left:5px;color:#4b5563}
-.fi{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:11px 12px;color:#e0e0e0;font-size:15px}
-.fi-wrap{position:relative}
-.fi-unit{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:#6b7280;font-size:12px;pointer-events:none}
-textarea.fi{resize:vertical;min-height:70px;line-height:1.5}
-.seg{display:flex;gap:5px;flex-wrap:wrap}
-.seg-btn{padding:6px 13px;border-radius:18px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#aaa;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
-.seg-btn.active{background:rgba(91,155,213,.2);border-color:#5b9bd5;color:#5b9bd5}
-.toggle-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);cursor:pointer;transition:all .15s}
-.toggle-track{width:40px;height:22px;border-radius:11px;background:rgba(255,255,255,.1);position:relative;transition:background .2s;flex-shrink:0}
-.toggle-thumb{width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;transition:left .2s}
-.modal-actions{display:flex;gap:8px;margin-top:18px;padding-bottom:2px}
-.btn-cancel{flex:1;padding:13px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#aaa;font-size:14px;font-weight:700;cursor:pointer}
-.btn-submit{flex:2;padding:13px;background:linear-gradient(135deg,#5b9bd5,#3b7abf);border-radius:10px;color:#fff;font-size:14px;font-weight:700;cursor:pointer}
-.btn-green{background:linear-gradient(135deg,#4ade80,#16a34a)}
-.comp-toggle{width:100%;display:flex;align-items:center;gap:10px;padding:11px 13px;margin-bottom:7px;border-radius:10px;border:1px solid;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.04)}
-.step-dots{display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-.step-dot{width:9px;height:9px;border-radius:50%;transition:background .3s}
-.step-line{width:36px;height:2px;transition:background .3s}
-.sect-tabs{display:flex;gap:5px;margin-bottom:18px;background:rgba(255,255,255,.04);border-radius:9px;padding:3px}
-.sect-tab{flex:1;padding:7px 3px;border-radius:7px;border:none;cursor:pointer;font-size:10px;font-weight:700;transition:all .15s}
-/* Toast */
-.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);padding:11px 22px;border-radius:18px;color:#fff;font-size:13px;font-weight:600;z-index:300;box-shadow:0 4px 18px rgba(0,0,0,.4);white-space:nowrap;transition:opacity .3s}
-/* Disclaimer */
-.disc-wrap{min-height:100vh;background:#0d1117;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:28px 18px 20px}
-.disc-box{width:100%;max-width:420px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden}
-.disc-hdr{background:rgba(224,82,82,.12);border-bottom:1px solid rgba(224,82,82,.2);padding:12px 16px;display:flex;align-items:center;gap:8px}
-.disc-body{max-height:340px;overflow-y:auto;padding:16px 16px 8px;font-size:12px;color:#d1d5db;line-height:1.7}
-.disc-footer{padding:13px 16px;border-top:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.2)}
-.disc-accept{width:100%;padding:13px;border-radius:10px;border:none;font-size:14px;font-weight:700;transition:all .3s}
-/* Privacy */
-.priv-wrap{min-height:100vh;background:#0d1117;display:flex;flex-direction:column}
-.priv-hdr{background:linear-gradient(135deg,#111827,#1a2744);padding:16px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px}
-.priv-body{flex:1;overflow-y:auto;padding:18px 16px 40px}
-.priv-sec{margin-bottom:20px}
-.priv-title{font-size:13px;font-weight:700;color:#5b9bd5;margin-bottom:5px}
-.priv-text{font-size:12px;color:#d1d5db;line-height:1.75;white-space:pre-line}
-.clear-btn{background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.3);color:#e05252;padding:9px 22px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer}
-.info-box{background:rgba(91,155,213,.08);border:1px solid rgba(91,155,213,.2);border-radius:10px;padding:12px 14px;font-size:11px;color:#6b9fd4;line-height:1.6;margin-bottom:14px}
-@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta name="theme-color" content="#0d1117"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="LungBiopsy"/>
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiTHVuZ0Jpb3BzeSBUcmFja2VyIiwic2hvcnRfbmFtZSI6Ikx1bmdCaW9wc3kiLCJkZXNjcmlwdGlvbiI6IkNULWd1aWRlZCBsdW5nIGJpb3BzeSBjb21wbGljYXRpb24gdHJhY2tlciIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMGQxMTE3IiwidGhlbWVfY29sb3IiOiIjMGQxMTE3Iiwib3JpZW50YXRpb24iOiJwb3J0cmFpdCIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSFpwWlhkQ2IzZzlJakFnTUNBMU1USWdOVEV5SWo0S0lDQThjbVZqZENCM2FXUjBhRDBpTlRFeUlpQm9aV2xuYUhROUlqVXhNaUlnY25nOUlqazJJaUJtYVd4c1BTSWpNR1F4TVRFM0lpOCtDaUFnUENFdExTQk1aV1owSUd4MWJtY2dMUzArQ2lBZ1BIQmhkR2dnWkQwaVRUSTBNaUF4TURnZ1F6STBNaUF4TURnZ01qRTRJRGs0SURFNU5pQXhNVEFnUXpFMk1pQXhNamdnTVRRd0lERTFPQ0F4TWpnZ01Ua3lJRU14TVRJZ01qTTBJREV3T0NBeU56Z2dNVEUwSURNeE9DQkRNVEl3SURNMU1pQXhNellnTXpneUlERTFPQ0F6T1RnZ1F6RTNOU0EwTVRBZ01UazJJRFF3TnlBeU1USWdNemt6SUVNeU1qWWdNemd3SURJek5DQXpOakFnTWpRd0lETXpPQ0JNTWpReUlERXdPRm9pSUdacGJHdzlJaU0xWWpsaVpEVWlJRzl3WVdOcGRIazlJakF1T1RVaUx6NEtJQ0E4Y0dGMGFDQmtQU0pOTWpReUlERTBNQ0JETWpNd0lERXpOQ0F5TVRJZ01USTRJREl3TWlBeE16Z2dRekU0TkNBeE5USWdNVGN3SURFM05pQXhOaklnTWpBMklFTXhORGdnTWpRMElERTBOaUF5T0RRZ01UVXlJRE14TmlCRE1UVTRJRE0wTmlBeE56QWdNelk0SURFNE9DQXpPREFnUXpJd01DQXpPRGtnTWpFMElETTROaUF5TWpRZ016YzJJRU15TXpRZ016WTFJREkwTUNBek5EY2dNalF5SURNeU5pQk1NalF5SURFME1Gb2lJR1pwYkd3OUlpTTNZV0k0WlRnaUlHOXdZV05wZEhrOUlqQXVOVFVpTHo0S0lDQThJUzB0SUZKcFoyaDBJR3gxYm1jZ0xTMCtDaUFnUEhCaGRHZ2daRDBpVFRJM01DQXhNRGdnUXpJM01DQXhNRGdnTWprMElEazRJRE14TmlBeE1UQWdRek0xTUNBeE1qZ2dNemN5SURFMU9DQXpPRFFnTVRreUlFTTBNREFnTWpNMElEUXdOQ0F5TnpnZ016azRJRE14T0NCRE16a3lJRE0xTWlBek56WWdNemd5SURNMU5DQXpPVGdnUXpNek55QTBNVEFnTXpFMklEUXdOeUF6TURBZ016a3pJRU15T0RZZ016Z3dJREkzT0NBek5qQWdNamN5SURNek9DQk1NamN3SURFd09Gb2lJR1pwYkd3OUlpTTFZamxpWkRVaUlHOXdZV05wZEhrOUlqQXVPVFVpTHo0S0lDQThjR0YwYUNCa1BTSk5NamN3SURFME1DQkRNamd5SURFek5DQXpNREFnTVRJNElETXhNQ0F4TXpnZ1F6TXlPQ0F4TlRJZ016UXlJREUzTmlBek5UQWdNakEySUVNek5qUWdNalEwSURNMk5pQXlPRFFnTXpZd0lETXhOaUJETXpVMElETTBOaUF6TkRJZ016WTRJRE15TkNBek9EQWdRek14TWlBek9Ea2dNams0SURNNE5pQXlPRGdnTXpjMklFTXlOemdnTXpZMUlESTNNaUF6TkRjZ01qY3dJRE15TmlCTU1qY3dJREUwTUZvaUlHWnBiR3c5SWlNM1lXSTRaVGdpSUc5d1lXTnBkSGs5SWpBdU5UVWlMejRLSUNBOElTMHRJRlJ5WVdOb1pXRWdMUzArQ2lBZ1BISmxZM1FnZUQwaU1qUTNJaUI1UFNJMk1pSWdkMmxrZEdnOUlqRTRJaUJvWldsbmFIUTlJalU0SWlCeWVEMGlPU0lnWm1sc2JEMGlJelZpT1dKa05TSXZQZ29nSUR3aExTMGdUR1ZtZENCaWNtOXVZMmgxY3lBdExUNEtJQ0E4Y0dGMGFDQmtQU0pOTWpRNElERXhOU0JSTWpJeUlERXhPQ0F5TURnZ01UTXlJaUJ6ZEhKdmEyVTlJaU0xWWpsaVpEVWlJSE4wY205clpTMTNhV1IwYUQwaU1USWlJR1pwYkd3OUltNXZibVVpSUhOMGNtOXJaUzFzYVc1bFkyRndQU0p5YjNWdVpDSXZQZ29nSUR3aExTMGdVbWxuYUhRZ1luSnZibU5vZFhNZ0xTMCtDaUFnUEhCaGRHZ2daRDBpVFRJMk5DQXhNVFVnVVRJNU1DQXhNVGdnTXpBMElERXpNaUlnYzNSeWIydGxQU0lqTldJNVltUTFJaUJ6ZEhKdmEyVXRkMmxrZEdnOUlqRXlJaUJtYVd4c1BTSnViMjVsSWlCemRISnZhMlV0YkdsdVpXTmhjRDBpY205MWJtUWlMejRLSUNBOElTMHRJRUpwYjNCemVTQnVaV1ZrYkdVZ0tHZHZiR1FwSUMwdFBnb2dJRHhzYVc1bElIZ3hQU0l6T0RnaUlIa3hQU0l4TkRnaUlIZ3lQU0l6TURnaUlIa3lQU0l5TWpnaUlITjBjbTlyWlQwaUkyWXdZVFV3TUNJZ2MzUnliMnRsTFhkcFpIUm9QU0k0SWlCemRISnZhMlV0YkdsdVpXTmhjRDBpY205MWJtUWlMejRLSUNBOGNHOXNlV2R2YmlCd2IybHVkSE05SWpNd09Dd3lNakFnTXpBeUxESXpPQ0F6TWpBc01qTXlJaUJtYVd4c1BTSWpaakJoTlRBd0lpOCtDand2YzNablBnPT0iLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCIsInB1cnBvc2UiOiJhbnkgbWFza2FibGUifV19"/>
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9Ijk2IiBmaWxsPSIjMGQxMTE3Ii8+CiAgPCEtLSBMZWZ0IGx1bmcgLS0+CiAgPHBhdGggZD0iTTI0MiAxMDggQzI0MiAxMDggMjE4IDk4IDE5NiAxMTAgQzE2MiAxMjggMTQwIDE1OCAxMjggMTkyIEMxMTIgMjM0IDEwOCAyNzggMTE0IDMxOCBDMTIwIDM1MiAxMzYgMzgyIDE1OCAzOTggQzE3NSA0MTAgMTk2IDQwNyAyMTIgMzkzIEMyMjYgMzgwIDIzNCAzNjAgMjQwIDMzOCBMMjQyIDEwOFoiIGZpbGw9IiM1YjliZDUiIG9wYWNpdHk9IjAuOTUiLz4KICA8cGF0aCBkPSJNMjQyIDE0MCBDMjMwIDEzNCAyMTIgMTI4IDIwMiAxMzggQzE4NCAxNTIgMTcwIDE3NiAxNjIgMjA2IEMxNDggMjQ0IDE0NiAyODQgMTUyIDMxNiBDMTU4IDM0NiAxNzAgMzY4IDE4OCAzODAgQzIwMCAzODkgMjE0IDM4NiAyMjQgMzc2IEMyMzQgMzY1IDI0MCAzNDcgMjQyIDMyNiBMMjQyIDE0MFoiIGZpbGw9IiM3YWI4ZTgiIG9wYWNpdHk9IjAuNTUiLz4KICA8IS0tIFJpZ2h0IGx1bmcgLS0+CiAgPHBhdGggZD0iTTI3MCAxMDggQzI3MCAxMDggMjk0IDk4IDMxNiAxMTAgQzM1MCAxMjggMzcyIDE1OCAzODQgMTkyIEM0MDAgMjM0IDQwNCAyNzggMzk4IDMxOCBDMzkyIDM1MiAzNzYgMzgyIDM1NCAzOTggQzMzNyA0MTAgMzE2IDQwNyAzMDAgMzkzIEMyODYgMzgwIDI3OCAzNjAgMjcyIDMzOCBMMjcwIDEwOFoiIGZpbGw9IiM1YjliZDUiIG9wYWNpdHk9IjAuOTUiLz4KICA8cGF0aCBkPSJNMjcwIDE0MCBDMjgyIDEzNCAzMDAgMTI4IDMxMCAxMzggQzMyOCAxNTIgMzQyIDE3NiAzNTAgMjA2IEMzNjQgMjQ0IDM2NiAyODQgMzYwIDMxNiBDMzU0IDM0NiAzNDIgMzY4IDMyNCAzODAgQzMxMiAzODkgMjk4IDM4NiAyODggMzc2IEMyNzggMzY1IDI3MiAzNDcgMjcwIDMyNiBMMjcwIDE0MFoiIGZpbGw9IiM3YWI4ZTgiIG9wYWNpdHk9IjAuNTUiLz4KICA8IS0tIFRyYWNoZWEgLS0+CiAgPHJlY3QgeD0iMjQ3IiB5PSI2MiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjU4IiByeD0iOSIgZmlsbD0iIzViOWJkNSIvPgogIDwhLS0gTGVmdCBicm9uY2h1cyAtLT4KICA8cGF0aCBkPSJNMjQ4IDExNSBRMjIyIDExOCAyMDggMTMyIiBzdHJva2U9IiM1YjliZDUiIHN0cm9rZS13aWR0aD0iMTIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gUmlnaHQgYnJvbmNodXMgLS0+CiAgPHBhdGggZD0iTTI2NCAxMTUgUTI5MCAxMTggMzA0IDEzMiIgc3Ryb2tlPSIjNWI5YmQ1IiBzdHJva2Utd2lkdGg9IjEyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEJpb3BzeSBuZWVkbGUgKGdvbGQpIC0tPgogIDxsaW5lIHgxPSIzODgiIHkxPSIxNDgiIHgyPSIzMDgiIHkyPSIyMjgiIHN0cm9rZT0iI2YwYTUwMCIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8cG9seWdvbiBwb2ludHM9IjMwOCwyMjAgMzAyLDIzOCAzMjAsMjMyIiBmaWxsPSIjZjBhNTAwIi8+Cjwvc3ZnPg=="/>
+  <title>LungBiopsy Tracker</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+    body{background:#0d1117;color:#e0e0e0;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;overscroll-behavior:none;user-select:none}
+    input,textarea,button,select{font-family:inherit;-webkit-appearance:none;appearance:none;border:none;outline:none}
+    ::-webkit-scrollbar{display:none}
+    *{scrollbar-width:none}
+  </style>
+  <script>
+    if('serviceWorker' in navigator){
+      const sw=`const CACHE='lb-v3';
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll([self.location.href,'https://unpkg.com/react@18/umd/react.production.min.js','https://unpkg.com/react-dom@18/umd/react-dom.production.min.js','https://unpkg.com/@babel/standalone/babel.min.js'])).then(()=>self.skipWaiting()));});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
+self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(h=>{if(h)return h;return fetch(e.request).then(r=>{if(!r||r.status!==200)return r;const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(self.location.href));}));});`;
+      const blob=new Blob([sw],{type:'application/javascript'});
+      navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
+    }
+  </script>
 </head>
 <body>
-<div id="app"></div>
-<script>
-// Register inline service worker so Chrome shows "Add to Home Screen" prompt
-if ('serviceWorker' in navigator) {
-  const swCode = `
-const CACHE='lb-preview-v1';
-self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll([self.location.href])).then(()=>self.skipWaiting()));});
-self.addEventListener('activate',e=>{e.waitUntil(self.clients.claim());});
-self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(h=>h||fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(self.location.href))));});
-`;
-  const blob = new Blob([swCode], {type:'application/javascript'});
-  navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
-}
-</script>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel" data-presets="react">
+const { useState } = React;
 
-<script>
-// ── Data ─────────────────────────────────────────────────────
-const SK = 'lungbiopsy_v5';
-const DK = 'lungbiopsy_disc_v1';
+function DrainIcon({ size=22 }) {
+  const hose = "#5b9bd5";   // blue hose pipe
+  const bucket = "#f0a500"; // amber bucket
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Hose pipe — vertical section coming from top */}
+      <rect x="13.5" y="1" width="4" height="10" rx="2" fill={hose}/>
+      {/* Hose nozzle tip */}
+      <rect x="12" y="10" width="7" height="3" rx="1.5" fill={hose}/>
+      {/* Hose bend — curves right then down into bucket */}
+      <path d="M15.5 13 Q15.5 18 21 18" stroke={hose} strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+      {/* Hose end nozzle pointing down */}
+      <rect x="19.5" y="17" width="3.5" height="5" rx="1.5" fill={hose}/>
+      {/* Water drips from nozzle */}
+      <circle cx="21.5" cy="24" r="1" fill={hose} opacity="0.5"/>
+      <circle cx="21.5" cy="27" r="0.7" fill={hose} opacity="0.3"/>
+      {/* Bucket body */}
+      <path d="M5 21 L7 31 L19 31 L21 21 Z" fill={bucket} opacity="0.9"/>
+      {/* Bucket rim */}
+      <rect x="4" y="19.5" width="18" height="3" rx="1.5" fill={bucket}/>
+      {/* Bucket handle */}
+      <path d="M8 19.5 Q13 15 18 19.5" stroke={bucket} strokeWidth="1.8" strokeLinecap="round" fill="none" opacity="0.65"/>
+      {/* Liquid in bucket */}
+      <path d="M7.5 27 L18.5 27 L19 31 L7 31 Z" fill="white" opacity="0.18"/>
+    </svg>
+  );
+}
+
+function CompIcon({ comp, size=22 }) {
+  if (comp.icon === "drain") return <DrainIcon size={size}/>;
+  return <span style={{fontSize:size-2,lineHeight:1}}>{comp.icon}</span>;
+}
 
 const COMPS = [
-  {id:'haemoptysis', label:'Haemoptysis',  icon:'🩸', color:'#e05252', bg:'rgba(224,82,82,0.12)'},
-  {id:'pneumothorax',label:'Pneumothorax', icon:'💨', color:'#5b9bd5', bg:'rgba(91,155,213,0.12)'},
-  {id:'chest_drain', label:'Chest Drain',  icon:'🪣', color:'#f0a500', bg:'rgba(240,165,0,0.12)'},
-  {id:'air_embolus', label:'Air Embolus',  icon:'🫧', color:'#a855f7', bg:'rgba(168,85,247,0.12)'},
-  {id:'death',       label:'Death',        icon:'☠️', color:'#6b7280', bg:'rgba(107,114,128,0.15)'},
+  { id:"haemoptysis",  label:"Haemoptysis",  icon:"🩸", color:"#e05252", bg:"rgba(224,82,82,0.12)" },
+  { id:"pneumothorax", label:"Pneumothorax", icon:"💨", color:"#5b9bd5", bg:"rgba(91,155,213,0.12)" },
+  { id:"chest_drain",  label:"Chest Drain",  icon:"drain", color:"#f0a500", bg:"rgba(240,165,0,0.12)" },
+  { id:"air_embolus",  label:"Air Embolus",  icon:"🫧", color:"#a855f7", bg:"rgba(168,85,247,0.12)" },
+  { id:"death",        label:"Death",        icon:"☠️", color:"#6b7280", bg:"rgba(107,114,128,0.15)" },
 ];
-const LOBES = ['RUL','RML','RLL','LUL','LLL'];
-const SUPS  = ['Direct','Indirect','Independent'];
-const LTYPES= ['Solid','Subsolid','Ground Glass','Cavitating'];
+const LOBES  = ["RUL","RML","RLL","LUL","LLL"];
+const SUPS   = ["Direct","Indirect","Independent"];
+const LTYPES = ["Solid","Subsolid","Ground Glass","Cavitating"];
 
-function load(){try{const r=localStorage.getItem(SK);return r?JSON.parse(r):{totalBiopsies:0,log:[]}}catch{return{totalBiopsies:0,log:[]}}}
-function save(d){try{localStorage.setItem(SK,JSON.stringify(d))}catch{}}
-
-let STATE = load();
-let UI = {
-  tab:'dashboard', expandedLog:null, selectedHospital:null, showPending:false,
-  searchQuery:'', filterLesionType:'', filterLobe:'', filterDiagnosis:'', filterComp:'', showFilters:false,
-  addModal:false, addStep:0,
-  addForm:{hospitalName:'',hospitalNumber:'',datePerformed:'',age:'',sex:'',supervision:'',lobe:'',lesionType:'',lesionSize:'',distance:'',emphysemaTrack:false,needleSize:'',passes:'',comments:''},
-  addComps:{},
-  editId:null, editSection:'details',
-  editForm:{}, editComps:{}, editHisto:{diagnosis:'',histologyNotes:'',diagnosticSample:null},
-  confirmClear:false, toast:null, toastTimer:null,
-  screen:'disclaimer', // 'disclaimer' | 'privacy' | 'app'
+const EMPTY_FORM = {
+  hospitalName:"", caseRef:"", datePerformed:"", age:"", sex:"",
+  supervision:"", lobe:"", lesionType:"", lesionSize:"", distance:"",
+  emphysemaTrack:false, needleSize:"", passes:"", comments:""
 };
 
-function showToast(msg,type='ok'){
-  clearTimeout(UI.toastTimer);
-  UI.toast={msg,type};
-  render();
-  UI.toastTimer=setTimeout(()=>{UI.toast=null;render()},2500);
+function pct(n,t){ return t ? ((n/t)*100).toFixed(1)+"%" : "—"; }
+function avgOf(arr){
+  const ns = arr.filter(v => v && !isNaN(+v)).map(Number);
+  return ns.length ? (ns.reduce((a,b)=>a+b,0)/ns.length).toFixed(1) : null;
+}
+function fmtD(iso){
+  if(!iso) return "";
+  try { return new Date(iso).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}); }
+  catch { return iso; }
 }
 
-function pct(n,t){return t?((n/t)*100).toFixed(1)+'%':'—'}
-function avg(vals){const ns=vals.filter(v=>v!==''&&!isNaN(parseFloat(v))).map(parseFloat);return ns.length?(ns.reduce((a,b)=>a+b,0)/ns.length).toFixed(1):null}
-function fmtDate(iso){if(!iso)return'';return new Date(iso).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}
-function fmtShort(iso){if(!iso)return'';return new Date(iso).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}
-function fmtDateInput(iso){if(!iso)return'';try{return new Date(iso).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}catch{return iso}}
+// ── Styles ─────────────────────────────────────────────────
+const C = {
+  bg: "#0d1117", card: "rgba(255,255,255,0.03)", border: "rgba(255,255,255,0.07)",
+  blue: "#5b9bd5", green: "#22c55e", amber: "#f0a500", red: "#e05252", lime: "#a3e635",
+};
+const inputSt = {
+  width:"100%", background:"rgba(255,255,255,0.06)", border:"1px solid rgba(255,255,255,0.14)",
+  borderRadius:9, padding:"10px 12px", color:"#e0e0e0", fontSize:14, outline:"none",
+  fontFamily:"inherit", boxSizing:"border-box",
+};
+const taSt = { ...inputSt, resize:"vertical", minHeight:68, lineHeight:1.5 };
+const secTitle = { fontSize:11, fontWeight:700, color:"#6b7280", textTransform:"uppercase", letterSpacing:"1.5px", margin:"16px 0 8px" };
+const cancelBt = { flex:1, padding:"12px", background:"rgba(255,255,255,0.07)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:10, color:"#aaa", fontSize:14, fontWeight:700, cursor:"pointer" };
+const saveBt   = { flex:2, padding:"12px", background:"linear-gradient(135deg,#5b9bd5,#3b7abf)", border:"none", borderRadius:10, color:"#fff", fontSize:14, fontWeight:700, cursor:"pointer" };
 
-function deriveCounts(log){
-  const c={emphysema:0,diagnostic:0,histoPending:0};
-  COMPS.forEach(x=>c[x.id]=0);
-  log.forEach(e=>{
-    (e.complications||[]).forEach(id=>{if(c[id]!==undefined)c[id]++});
-    if(e.emphysemaTrack)c.emphysema++;
-    if(e.diagnosticSample===true)c.diagnostic++;
-    if(e.diagnosticSample===null||e.diagnosticSample===undefined)c.histoPending++;
-  });
-  return c;
+// ── Small components ────────────────────────────────────────
+function FL({ label, hint, children }) {
+  return (
+    <div style={{marginBottom:12}}>
+      <div style={{fontSize:11,fontWeight:700,color:"#6b7280",textTransform:"uppercase",letterSpacing:"1px",marginBottom:5}}>
+        {label}{hint && <span style={{fontWeight:400,textTransform:"none",letterSpacing:0,marginLeft:5,color:"#4b5563",fontSize:11}}>{hint}</span>}
+      </div>
+      {children}
+    </div>
+  );
 }
 
-// ── HTML helpers ──────────────────────────────────────────────
-function h(tag,attrs,inner){
-  const el=document.createElement(tag);
-  Object.entries(attrs||{}).forEach(([k,v])=>{
-    if(k==='class')el.className=v;
-    else if(k==='style'&&typeof v==='object')Object.assign(el.style,v);
-    else if(k.startsWith('on'))el.addEventListener(k.slice(2).toLowerCase(),v);
-    else el.setAttribute(k,v);
-  });
-  if(typeof inner==='string')el.innerHTML=inner;
-  else if(Array.isArray(inner))inner.filter(Boolean).forEach(c=>el.appendChild(c));
-  else if(inner)el.appendChild(inner);
-  return el;
+function Seg({ options, value, onChange, color="#5b9bd5" }) {
+  return (
+    <div style={{display:"flex",gap:5,flexWrap:"wrap"}}>
+      {options.map(o => {
+        const on = value === o;
+        return (
+          <button key={o} onClick={() => onChange(on ? "" : o)} style={{
+            padding:"6px 12px", borderRadius:18, border:`1px solid ${on?color:"rgba(255,255,255,0.1)"}`,
+            background:on?color+"22":"rgba(255,255,255,0.04)", color:on?color:"#aaa",
+            fontSize:12, fontWeight:600, cursor:"pointer",
+          }}>{o}</button>
+        );
+      })}
+    </div>
+  );
 }
-function div(cls,inner,style){return h('div',{class:cls,...(style?{style}:{})},inner)}
-function btn(cls,text,onclick){return h('button',{class:cls,onClick:onclick},text)}
-function span(cls,text,style){const s=h('span',{class:cls,...(style?{style}:{})});s.textContent=text;return s}
-function input(type,val,onchange,placeholder,extraStyle){
-  const el=document.createElement('input');
-  el.type=type;el.value=val||'';el.placeholder=placeholder||'';
-  el.className='fi';
-  if(extraStyle)Object.assign(el.style,extraStyle);
-  if(type==='date')el.style.colorScheme='dark';
-  el.addEventListener('input',e=>onchange(e.target.value));
-  return el;
+
+function Tog({ value, onChange, label, color="#f0a500" }) {
+  return (
+    <button onClick={() => onChange(!value)} style={{
+      width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
+      padding:"10px 12px", borderRadius:10, cursor:"pointer",
+      border:`1px solid ${value?color:"rgba(255,255,255,0.1)"}`,
+      background:value?color+"18":"rgba(255,255,255,0.03)",
+    }}>
+      <span style={{fontSize:13,fontWeight:600,color:value?color:"#ccc"}}>{label}</span>
+      <div style={{width:38,height:20,borderRadius:10,background:value?color:"rgba(255,255,255,0.1)",position:"relative",flexShrink:0}}>
+        <div style={{width:14,height:14,borderRadius:"50%",background:"#fff",position:"absolute",top:3,left:value?21:3,transition:"left 0.2s"}}/>
+      </div>
+    </button>
+  );
 }
-function textarea(val,onchange,placeholder){
-  const el=document.createElement('textarea');
-  el.className='fi';el.value=val||'';el.placeholder=placeholder||'';
-  el.addEventListener('input',e=>onchange(e.target.value));
-  return el;
+
+function Overlay({ onClose, children }) {
+  return (
+    <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.8)",display:"flex",alignItems:"flex-end",zIndex:200}}>
+      <div onClick={e=>e.stopPropagation()} style={{width:"100%",background:"#161d2b",borderRadius:"18px 18px 0 0",padding:"20px 14px",maxHeight:"92vh",overflowY:"auto",border:"1px solid rgba(255,255,255,0.09)"}}>
+        {children}
+      </div>
+    </div>
+  );
 }
-function field(label,hint,child){
-  const lbl=div('');
-  const lblText=document.createElement('div');
-  lblText.className='field-lbl';
-  lblText.textContent=label;
-  if(hint){const ht=h('span',{class:'field-hint'},hint);lblText.appendChild(ht)}
-  lbl.appendChild(lblText);lbl.appendChild(child);
-  lbl.style.marginBottom='13px';
-  return lbl;
+
+function ModalTitle({ main, sub }) {
+  return (
+    <>
+      <div style={{fontSize:18,fontWeight:800,color:"#fff",textAlign:"center",marginBottom:3}}>{main}</div>
+      {sub && <div style={{fontSize:12,color:"#6b7280",textAlign:"center",marginBottom:16}}>{sub}</div>}
+    </>
+  );
 }
-function segPicker(options,value,onChange,color='#5b9bd5'){
-  const wrap=div('seg');
-  let current=value;
-  const btns=[];
-  function styleBtn(b,active){
-    b.className='seg-btn'+(active?' active':'');
-    b.style.background=active?color+'22':'rgba(255,255,255,0.04)';
-    b.style.borderColor=active?color:'rgba(255,255,255,0.1)';
-    b.style.color=active?color:'#aaa';
+
+function Chip({ comp }) {
+  return (
+    <span style={{fontSize:11,fontWeight:600,borderRadius:20,padding:"2px 9px",background:comp.bg,color:comp.color,border:`1px solid ${comp.color}44`}}>
+<CompIcon comp={comp} size={13}/> {comp.label}
+    </span>
+  );
+}
+
+function CompToggle({ comp, selected, onToggle }) {
+  return (
+    <button onClick={onToggle} style={{
+      width:"100%", display:"flex", alignItems:"center", gap:10, padding:"10px 12px", marginBottom:6,
+      borderRadius:10, cursor:"pointer",
+      border:`1px solid ${selected?comp.color:"rgba(255,255,255,0.1)"}`,
+      background:selected?comp.bg:"rgba(255,255,255,0.04)",
+    }}>
+      <span style={{display:"flex",alignItems:"center",justifyContent:"center",width:24}}><CompIcon comp={comp} size={20}/></span>
+      <span style={{flex:1,textAlign:"left",fontWeight:600,color:selected?comp.color:"#ccc",fontSize:13}}>{comp.label}</span>
+      <span style={{color:selected?comp.color:"#555",fontSize:18}}>{selected?"✓":"○"}</span>
+    </button>
+  );
+}
+
+// ── Disclaimer ─────────────────────────────────────────────
+function Disclaimer({ onAccept }) {
+  const [scrolled, setScrolled] = useState(false);
+  return (
+    <div style={{minHeight:"100%",background:C.bg,display:"flex",flexDirection:"column",alignItems:"center",padding:"24px 16px",overflowY:"auto"}}>
+      <div style={{fontSize:40,marginBottom:8}}>🫁</div>
+      <div style={{fontSize:20,fontWeight:800,color:"#fff",marginBottom:2}}>LungBiopsy Tracker</div>
+      <div style={{fontSize:11,color:"#6b7fa3",textTransform:"uppercase",letterSpacing:"1px",marginBottom:22}}>Preview Mode</div>
+      <div style={{width:"100%",maxWidth:400,background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:14,overflow:"hidden"}}>
+        <div style={{background:"rgba(224,82,82,0.12)",padding:"11px 15px",display:"flex",alignItems:"center",gap:8}}>
+          <span>⚠️</span>
+          <div>
+            <div style={{fontSize:14,fontWeight:800,color:"#e05252"}}>Important Disclaimer</div>
+            <div style={{fontSize:11,color:"#9ca3af"}}>Scroll to read before accepting</div>
+          </div>
+        </div>
+        <div onScroll={e=>{const el=e.target;if(el.scrollTop+el.clientHeight>=el.scrollHeight-10)setScrolled(true);}}
+          style={{maxHeight:280,overflowY:"auto",padding:"14px 15px 8px",fontSize:12,color:"#d1d5db",lineHeight:1.7}}>
+          <div style={{fontWeight:700,color:"#f0a500",marginBottom:4}}>🔬 Purpose</div>
+          <p style={{marginBottom:12}}>Personal audit and logbook tool for CT-guided lung biopsy procedures. For reflective practice only.</p>
+          <div style={{fontWeight:700,color:"#f0a500",marginBottom:4}}>🚫 Not a Medical Device</div>
+          <p style={{marginBottom:12}}>Not validated by the MHRA. Must not be used to inform clinical decisions.</p>
+          <div style={{fontWeight:700,color:"#f0a500",marginBottom:4}}>🤖 AI-Assisted Development</div>
+          <p style={{marginBottom:12}}>Developed with AI assistance (Claude, Anthropic). No formal clinical safety assessment.</p>
+          <div style={{fontWeight:700,color:"#f0a500",marginBottom:4}}>🔒 Data & Privacy</div>
+          <p style={{marginBottom:12}}>Do not enter directly identifiable patient data. Use case reference codes only. Comply with your Trust's GDPR policy.</p>
+          <div style={{fontWeight:700,color:"#f0a500",marginBottom:4}}>⚖️ Liability</div>
+          <p style={{marginBottom:16}}>Developer accepts no liability for clinical outcomes or data loss.</p>
+          {!scrolled && <div style={{textAlign:"center",color:"#4b5563",fontSize:11,fontStyle:"italic",paddingBottom:8}}>↓ Scroll to read all</div>}
+        </div>
+        <div style={{padding:"12px 15px",background:"rgba(0,0,0,0.2)"}}>
+          <button onClick={scrolled?onAccept:undefined} style={{
+            width:"100%",padding:"12px",borderRadius:9,border:"none",fontSize:14,fontWeight:700,
+            cursor:scrolled?"pointer":"not-allowed",
+            background:scrolled?"linear-gradient(135deg,#5b9bd5,#3b7abf)":"rgba(255,255,255,0.08)",
+            color:scrolled?"#fff":"#4b5563",
+          }}>{scrolled?"I Understand & Accept":"Read all before accepting"}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Main App ───────────────────────────────────────────────
+function App() {
+  const [accepted, setAccepted] = useState(()=>{ try{return localStorage.getItem('lb_disc')==='accepted';}catch{return false;} });
+
+  // Data
+  const [cases, setCasesRaw] = useState(()=>{ try{const r=localStorage.getItem('lb_cases');return r?JSON.parse(r):[];}catch{return[];} });
+  const [total, setTotalRaw] = useState(()=>{ try{const r=localStorage.getItem('lb_total');return r?parseInt(r):0;}catch{return 0;} });
+  function setCases(fn){setCasesRaw(prev=>{const next=typeof fn==='function'?fn(prev):fn;try{localStorage.setItem('lb_cases',JSON.stringify(next));}catch{}return next;});}
+  function setTotal(fn){setTotalRaw(prev=>{const next=typeof fn==='function'?fn(prev):fn;try{localStorage.setItem('lb_total',String(next));}catch{}return next;});}
+
+  // UI
+  const [tab, setTab] = useState("dashboard");
+  const [expandedId, setExpandedId] = useState(null);
+  const [selHosp, setSelHosp] = useState(null);
+  const [showPending, setShowPending] = useState(false);
+  const [toast, setToast] = useState(null);
+  const [confirmClear, setConfirmClear] = useState(false);
+
+  // Search / filter
+  const [search, setSearch] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
+  const [fType, setFType] = useState("");
+  const [fLobe, setFLobe] = useState("");
+  const [fDiag, setFDiag] = useState("");
+  const [fComp, setFComp] = useState("");
+
+  // Add modal
+  const [addOpen, setAddOpen] = useState(false);
+  const [addStep, setAddStep] = useState(0);
+  const [addForm, setAddForm] = useState({ ...EMPTY_FORM });
+  const [addComps, setAddComps] = useState({});
+  const [addCompNotes, setAddCompNotes] = useState("");
+
+  // Edit modal
+  const [editEntry, setEditEntry] = useState(null);
+  const [editSec, setEditSec] = useState("details");
+  const [editForm, setEditForm] = useState({ ...EMPTY_FORM });
+  const [editComps, setEditComps] = useState({});
+  const [editCompNotes, setEditCompNotes] = useState("");
+  const [editHisto, setEditHisto] = useState({ diagnosis:"", histologyNotes:"", diagnosticSample:null });
+
+  function showToast(msg) {
+    setToast(msg);
+    setTimeout(() => setToast(null), 2200);
   }
-  options.forEach(opt=>{
-    const b=div('seg-btn',opt);
-    styleBtn(b,current===opt);
-    b.addEventListener('click',()=>{
-      current=current===opt?'':opt;
-      onChange(current);
-      btns.forEach((btn,i)=>styleBtn(btn,options[i]===current));
+
+  // ── Add case ──
+  function openAdd() {
+    setAddForm({ ...EMPTY_FORM });
+    setAddComps({});
+    setAddCompNotes("");
+    setAddStep(0);
+    setAddOpen(true);
+  }
+
+  function saveCase() {
+    const comps = COMPS.filter(c => addComps[c.id]).map(c => c.id);
+    const newCase = {
+      id: Date.now(),
+      createdAt: new Date().toISOString(),
+      hospitalName: addForm.hospitalName,
+      caseRef: addForm.caseRef,
+      datePerformed: addForm.datePerformed,
+      age: addForm.age,
+      sex: addForm.sex,
+      supervision: addForm.supervision,
+      lobe: addForm.lobe,
+      lesionType: addForm.lesionType,
+      lesionSize: addForm.lesionSize,
+      distance: addForm.distance,
+      emphysemaTrack: addForm.emphysemaTrack,
+      needleSize: addForm.needleSize,
+      passes: addForm.passes,
+      comments: addForm.comments,
+      complications: comps,
+      complicationNotes: addCompNotes,
+      diagnosis: "",
+      histologyNotes: "",
+      diagnosticSample: null,
+      histologyDate: null,
+    };
+    setCases(prev => [newCase, ...prev]);
+    setTotal(prev => prev + 1);
+    setAddOpen(false);
+    showToast("Case recorded ✓");
+  }
+
+  // ── Edit case ──
+  function openEdit(entry, sec) {
+    setEditEntry(entry);
+    setEditSec(sec || "details");
+    setEditForm({
+      hospitalName: entry.hospitalName||"",
+      caseRef: entry.caseRef||"",
+      datePerformed: entry.datePerformed||"",
+      age: entry.age||"",
+      sex: entry.sex||"",
+      supervision: entry.supervision||"",
+      lobe: entry.lobe||"",
+      lesionType: entry.lesionType||"",
+      lesionSize: entry.lesionSize||"",
+      distance: entry.distance||"",
+      emphysemaTrack: !!entry.emphysemaTrack,
+      needleSize: entry.needleSize||"",
+      passes: entry.passes||"",
+      comments: entry.comments||"",
     });
-    wrap.appendChild(b);
-    btns.push(b);
-  });
-  return wrap;
-}
-function toggleBtn(value,onChange,label,description,color='#f0a500'){
-  let current=value;
-  const el=div('toggle-btn');
-  function updateStyle(){
-    el.style.border=`1px solid ${current?color:'rgba(255,255,255,0.1)'}`;
-    el.style.background=current?color+'18':'rgba(255,255,255,0.03)';
-    ttl.style.color=current?color:'#ccc';
-    track.style.background=current?color:'rgba(255,255,255,0.1)';
-    thumb.style.left=current?'21px':'3px';
-  }
-  const txt=div('');
-  const ttl=div('');ttl.style.cssText=`font-size:14px;font-weight:600;color:${current?color:'#ccc'}`;ttl.textContent=label;txt.appendChild(ttl);
-  if(description){const d=div('');d.style.cssText='font-size:12px;color:#6b7280;margin-top:2px';d.textContent=description;txt.appendChild(d)}
-  const track=div('toggle-track');track.style.background=current?color:'rgba(255,255,255,0.1)';
-  const thumb=div('toggle-thumb');thumb.style.left=current?'21px':'3px';track.appendChild(thumb);
-  el.appendChild(txt);el.appendChild(track);
-  el.addEventListener('click',()=>{current=!current;onChange(current);updateStyle();});
-  return el;
-}
-
-// ── Disclaimer ────────────────────────────────────────────────
-function renderDisclaimer(){
-  const accepted=localStorage.getItem(DK)==='accepted';
-  if(accepted){UI.screen='app';return renderApp()}
-
-  let scrolled=false;
-  const wrap=div('disc-wrap');
-  wrap.appendChild(h('span',{},'🫁').outerHTML&&(()=>{const s=document.createElement('div');s.style.cssText='font-size:44px;margin-bottom:8px';s.textContent='🫁';return s})());
-  const title=div('hdr-title','LungBiopsy');title.style.cssText='font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:3px';
-  const sub=div('hdr-sub','Tracker');sub.style.cssText='font-size:12px;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px;margin-bottom:24px';
-  wrap.appendChild(title);wrap.appendChild(sub);
-
-  const box=div('disc-box');
-  const dh=div('disc-hdr');dh.innerHTML='<span style="font-size:18px">⚠️</span><div><div style="font-size:14px;font-weight:800;color:#e05252">Important Disclaimer</div><div style="font-size:11px;color:#9ca3af;margin-top:1px">Please read before continuing</div></div>';
-  box.appendChild(dh);
-
-  const body=div('disc-body');
-  body.innerHTML=`
-    <div style="font-weight:700;color:#f0a500;margin-bottom:5px">🔬 Purpose</div>
-    <p style="margin-bottom:12px">This app is designed solely as a <strong style="color:#e0e0e0">personal audit and logbook tool</strong> to help clinicians track CT-guided lung biopsy procedures for reflective practice.</p>
-    <div style="font-weight:700;color:#f0a500;margin-bottom:5px">🚫 Not a Medical Device</div>
-    <p style="margin-bottom:12px">This app is <strong style="color:#e05252">not a validated medical device</strong> and has not been assessed by the MHRA. It must <strong style="color:#e05252">not</strong> be used to inform clinical decisions.</p>
-    <div style="font-weight:700;color:#f0a500;margin-bottom:5px">🤖 AI-Assisted Development</div>
-    <p style="margin-bottom:12px">This application was developed with AI assistance (Claude, Anthropic). It has not undergone formal software validation or clinical safety assessment.</p>
-    <div style="font-weight:700;color:#f0a500;margin-bottom:5px">🔒 Data & Privacy</div>
-    <p style="margin-bottom:12px">You are responsible for ensuring data entered complies with your organisation's GDPR policies. Do not enter directly identifiable patient information.</p>
-    <div style="font-weight:700;color:#f0a500;margin-bottom:5px">⚖️ Liability</div>
-    <p style="margin-bottom:20px">The developer accepts no liability for clinical outcomes, data loss, or misuse of this application.</p>
-  `;
-
-  const scrollHint=div('');scrollHint.style.cssText='text-align:center;color:#4b5563;font-size:11px;padding-bottom:8px;font-style:italic';scrollHint.textContent='↓ Scroll to read all before accepting';
-  body.appendChild(scrollHint);
-
-  body.addEventListener('scroll',()=>{
-    if(body.scrollTop+body.clientHeight>=body.scrollHeight-20){
-      scrolled=true;scrollHint.style.display='none';
-      acceptBtn.style.background='linear-gradient(135deg,#5b9bd5,#3b7abf)';
-      acceptBtn.style.color='#fff';acceptBtn.style.cursor='pointer';
-      acceptBtn.textContent='I Understand & Accept';
-    }
-  });
-
-  const footer=div('disc-footer');
-  const acceptBtn=div('disc-accept');
-  acceptBtn.style.cssText='width:100%;padding:13px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:not-allowed;background:rgba(255,255,255,0.08);color:#4b5563;transition:all .3s';
-  acceptBtn.textContent='Read the full disclaimer above';
-  acceptBtn.addEventListener('click',()=>{
-    if(!scrolled)return;
-    localStorage.setItem(DK,'accepted');
-    UI.screen='app';render();
-  });
-  const privLink=h('button',{style:{background:'none',border:'none',color:'#4b5563',fontSize:'11px',cursor:'pointer',textDecoration:'underline',marginTop:'10px',display:'block',width:'100%',textAlign:'center'}},'View Privacy Policy');
-  privLink.addEventListener('click',()=>{UI.screen='privacy';render()});
-  const byLine=div('');byLine.style.cssText='text-align:center;font-size:10px;color:#374151;margin-top:8px';byLine.textContent='By accepting you confirm this is for personal audit purposes only';
-
-  footer.appendChild(acceptBtn);footer.appendChild(byLine);footer.appendChild(privLink);
-  box.appendChild(body);box.appendChild(footer);
-  wrap.appendChild(box);
-  return wrap;
-}
-
-// ── Privacy Policy ────────────────────────────────────────────
-function renderPrivacy(){
-  const wrap=div('priv-wrap');
-  const phdr=div('priv-hdr');
-  const backBtn=h('button',{style:{background:'rgba(255,255,255,0.07)',border:'1px solid rgba(255,255,255,0.1)',borderRadius:'7px',color:'#e0e0e0',fontSize:'13px',fontWeight:'700',padding:'5px 11px',cursor:'pointer'}},'← Back');
-  backBtn.addEventListener('click',()=>{UI.screen=localStorage.getItem(DK)==='accepted'?'app':'disclaimer';render()});
-  phdr.appendChild(backBtn);
-  const ptitle=div('');ptitle.innerHTML='<div style="font-size:15px;font-weight:800;color:#fff">Privacy Policy</div><div style="font-size:11px;color:#6b7fa3">LungBiopsy Tracker</div>';
-  phdr.appendChild(ptitle);wrap.appendChild(phdr);
-
-  const pbody=div('priv-body');
-  pbody.innerHTML='<div style="font-size:10px;color:#4b5563;margin-bottom:16px">Last updated: January 2025</div>';
-  const sects=[
-    ['1. Who We Are','LungBiopsy Tracker is a personal audit and logbook application developed to help interventional radiologists record CT-guided lung biopsy procedures and complications. Developed with AI assistance (Claude, Anthropic). Not affiliated with any NHS Trust.'],
-    ['2. What Data We Collect','Procedural data including: hospital name, case references, dates, lobe, lesion size, distance, needle size, passes, supervision level, lesion type, complication records, histology results and comments.\n\nThis app stores pseudonymised data only. Do not enter directly identifiable patient information.'],
-    ['3. How Data Is Stored','Data is stored locally on your device using your browser\'s localStorage. In the cloud version, data is stored on Google Firebase servers within the EU. Each user\'s data is protected so no other user can access it.'],
-    ['4. Who Can Access Your Data','Only you can access your own data. The app developer has no routine access to user data.'],
-    ['5. Data Retention','Data is retained as long as you use the app. Use Reset All Data to delete everything. Contact the developer to permanently delete your account.'],
-    ['6. Legal Basis','UK GDPR legitimate interests — to support clinical audit and reflective practice by registered healthcare professionals.'],
-    ['7. Your Rights','Access, correct, delete, restrict, or port your data. Contact the developer to exercise these rights.'],
-    ['8. Cookies & Tracking','No cookies, no analytics, no tracking. No data shared with third parties.'],
-    ['9. Clinical Disclaimer','Not a medical device. Not assessed by the MHRA. Not for clinical decision-making. Users are responsible for compliance with their organisation\'s IG policies.'],
-    ['10. Contact','Contact the developer through the platform on which you obtained this application.'],
-  ];
-  sects.forEach(([t,b])=>{
-    const s=div('priv-sec');
-    const pt=div('priv-title',t);
-    const pb=div('priv-text');pb.textContent=b;
-    s.appendChild(pt);s.appendChild(pb);pbody.appendChild(s);
-  });
-  const note=div('');note.style.cssText='background:rgba(91,155,213,.08);border:1px solid rgba(91,155,213,.2);border-radius:9px;padding:11px 13px;font-size:11px;color:#6b9fd4;line-height:1.6';
-  note.textContent='ℹ️ Consult your Trust\'s Information Governance team before deploying this app for use by colleagues.';
-  pbody.appendChild(note);
-  wrap.appendChild(pbody);
-  return wrap;
-}
-
-// ── Main App ──────────────────────────────────────────────────
-function renderApp(){
-  const total=STATE.totalBiopsies;
-  const log=STATE.log||[];
-  const counts=deriveCounts(log);
-  const noComp=log.filter(e=>(e.complications||[]).length===0).length;
-  const avgLesion=avg(log.map(e=>e.lesionSize));
-  const avgDist=avg(log.map(e=>e.distance));
-  const hPend=counts.histoPending;
-  const hospitals={};
-  log.forEach(e=>{if(e.hospitalName)hospitals[e.hospitalName]=(hospitals[e.hospitalName]||0)+1});
-  const lobeMap={};
-  log.forEach(e=>{if(e.lobe)lobeMap[e.lobe]=(lobeMap[e.lobe]||0)+1});
-
-  const app=div('');
-
-  // ── Header
-  const hdr=div('hdr');
-  const hrow=div('hdr-row');
-  const hleft=div('hdr-left');
-  const hicon=div('hdr-icon','🫁');
-  const htxt=div('');
-  htxt.innerHTML=`<div class="hdr-title">LungBiopsy</div><div class="hdr-sub">Tracker</div>`;
-  hleft.appendChild(hicon);hleft.appendChild(htxt);
-  const hright=div('');hright.style.cssText='display:flex;flex-direction:column;align-items:flex-end;gap:5px';
-  const badge=div('badge');
-  badge.innerHTML=`<span class="badge-num">${total}</span><span class="badge-lbl">cases</span>`;
-  hright.appendChild(badge);
-  hrow.appendChild(hleft);hrow.appendChild(hright);hdr.appendChild(hrow);
-
-  if(hPend>0){
-    const pb=div('pending-banner');
-    pb.innerHTML=`<span>⏳</span><span>${hPend} case${hPend!==1?'s':''} awaiting histology</span>`;
-    pb.addEventListener('click',()=>{UI.showPending=!UI.showPending;render()});
-    hdr.appendChild(pb);
-  }
-  app.appendChild(hdr);
-
-  // ── Tabs
-  const tabs=div('tabs');
-  [['dashboard','📊 Dashboard'],['log','📋 Log'],['rates','📈 Rates']].forEach(([id,lbl])=>{
-    const t=div('tab'+(UI.tab===id?' active':''),lbl);
-    t.addEventListener('click',()=>{UI.tab=id;UI.expandedLog=null;render()});
-    tabs.appendChild(t);
-  });
-  app.appendChild(tabs);
-
-  const main=div('main');
-
-  // ════════ DASHBOARD ════════
-  if(UI.tab==='dashboard'){
-    // Summary row
-    const sr=div('summary-row');
-    [[total,'Total Cases','#5b9bd5'],[pct(noComp,total),'No Complication','#22c55e'],[pct(counts.diagnostic,total),'Diagnostic Yield','#a3e635']].forEach(([n,l,c])=>{
-      const sc=div('summary-card');
-      sc.innerHTML=`<div class="summary-num" style="color:${c}">${n}</div><div class="summary-lbl">${l}</div>`;
-      sr.appendChild(sc);
+    const cm = {};
+    COMPS.forEach(c => { cm[c.id] = (entry.complications||[]).includes(c.id); });
+    setEditComps(cm);
+    setEditCompNotes(entry.complicationNotes||"");
+    setEditHisto({
+      diagnosis: entry.diagnosis||"",
+      histologyNotes: entry.histologyNotes||"",
+      diagnosticSample: entry.diagnosticSample ?? null,
     });
-    main.appendChild(sr);
-
-    // Histology pending list
-    if(hPend>0&&UI.showPending){
-      const pl=div('');pl.style.cssText='background:rgba(240,165,0,0.04);border:1px solid rgba(240,165,0,0.2);border-radius:0 0 10px 10px;padding:8px;margin-bottom:4px';
-      log.filter(e=>e.diagnosticSample===null||e.diagnosticSample===undefined).forEach(entry=>{
-        const idx=log.length-log.indexOf(entry);
-        const sc2=div('sub-case');
-        sc2.style.border='1px solid rgba(240,165,0,0.2)';
-        const row=div('');row.style.cssText='display:flex;justify-content:space-between;align-items:flex-start';
-        const info=div('');
-        info.innerHTML=`<div style="font-weight:700;font-size:13px">Case #${idx}${entry.hospitalName?` · <span style="color:#6b7fa3">${entry.hospitalName}</span>`:''}</div>${entry.lobe?`<div style="font-size:11px;color:#5b9bd5">${entry.lobe}</div>`:''}${entry.datePerformed?`<div style="font-size:11px;color:#6b7280">${fmtDateInput(entry.datePerformed)}</div>`:''}`;
-        const vb=btn('view-btn','Add Result',()=>{UI.tab='log';UI.expandedLog=entry.id;UI.showPending=false;render()});
-        vb.style.color='#f0a500';vb.style.background='rgba(240,165,0,0.1)';vb.style.border='1px solid rgba(240,165,0,0.3)';
-        row.appendChild(info);row.appendChild(vb);sc2.appendChild(row);pl.appendChild(sc2);
-      });
-      main.appendChild(pl);
-    }
-
-    // Lobe distribution
-    if(Object.keys(lobeMap).length>0){
-      const st=div('sec-title','Lobe Distribution');main.appendChild(st);
-      const lg=div('lobe-grid');
-      LOBES.forEach(l=>{
-        const lc=div('lobe-card');lc.style.opacity=lobeMap[l]?'1':'0.3';
-        lc.innerHTML=`<div class="lobe-num">${lobeMap[l]||0}</div><div class="lobe-lbl">${l}</div>`;
-        lg.appendChild(lc);
-      });
-      main.appendChild(lg);
-    }
-
-    // Hospitals
-    if(Object.keys(hospitals).length>0){
-      const st=div('sec-title','By Hospital');main.appendChild(st);
-      Object.entries(hospitals).sort((a,b)=>b[1]-a[1]).forEach(([h,n])=>{
-        const isOpen=UI.selectedHospital===h;
-        const hr=div('hosp-row');
-        hr.style.borderColor=isOpen?'rgba(91,155,213,0.4)':'rgba(255,255,255,0.05)';
-        hr.style.background=isOpen?'rgba(91,155,213,0.08)':'rgba(255,255,255,0.03)';
-        hr.innerHTML=`<span class="hosp-name">🏥 ${h}</span><div style="display:flex;align-items:center;gap:6px"><span class="hosp-cnt">${n} case${n!==1?'s':''}</span><span style="color:#6b7280;font-size:11px">${isOpen?'▲':'▼'}</span></div>`;
-        hr.addEventListener('click',()=>{UI.selectedHospital=isOpen?null:h;render()});
-        main.appendChild(hr);
-        if(isOpen){
-          const sub=div('');sub.style.marginBottom='6px';
-          log.filter(e=>e.hospitalName===h).forEach(entry=>{
-            const idx=log.length-log.indexOf(entry);
-            const sc2=div('sub-case');
-            const row=div('');row.style.cssText='display:flex;justify-content:space-between;align-items:flex-start';
-            const info=div('');
-            const histoPend=entry.diagnosticSample===null||entry.diagnosticSample===undefined;
-            info.innerHTML=`<div style="display:flex;align-items:center;gap:5px"><span style="font-weight:700;font-size:12px">Case #${idx}</span>${entry.hospitalNumber?`<span style="font-size:10px;background:rgba(91,155,213,0.15);color:#5b9bd5;border-radius:4px;padding:1px 5px;font-weight:700">#${entry.hospitalNumber}</span>`:''}</div>${entry.lobe?`<div style="font-size:11px;color:#5b9bd5;margin-top:1px">${entry.lobe}</div>`:''}${entry.datePerformed?`<div style="font-size:11px;color:#6b7280">${fmtDateInput(entry.datePerformed)}</div>`:''}${histoPend?'<div style="font-size:10px;color:#f0a500;font-weight:600;margin-top:1px">⏳ Histology pending</div>':(entry.diagnosis?`<div style="font-size:10px;color:#a3e635;font-weight:600;margin-top:1px">🔬 ${entry.diagnosis}</div>`:'')}`;
-            const vb=btn('view-btn','View',()=>{UI.tab='log';UI.expandedLog=entry.id;UI.selectedHospital=null;render()});
-            row.appendChild(info);row.appendChild(vb);sc2.appendChild(row);
-            if((entry.complications||[]).length>0){
-              const chips=div('chips');chips.style.marginTop='5px';
-              (entry.complications||[]).forEach(cid=>{
-                const comp=COMPS.find(c=>c.id===cid);if(!comp)return;
-                const chip=div('chip',`${comp.icon} ${comp.label}`);
-                chip.style.cssText=`background:${comp.bg};color:${comp.color};border-color:${comp.color}44;font-size:10px;padding:2px 7px`;
-                chips.appendChild(chip);
-              });
-              sc2.appendChild(chips);
-            }
-            sub.appendChild(sc2);
-          });
-          main.appendChild(sub);
-        }
-      });
-    }
-
-    // Complication overview
-    const st=div('sec-title','Complication Overview');main.appendChild(st);
-    COMPS.forEach(c=>{
-      const count=counts[c.id]||0;
-      const cc=div('comp-card');
-      cc.style.borderLeftColor=c.color;
-      cc.innerHTML=`<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">${c.icon}</span><div class="comp-name">${c.label}</div></div><div style="text-align:right"><div class="comp-rate" style="color:${c.color}">${pct(count,total)}</div><div class="comp-count">${count} / ${total}</div></div>`;
-      main.appendChild(cc);
-    });
-
-    // Bar chart
-    if(total>0){
-      const st2=div('sec-title','Visual Comparison');main.appendChild(st2);
-      const bc=div('bar-chart');
-      COMPS.forEach(c=>{
-        const count=counts[c.id]||0;
-        const p=total?(count/total)*100:0;
-        const br=div('bar-row');
-        br.innerHTML=`<div class="bar-lbl">${c.icon} ${c.label}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.min(p,100)}%;background:${c.color}"></div></div><div class="bar-pct" style="color:${c.color}">${p.toFixed(1)}%</div>`;
-        bc.appendChild(br);
-      });
-      main.appendChild(bc);
-    }
+    setExpandedId(null);
   }
 
-  // ════════ LOG ════════
-  else if(UI.tab==='log'){
-
-    // ── Search bar ──
-    const searchWrap=div('');searchWrap.style.cssText='position:relative;margin-bottom:10px';
-    const searchIcon=div('');searchIcon.style.cssText='position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none';searchIcon.textContent='🔍';
-    const searchInput=document.createElement('input');
-    searchInput.type='text';searchInput.className='fi';searchInput.placeholder='Search diagnosis, histology notes, comments...';
-    searchInput.value=UI.searchQuery;searchInput.style.paddingLeft='34px';searchInput.style.paddingRight='36px';
-    searchInput.addEventListener('input',e=>{UI.searchQuery=e.target.value;render()});
-    const clearSearch=div('');clearSearch.style.cssText=`position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:16px;cursor:pointer;color:#6b7280;display:${UI.searchQuery?'block':'none'}`;
-    clearSearch.textContent='✕';clearSearch.addEventListener('click',()=>{UI.searchQuery='';searchInput.value='';render()});
-    searchWrap.appendChild(searchIcon);searchWrap.appendChild(searchInput);searchWrap.appendChild(clearSearch);
-    main.appendChild(searchWrap);
-
-    // ── Filter toggle button ──
-    const filterToggle=div('');filterToggle.style.cssText='display:flex;align-items:center;justify-content:space-between;margin-bottom:8px';
-    const ftBtn=div('');
-    const hasFilters=UI.filterLesionType||UI.filterLobe||UI.filterDiagnosis||UI.filterComp;
-    ftBtn.style.cssText=`display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;border:1px solid ${hasFilters?'rgba(91,155,213,0.5)':'rgba(255,255,255,0.1)'};background:${hasFilters?'rgba(91,155,213,0.12)':'rgba(255,255,255,0.04)'};color:${hasFilters?'#5b9bd5':'#6b7280'}`;
-    ftBtn.innerHTML=`<span>⚙️</span><span>${hasFilters?'Filters active':'Filter & Analyse'}</span><span>${UI.showFilters?'▲':'▼'}</span>`;
-    ftBtn.addEventListener('click',()=>{UI.showFilters=!UI.showFilters;render()});
-    if(hasFilters){
-      const clearAll=div('');clearAll.style.cssText='font-size:11px;color:#e05252;cursor:pointer;font-weight:700;padding:4px 8px;border:1px solid rgba(224,82,82,0.3);border-radius:6px;background:rgba(224,82,82,0.08)';
-      clearAll.textContent='Clear filters';
-      clearAll.addEventListener('click',()=>{UI.filterLesionType='';UI.filterLobe='';UI.filterDiagnosis='';UI.filterComp='';render()});
-      filterToggle.appendChild(ftBtn);filterToggle.appendChild(clearAll);
-    } else {filterToggle.appendChild(ftBtn);}
-    main.appendChild(filterToggle);
-
-    // ── Filter panel ──
-    if(UI.showFilters){
-      const fp=div('');fp.style.cssText='background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;margin-bottom:12px';
-
-      // Lesion type filter
-      const ltlbl=div('');ltlbl.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px';ltlbl.textContent='Lesion Type';
-      fp.appendChild(ltlbl);
-      fp.appendChild(segPicker(['Solid','Subsolid','Ground Glass','Cavitating'],UI.filterLesionType,v=>{UI.filterLesionType=v;render();}));
-
-      const loblbl=div('');loblbl.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin:10px 0 6px';loblbl.textContent='Lobe';
-      fp.appendChild(loblbl);
-      fp.appendChild(segPicker(LOBES,UI.filterLobe,v=>{UI.filterLobe=v;render();}));
-
-      const complbl=div('');complbl.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin:10px 0 6px';complbl.textContent='Complication';
-      fp.appendChild(complbl);
-      fp.appendChild(segPicker(COMPS.map(c=>c.label),UI.filterComp,v=>{UI.filterComp=v;render();}));
-
-      const dglbl=div('');dglbl.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin:10px 0 6px';dglbl.textContent='Search Diagnosis';
-      const dginput=document.createElement('input');dginput.type='text';dginput.className='fi';
-      dginput.placeholder='e.g. Adenocarcinoma, Small cell...';dginput.value=UI.filterDiagnosis;
-      dginput.addEventListener('input',e=>{UI.filterDiagnosis=e.target.value;render()});
-      fp.appendChild(dglbl);fp.appendChild(dginput);
-      main.appendChild(fp);
-    }
-
-    // ── Apply filters + search ──
-    function matchesFilters(entry){
-      const q=UI.searchQuery.toLowerCase();
-      if(q){
-        const haystack=[entry.diagnosis,entry.histologyNotes,entry.comments,entry.complicationNotes,entry.hospitalName,entry.lobe,entry.lesionType].filter(Boolean).join(' ').toLowerCase();
-        if(!haystack.includes(q))return false;
+  function saveEdit() {
+    setCases(prev => prev.map(e => {
+      if (e.id !== editEntry.id) return e;
+      if (editSec === "details") {
+        return { ...e, ...editForm };
       }
-      if(UI.filterLesionType && entry.lesionType!==UI.filterLesionType)return false;
-      if(UI.filterLobe && entry.lobe!==UI.filterLobe)return false;
-      if(UI.filterDiagnosis){
-        const dq=UI.filterDiagnosis.toLowerCase();
-        const dh=[(entry.diagnosis||''),(entry.histologyNotes||'')].join(' ').toLowerCase();
-        if(!dh.includes(dq))return false;
+      if (editSec === "complications") {
+        return {
+          ...e, ...editForm,
+          complications: COMPS.filter(c => editComps[c.id]).map(c => c.id),
+          complicationNotes: editCompNotes,
+        };
       }
-      if(UI.filterComp){
-        const comp=COMPS.find(c=>c.label===UI.filterComp);
-        if(comp&&!(entry.complications||[]).includes(comp.id))return false;
+      if (editSec === "histology") {
+        return {
+          ...e,
+          diagnosis: editHisto.diagnosis,
+          histologyNotes: editHisto.histologyNotes,
+          diagnosticSample: editHisto.diagnosticSample,
+          histologyDate: e.histologyDate || new Date().toISOString(),
+        };
       }
-      return true;
-    }
-
-    const filtered=log.filter(matchesFilters);
-
-    const stDiv=div('');stDiv.id='log-count';stDiv.className='sec-title';stDiv.textContent=`Procedure Log (${filtered.length}${filtered.length!==log.length?' of '+log.length:''} entries)`;
-    main.appendChild(stDiv);
-
-    const logContainer=div('');logContainer.id='log-container';main.appendChild(logContainer);
-
-    if(filtered.length===0){
-      const e=div('');e.style.cssText='text-align:center;color:#6b7280;padding:24px 20px;font-style:italic';
-      e.textContent=UI.searchQuery||hasFilters?'No cases match your search or filters.':'No entries yet. Tap + to add your first case.';
-      logContainer.appendChild(e);
-    }
-
-    function buildLogCard(entry,idx){
-      const isOpen=UI.expandedLog===entry.id;
-      const histoPend=entry.diagnosticSample===null||entry.diagnosticSample===undefined;
-      const isDeath=(entry.complications||[]).includes('death');
-
-      const lc=div('log-card');
-      lc.style.borderColor=isDeath?'rgba(107,114,128,0.4)':histoPend?'rgba(240,165,0,0.25)':'rgba(255,255,255,0.07)';
-      const isOpen=UI.expandedLog===entry.id;
-      const histoPend=entry.diagnosticSample===null||entry.diagnosticSample===undefined;
-      const isDeath=(entry.complications||[]).includes('death');
-
-      const lc=div('log-card');
-      lc.style.borderColor=isDeath?'rgba(107,114,128,0.4)':histoPend?'rgba(240,165,0,0.25)':'rgba(255,255,255,0.07)';
-
-      // Header row
-      const lh=div('log-hdr');
-      const linfo=div('');
-      const lrow=div('');lrow.style.cssText='display:flex;align-items:center;gap:6px;flex-wrap:wrap';
-      const lcname=span('log-case',`Case #${idx}`);
-      lrow.appendChild(lcname);
-      if(entry.hospitalName){const hn=span('');hn.style.cssText='font-size:12px;color:#6b7fa3';hn.textContent=` · ${entry.hospitalName}`;lrow.appendChild(hn)}
-      if(entry.hospitalNumber){const hnum=span('');hnum.style.cssText='font-size:11px;background:rgba(91,155,213,0.15);color:#5b9bd5;border-radius:5px;padding:1px 6px;font-weight:700';hnum.textContent=`#${entry.hospitalNumber}`;lrow.appendChild(hnum)}
-      linfo.appendChild(lrow);
-      if(entry.lobe){const ll=div('log-lobe',entry.lobe);linfo.appendChild(ll)}
-      if(histoPend){const lh2=div('log-histo','⏳ Histology pending');lh2.style.color='#f0a500';linfo.appendChild(lh2)}
-      else if(entry.diagnosis){const ld=div('log-histo',`🔬 ${entry.diagnosis}`);ld.style.color='#a3e635';linfo.appendChild(ld)}
-
-      const ldate=div('');ldate.style.cssText='display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0';
-      const ldspan=span('log-date',fmtDate(entry.date));
-      const arr=span('');arr.style.cssText='color:#6b7280;font-size:11px';arr.textContent=isOpen?'▲':'▼';
-      ldate.appendChild(ldspan);ldate.appendChild(arr);
-      lh.appendChild(linfo);lh.appendChild(ldate);
-      lh.addEventListener('click',()=>{UI.expandedLog=isOpen?null:entry.id;render()});
-      lc.appendChild(lh);
-
-      // Chips
-      const chips=div('chips');
-      if((entry.complications||[]).length===0){
-        const nc=span('');nc.style.cssText='font-size:11px;color:#6b7280;font-style:italic';nc.textContent='No complications';chips.appendChild(nc);
-      } else {
-        (entry.complications||[]).forEach(cid=>{
-          const comp=COMPS.find(c=>c.id===cid);if(!comp)return;
-          const chip=div('chip',`${comp.icon} ${comp.label}`);
-          chip.style.cssText=`background:${comp.bg};color:${comp.color};border-color:${comp.color}44`;
-          chips.appendChild(chip);
-        });
-      }
-      lc.appendChild(chips);
-
-      // Expanded detail
-      if(isOpen){
-        const ld=div('log-detail');
-        const dg=div('detail-grid');
-        const details=[
-          entry.datePerformed&&['Date Performed',fmtDateInput(entry.datePerformed)],
-          entry.age&&['Age',`${entry.age} yrs`],
-          entry.sex&&['Sex',entry.sex==='M'?'Male':'Female'],
-          entry.supervision&&['Supervision',entry.supervision],
-          entry.lobe&&['Lobe',entry.lobe],
-          entry.lesionType&&['Lesion Type',entry.lesionType],
-          entry.lesionSize&&['Lesion Size',`${entry.lesionSize} mm`],
-          entry.distance&&['Distance',`${entry.distance} mm`],
-          entry.needleSize&&['Needle Size',entry.needleSize],
-          entry.passes&&['Passes',entry.passes],
-          ['Emphysema Track',entry.emphysemaTrack?'Yes ⚠️':'No',entry.emphysemaTrack?'#f0a500':undefined],
-        ].filter(Boolean);
-        details.forEach(([l,v,c])=>{
-          const di=div('detail-item');
-          di.innerHTML=`<div class="dl">${l}</div><div class="dv"${c?` style="color:${c}"`:''} >${v}</div>`;
-          dg.appendChild(di);
-        });
-        ld.appendChild(dg);
-
-        if(entry.complicationNotes){
-          const cn=div('');cn.style.cssText='background:rgba(255,255,255,0.03);border-radius:7px;padding:9px 11px;margin-bottom:9px;border:1px solid rgba(255,255,255,0.07)';
-          cn.innerHTML=`<div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px">Complication Notes</div><div style="font-size:12px;color:#ccc;line-height:1.5">${entry.complicationNotes}</div>`;
-          ld.appendChild(cn);
-        }
-        if(entry.comments){
-          const cm=div('');cm.style.cssText='background:rgba(255,255,255,0.03);border-radius:7px;padding:9px 11px;margin-bottom:9px;border:1px solid rgba(255,255,255,0.07)';
-          cm.innerHTML=`<div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px">Comments</div><div style="font-size:12px;color:#ccc;line-height:1.5">${entry.comments}</div>`;
-          ld.appendChild(cm);
-        }
-
-        // Edit buttons
-        const ebs=div('edit-btns');
-        const eb1=btn('edit-btn','✎ Edit Details',()=>openEdit(entry,'details'));
-        const eb2=btn('edit-btn','✎ Edit Complications',()=>openEdit(entry,'complications'));
-        ebs.appendChild(eb1);ebs.appendChild(eb2);ld.appendChild(ebs);
-
-        // Histology panel
-        const hp=div('histo-panel');
-        hp.style.background=histoPend?'rgba(240,165,0,0.06)':'rgba(163,230,53,0.06)';
-        hp.style.border=`1px solid ${histoPend?'rgba(240,165,0,0.25)':'rgba(163,230,53,0.25)'}`;
-        const hprow=div('');hprow.style.cssText='display:flex;justify-content:space-between;align-items:center';
-        const hpttl=div('');hpttl.style.cssText=`font-size:12px;font-weight:700;color:${histoPend?'#f0a500':'#a3e635'}`;
-        hpttl.textContent=`🔬 Histology ${histoPend?'Pending':'Result'}`;
-        hprow.appendChild(hpttl);
-        if(entry.histologyDate){const hd=span('');hd.style.cssText='font-size:10px;color:#6b7280';hd.textContent=fmtShort(entry.histologyDate);hprow.appendChild(hd)}
-        hp.appendChild(hprow);
-        if(!histoPend){
-          const hr2=div('');hr2.style.marginTop='5px';
-          if(entry.diagnosis){const d=div('');d.style.cssText='font-size:13px;font-weight:700;color:#e0e0e0;margin-bottom:3px';d.textContent=entry.diagnosis;hr2.appendChild(d)}
-          if(entry.histologyNotes){const n=div('');n.style.cssText='font-size:12px;color:#aaa;line-height:1.5;margin-bottom:5px';n.textContent=entry.histologyNotes;hr2.appendChild(n)}
-          const ds=div('');ds.style.cssText=`font-size:11px;font-weight:600;color:${entry.diagnosticSample?'#22c55e':'#e05252'}`;
-          ds.textContent=entry.diagnosticSample?'✅ Diagnostic sample obtained':'❌ Non-diagnostic sample';
-          hr2.appendChild(ds);hp.appendChild(hr2);
-        }
-        const hbtn=btn('histo-btn',histoPend?'＋ Add Histology Result':'✎ Edit Histology Result',()=>openEdit(entry,'histology'));
-        hbtn.style.border=`1px solid ${histoPend?'rgba(240,165,0,0.4)':'rgba(163,230,53,0.3)'}`;
-        hbtn.style.color=histoPend?'#f0a500':'#a3e635';
-        hp.appendChild(hbtn);ld.appendChild(hp);
-        lc.appendChild(ld);
-      }
-      return lc;
-    } // end buildLogCard
-
-    filtered.forEach(entry=>{
-      const idx=log.length-log.indexOf(entry);
-      logContainer.appendChild(buildLogCard(entry,idx));
-    });
+      return e;
+    }));
+    setEditEntry(null);
+    showToast(editSec === "histology" ? "Histology saved ✓" : "Case updated ✓");
   }
 
-  // ════════ RATES ════════
-  else if(UI.tab==='rates'){
-    const st=div('sec-title','Live Complication Rates');main.appendChild(st);
-    const rg=div('rates-grid');
-    COMPS.forEach(c=>{
-      const count=counts[c.id]||0;
-      const p=total?((count/total)*100).toFixed(1):'0.0';
-      const rc=div('rate-card');rc.style.background=c.bg;
-      rc.innerHTML=`<div class="rate-icon">${c.icon}</div><div class="rate-pct" style="color:${c.color}">${p}%</div><div class="rate-lbl">${c.label}</div><div class="rate-cnt">${count} of ${total}</div>`;
-      rg.appendChild(rc);
-    });
-    [[noComp,'🟢','No Complications','rgba(34,197,94,0.08)','#22c55e'],[counts.emphysema,'🫧','Emphysema Track','rgba(240,165,0,0.08)','#f0a500'],[counts.diagnostic,'🔬','Diagnostic Yield','rgba(163,230,53,0.08)','#a3e635']].forEach(([count,icon,lbl,bg,color])=>{
-      const p=total?((count/total)*100).toFixed(1):'0.0';
-      const rc=div('rate-card');rc.style.background=bg;
-      rc.innerHTML=`<div class="rate-icon">${icon}</div><div class="rate-pct" style="color:${color}">${p}%</div><div class="rate-lbl">${lbl}</div><div class="rate-cnt">${count} of ${total}</div>`;
-      rg.appendChild(rc);
-    });
-    main.appendChild(rg);
-
-    const st2=div('sec-title','Procedural Averages');main.appendChild(st2);
-    const ab=div('avg-box');
-    [['Avg Lesion Size',avgLesion?`${avgLesion} mm`:'—'],['Avg Distance to Lesion',avgDist?`${avgDist} mm`:'—'],['Emphysema in Track',pct(counts.emphysema,total)],['Histology received',log.filter(e=>e.diagnosticSample!==null&&e.diagnosticSample!==undefined).length],['Histology pending',hPend]].forEach(([l,v])=>{
-      const ar=div('avg-row');ar.innerHTML=`<span class="avg-lbl">${l}</span><span class="avg-val">${v}</span>`;ab.appendChild(ar);
-    });
-    main.appendChild(ab);
-
-    const st3=div('sec-title','Reference Benchmarks');main.appendChild(st3);
-    const bb=div('bench-box');
-    bb.innerHTML='<div style="font-size:12px;font-weight:700;color:#ccc;margin-bottom:10px">Published Literature Ranges</div>';
-    [['Haemoptysis (minor)','1–5%','#e05252'],['Pneumothorax','15–25%','#5b9bd5'],['Chest Drain Required','1–5%','#f0a500'],['Air Embolus','< 0.1%','#a855f7'],['Mortality','< 0.1%','#6b7280'],['Diagnostic Yield','80–95%','#a3e635']].forEach(([l,r,c])=>{
-      const br=div('bench-row');br.innerHTML=`<span class="bench-lbl">${l}</span><span class="bench-ref" style="color:${c}">${r}</span>`;bb.appendChild(br);
-    });
-    const bn=div('bench-note','⚠️ Rates vary by technique and patient cohort.');bb.appendChild(bn);
-    main.appendChild(bb);
-
-    const cbwrap=div('');cbwrap.style.cssText='text-align:center;margin-top:14px';
-    const cb=btn('clear-btn','🗑 Reset All Data',()=>{UI.confirmClear=true;render()});
-    cbwrap.appendChild(cb);
-    const plwrap=div('');plwrap.style.cssText='text-align:center;margin-top:10px';
-    const pl=btn('','Privacy Policy',()=>{UI.screen='privacy';render()});
-    pl.style.cssText='background:none;border:none;color:#4b5563;font-size:11px;cursor:pointer;text-decoration:underline';
-    plwrap.appendChild(pl);
-    main.appendChild(cbwrap);main.appendChild(plwrap);
-  }
-
-  app.appendChild(main);
-
-  // FAB
-  const fab=div('fab','＋');
-  fab.addEventListener('click',()=>{UI.addModal=true;UI.addStep=0;UI.addForm={hospitalName:'',hospitalNumber:'',datePerformed:'',age:'',sex:'',supervision:'',lobe:'',lesionType:'',lesionSize:'',distance:'',emphysemaTrack:false,needleSize:'',passes:'',comments:''};UI.addComps={};render()});
-  app.appendChild(fab);
-
-  // ── Add Modal
-  if(UI.addModal){
-    const ov=div('overlay');
-    const mo=div('modal');
-    // Step dots
-    const sd=div('step-dots');
-    [0,1].forEach(i=>{
-      const dot=div('step-dot');dot.style.background=i<=UI.addStep?'#5b9bd5':'rgba(255,255,255,0.15)';sd.appendChild(dot);
-      if(i===0){const line=div('step-line');line.style.background=UI.addStep>0?'#5b9bd5':'rgba(255,255,255,0.1)';sd.appendChild(line)}
-    });
-    mo.appendChild(sd);
-
-    if(UI.addStep===0){
-      const mt=div('modal-title','New Biopsy Case');
-      const ms=div('modal-sub','Step 1 of 2 — Procedure details');
-      mo.appendChild(mt);mo.appendChild(ms);
-      mo.appendChild(field('Hospital Name',null,input('text',UI.addForm.hospitalName,v=>{UI.addForm.hospitalName=v},'e.g. Royal Marsden, UCLH...')));
-      mo.appendChild(field('Case Reference','(your own reference only)',input('text',UI.addForm.hospitalNumber,v=>{UI.addForm.hospitalNumber=v},'e.g. 150125-JB')));
-      mo.appendChild(field('Date Performed',null,input('date',UI.addForm.datePerformed,v=>{UI.addForm.datePerformed=v})));
-      const agerow=div('');agerow.style.cssText='display:flex;gap:10px';
-      const agewrap=div('');agewrap.style.flex='1';agewrap.appendChild(field('Age',null,input('number',UI.addForm.age,v=>{UI.addForm.age=v},'e.g. 67')));
-      const sexwrap=div('');sexwrap.style.flex='1';sexwrap.appendChild(field('Sex',null,segPicker(['M','F'],UI.addForm.sex,v=>{UI.addForm.sex=v})));
-      agerow.appendChild(agewrap);agerow.appendChild(sexwrap);mo.appendChild(agerow);
-      mo.appendChild(field('Supervision',null,segPicker(SUPS,UI.addForm.supervision,v=>{UI.addForm.supervision=v})));
-      mo.appendChild(field('Lobe',null,segPicker(LOBES,UI.addForm.lobe,v=>{UI.addForm.lobe=v})));
-      mo.appendChild(field('Lesion Type',null,segPicker(LTYPES,UI.addForm.lesionType,v=>{UI.addForm.lesionType=v})));
-      const lsw=div('fi-wrap');const lsi=input('number',UI.addForm.lesionSize,v=>{UI.addForm.lesionSize=v},'e.g. 18');lsi.style.paddingRight='36px';lsw.appendChild(lsi);const lsu=div('fi-unit','mm');lsw.appendChild(lsu);
-      mo.appendChild(field('Lesion Size',null,lsw));
-      const dw=div('fi-wrap');const di=input('number',UI.addForm.distance,v=>{UI.addForm.distance=v},'e.g. 22');di.style.paddingRight='36px';dw.appendChild(di);const du=div('fi-unit','mm');dw.appendChild(du);
-      mo.appendChild(field('Distance to Pleura',null,dw));
-      mo.appendChild(field('Emphysema in Needle Track',null,toggleBtn(UI.addForm.emphysemaTrack,v=>{UI.addForm.emphysemaTrack=v},'Emphysema Present','Emphysematous lung in needle path')));
-      const nprow=div('');nprow.style.cssText='display:flex;gap:10px';
-      const nswrap=div('');nswrap.style.flex='1';nswrap.appendChild(field('Needle Size',null,input('text',UI.addForm.needleSize,v=>{UI.addForm.needleSize=v},'e.g. 18G')));
-      const pswrap=div('');pswrap.style.flex='1';pswrap.appendChild(field('Passes',null,input('number',UI.addForm.passes,v=>{UI.addForm.passes=v},'e.g. 3')));
-      nprow.appendChild(nswrap);nprow.appendChild(pswrap);mo.appendChild(nprow);
-      mo.appendChild(field('Comments','(optional)',textarea(UI.addForm.comments,v=>{UI.addForm.comments=v},'Any additional notes...')));
-      const ma=div('modal-actions');
-      ma.appendChild(btn('btn-cancel','Cancel',()=>{UI.addModal=false;render()}));
-      ma.appendChild(btn('btn-submit','Next →',()=>{UI.addStep=1;render()}));
-      mo.appendChild(ma);
-    } else {
-      const mt=div('modal-title','Complications');
-      const ms=div('modal-sub','Step 2 of 2 — Select all that apply');
-      mo.appendChild(mt);mo.appendChild(ms);
-      const info=div('info-box','💡 Histology & diagnostic sample can be added later once results are back');mo.appendChild(info);
-      COMPS.forEach(c=>{
-        const ct=div('comp-toggle');
-        function styleCompToggle(active){
-          ct.style.borderColor=active?c.color:'rgba(255,255,255,0.1)';
-          ct.style.background=active?c.bg:'rgba(255,255,255,0.04)';
-          ct.innerHTML=`<span style="font-size:22px">${c.icon}</span><div style="flex:1;text-align:left"><div style="font-weight:600;color:${active?c.color:'#ccc'}">${c.label}</div></div><span style="color:${active?c.color:'#555'};font-size:18px">${active?'✓':'○'}</span>`;
-        }
-        styleCompToggle(!!UI.addComps[c.id]);
-        ct.addEventListener('click',()=>{UI.addComps[c.id]=!UI.addComps[c.id];styleCompToggle(!!UI.addComps[c.id]);});
-        mo.appendChild(ct);
-      });
-      mo.appendChild(field('Complication Notes','(optional)',textarea(UI.addComps._notes||'',v=>{UI.addComps._notes=v},'e.g. Small pneumothorax, resolved spontaneously...')));
-      const ma=div('modal-actions');
-      ma.appendChild(btn('btn-cancel','← Back',()=>{UI.addStep=0;render()}));
-      ma.appendChild(btn('btn-submit','Save Case ✓',submitAdd));
-      mo.appendChild(ma);
-    }
-    ov.addEventListener('click',()=>{UI.addModal=false;render()});
-    mo.addEventListener('click',e=>e.stopPropagation());
-    ov.appendChild(mo);app.appendChild(ov);
-  }
-
-  // ── Edit Modal
-  if(UI.editId){
-    const entry=log.find(e=>e.id===UI.editId);
-    if(entry){
-      const ov=div('overlay');
-      const mo=div('modal');
-      // Section tabs
-      const st=div('sect-tabs');
-      [['details','📋 Details'],['complications','⚠️ Complications'],['histology','🔬 Histology']].forEach(([sec,lbl])=>{
-        const t=btn('sect-tab',lbl,()=>{UI.editSection=sec;render()});
-        t.style.background=UI.editSection===sec?'rgba(91,155,213,0.25)':'transparent';
-        t.style.color=UI.editSection===sec?'#5b9bd5':'#6b7280';
-        st.appendChild(t);
-      });
-      mo.appendChild(st);
-      const ecap=div('');ecap.style.cssText='font-size:10px;font-weight:700;color:#6b7280;text-align:center;margin-bottom:3px;text-transform:uppercase;letter-spacing:1px';
-      ecap.textContent=`Editing Case ${log.length-log.indexOf(entry)}${entry.hospitalName?' · '+entry.hospitalName:''}`;
-      mo.appendChild(ecap);
-
-      if(UI.editSection==='details'){
-        const mt=div('modal-title','Edit Case Details');mo.appendChild(mt);
-        mo.appendChild(field('Hospital Name',null,input('text',UI.editForm.hospitalName||'',v=>{UI.editForm.hospitalName=v},'e.g. Royal Marsden...')));
-        mo.appendChild(field('Case Reference','(your own reference only)',input('text',UI.editForm.hospitalNumber||'',v=>{UI.editForm.hospitalNumber=v},'e.g. 150125-JB')));
-        mo.appendChild(field('Date Performed',null,input('date',UI.editForm.datePerformed||'',v=>{UI.editForm.datePerformed=v})));
-        const agerow=div('');agerow.style.cssText='display:flex;gap:10px';
-        const agewrap=div('');agewrap.style.flex='1';agewrap.appendChild(field('Age',null,input('number',UI.editForm.age||'',v=>{UI.editForm.age=v},'e.g. 67')));
-        const sexwrap=div('');sexwrap.style.flex='1';sexwrap.appendChild(field('Sex',null,segPicker(['M','F'],UI.editForm.sex||'',v=>{UI.editForm.sex=v})));
-        agerow.appendChild(agewrap);agerow.appendChild(sexwrap);mo.appendChild(agerow);
-        mo.appendChild(field('Supervision',null,segPicker(SUPS,UI.editForm.supervision||'',v=>{UI.editForm.supervision=v})));
-        mo.appendChild(field('Lobe',null,segPicker(LOBES,UI.editForm.lobe||'',v=>{UI.editForm.lobe=v})));
-        mo.appendChild(field('Lesion Type',null,segPicker(LTYPES,UI.editForm.lesionType||'',v=>{UI.editForm.lesionType=v})));
-        const lsw=div('fi-wrap');const lsi=input('number',UI.editForm.lesionSize||'',v=>{UI.editForm.lesionSize=v},'e.g. 18');lsi.style.paddingRight='36px';lsw.appendChild(lsi);lsw.appendChild(div('fi-unit','mm'));
-        mo.appendChild(field('Lesion Size',null,lsw));
-        const dw=div('fi-wrap');const di=input('number',UI.editForm.distance||'',v=>{UI.editForm.distance=v},'e.g. 22');di.style.paddingRight='36px';dw.appendChild(di);dw.appendChild(div('fi-unit','mm'));
-        mo.appendChild(field('Distance to Pleura',null,dw));
-        mo.appendChild(field('Emphysema in Needle Track',null,toggleBtn(!!UI.editForm.emphysemaTrack,v=>{UI.editForm.emphysemaTrack=v},'Emphysema Present','')));
-        const nprow=div('');nprow.style.cssText='display:flex;gap:10px';
-        const nswrap=div('');nswrap.style.flex='1';nswrap.appendChild(field('Needle Size',null,input('text',UI.editForm.needleSize||'',v=>{UI.editForm.needleSize=v},'e.g. 18G')));
-        const pswrap=div('');pswrap.style.flex='1';pswrap.appendChild(field('Passes',null,input('number',UI.editForm.passes||'',v=>{UI.editForm.passes=v},'e.g. 3')));
-        nprow.appendChild(nswrap);nprow.appendChild(pswrap);mo.appendChild(nprow);
-        mo.appendChild(field('Comments','(optional)',textarea(UI.editForm.comments||'',v=>{UI.editForm.comments=v},'Any additional notes...')));
-        const ma=div('modal-actions');
-        ma.appendChild(btn('btn-cancel','Cancel',()=>{UI.editId=null;render()}));
-        ma.appendChild(btn('btn-submit','Save Changes ✓',saveEdit));
-        mo.appendChild(ma);
-      } else if(UI.editSection==='complications'){
-        mo.appendChild(div('modal-title','Edit Complications'));
-        mo.appendChild(div('modal-sub','Update or add delayed complications'));
-        COMPS.forEach(c=>{
-          const ct=div('comp-toggle');
-          function styleEditComp(active){
-            ct.style.borderColor=active?c.color:'rgba(255,255,255,0.1)';
-            ct.style.background=active?c.bg:'rgba(255,255,255,0.04)';
-            ct.innerHTML=`<span style="font-size:22px">${c.icon}</span><div style="flex:1;text-align:left"><div style="font-weight:600;color:${active?c.color:'#ccc'}">${c.label}</div></div><span style="color:${active?c.color:'#555'};font-size:18px">${active?'✓':'○'}</span>`;
-          }
-          styleEditComp(!!UI.editComps[c.id]);
-          ct.addEventListener('click',()=>{UI.editComps[c.id]=!UI.editComps[c.id];styleEditComp(!!UI.editComps[c.id]);});
-          mo.appendChild(ct);
-        });
-        mo.appendChild(field('Complication Notes','(optional)',textarea(UI.editComps._notes!==undefined?UI.editComps._notes:(entry.complicationNotes||''),v=>{UI.editComps._notes=v},'e.g. Small pneumothorax, resolved spontaneously...')));
-        const ma=div('modal-actions');
-        ma.appendChild(btn('btn-cancel','Cancel',()=>{UI.editId=null;render()}));
-        ma.appendChild(btn('btn-submit','Save Changes ✓',saveEdit));
-        mo.appendChild(ma);
-      } else {
-        mo.appendChild(div('modal-title','Histology Result'));
-        const esub=div('modal-sub',`Biopsy: ${fmtShort(entry.date)}${entry.lobe?' · '+entry.lobe:''}`);mo.appendChild(esub);
-        mo.appendChild(field('Diagnosis',null,input('text',UI.editHisto.diagnosis||'',v=>{UI.editHisto.diagnosis=v},'e.g. Adenocarcinoma, SCC, Benign...')));
-        mo.appendChild(field('Histology Notes','(optional)',textarea(UI.editHisto.histologyNotes||'',v=>{UI.editHisto.histologyNotes=v},'e.g. Grade, mutation status, TNM staging...')));
-        const dsfield=div('');dsfield.style.marginBottom='13px';
-        const dslbl=div('');dslbl.style.cssText='font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px';dslbl.textContent='Diagnostic Sample Obtained?';
-        const dsrow=div('');dsrow.style.cssText='display:flex;gap:8px';
-        const dsBtns=[];
-        [{label:'✅ Yes — Diagnostic',val:true,c:'#22c55e'},{label:'❌ No — Non-diagnostic',val:false,c:'#e05252'}].forEach(opt=>{
-          const b=div('');
-          function styleDsBtn(){
-            const isActive=UI.editHisto.diagnosticSample===opt.val;
-            b.style.cssText=`flex:1;padding:9px 5px;border-radius:9px;cursor:pointer;transition:all .15s;border:1px solid ${isActive?opt.c:'rgba(255,255,255,0.1)'};background:${isActive?opt.c+'18':'rgba(255,255,255,0.04)'};color:${isActive?opt.c:'#aaa'};font-size:11px;font-weight:700;text-align:center`;
-          }
-          styleDsBtn();
-          b.textContent=opt.label;
-          b.addEventListener('click',()=>{UI.editHisto.diagnosticSample=opt.val;dsBtns.forEach(x=>x());});
-          dsBtns.push(styleDsBtn);
-          dsrow.appendChild(b);
-        });
-        dsfield.appendChild(dslbl);dsfield.appendChild(dsrow);mo.appendChild(dsfield);
-        const ma=div('modal-actions');
-        ma.appendChild(btn('btn-cancel','Cancel',()=>{UI.editId=null;render()}));
-        const sb=btn('btn-submit btn-green','Save Result ✓',saveEdit);mo.appendChild(ma);ma.appendChild(sb);
-      }
-      ov.addEventListener('click',()=>{UI.editId=null;render()});
-      mo.addEventListener('click',e=>e.stopPropagation());
-      ov.appendChild(mo);app.appendChild(ov);
-    }
-  }
-
-  // ── Confirm clear
-  if(UI.confirmClear){
-    const ov=div('overlay');
-    const mo=div('modal');
-    mo.appendChild(div('modal-title','Reset All Data?'));
-    const txt=div('');txt.style.cssText='color:#aaa;text-align:center;margin-bottom:22px;font-size:13px';txt.textContent=`This will permanently delete all ${total} biopsy records.`;
-    mo.appendChild(txt);
-    const ma=div('modal-actions');
-    ma.appendChild(btn('btn-cancel','Cancel',()=>{UI.confirmClear=false;render()}));
-    const db=btn('btn-submit','Delete All',()=>{STATE={totalBiopsies:0,log:[]};save(STATE);UI.confirmClear=false;showToast('All data cleared','warn')});
-    db.style.background='#e05252';ma.appendChild(db);mo.appendChild(ma);
-    ov.addEventListener('click',()=>{UI.confirmClear=false;render()});
-    mo.addEventListener('click',e=>e.stopPropagation());
-    ov.appendChild(mo);app.appendChild(ov);
-  }
-
-  // Toast
-  if(UI.toast){
-    const t=div('toast',UI.toast.msg);
-    t.style.background=UI.toast.type==='warn'?'#c0392b':'#1e6b3d';
-    app.appendChild(t);
-  }
-
-  return app;
-}
-
-function submitAdd(){
-  const complications=COMPS.filter(c=>UI.addComps[c.id]).map(c=>c.id);
-  const entry={
-    id:Date.now(),date:new Date().toISOString(),
-    hospitalName:UI.addForm.hospitalName,hospitalNumber:UI.addForm.hospitalNumber,
-    datePerformed:UI.addForm.datePerformed,age:UI.addForm.age,sex:UI.addForm.sex,
-    supervision:UI.addForm.supervision,lobe:UI.addForm.lobe,lesionType:UI.addForm.lesionType,
-    lesionSize:UI.addForm.lesionSize,distance:UI.addForm.distance,
-    emphysemaTrack:UI.addForm.emphysemaTrack,needleSize:UI.addForm.needleSize,
-    passes:UI.addForm.passes,comments:UI.addForm.comments,
-    complicationNotes:UI.addComps._notes||'',
-    complications,diagnosis:'',histologyNotes:'',diagnosticSample:null,histologyDate:null,
-  };
-  STATE.totalBiopsies++;STATE.log.unshift(entry);save(STATE);
-  UI.addModal=false;showToast('Case recorded');
-}
-
-function openEdit(entry,section){
-  UI.editId=entry.id;UI.editSection=section;
-  UI.editForm={
-    hospitalName:entry.hospitalName||'',hospitalNumber:entry.hospitalNumber||'',
-    datePerformed:entry.datePerformed||'',age:entry.age||'',sex:entry.sex||'',
-    supervision:entry.supervision||'',lobe:entry.lobe||'',lesionType:entry.lesionType||'',
-    lesionSize:entry.lesionSize||'',distance:entry.distance||'',
-    emphysemaTrack:!!entry.emphysemaTrack,needleSize:entry.needleSize||'',
-    passes:entry.passes||'',comments:entry.comments||'',complicationNotes:entry.complicationNotes||'',
-  };
-  const compsMap={};COMPS.forEach(c=>{compsMap[c.id]=entry.complications.includes(c.id)});
-  UI.editComps={...compsMap,_notes:entry.complicationNotes||''};
-  UI.editHisto={diagnosis:entry.diagnosis||'',histologyNotes:entry.histologyNotes||'',diagnosticSample:entry.diagnosticSample??null};
-  UI.expandedLog=null;render();
-}
-
-function saveEdit(){
-  STATE.log=STATE.log.map(e=>{
-    if(e.id!==UI.editId)return e;
-    const b={...e};
-    if(UI.editSection==='details'||UI.editSection==='complications'){
-      Object.assign(b,UI.editForm);
-      b.complications=COMPS.filter(c=>UI.editComps[c.id]).map(c=>c.id);
-      b.complicationNotes=UI.editComps._notes!==undefined?UI.editComps._notes:(e.complicationNotes||'');
-    }
-    if(UI.editSection==='histology'){
-      b.diagnosis=UI.editHisto.diagnosis;b.histologyNotes=UI.editHisto.histologyNotes;
-      b.diagnosticSample=UI.editHisto.diagnosticSample;
-      b.histologyDate=b.histologyDate||new Date().toISOString();
-    }
-    return b;
+  // ── Derived stats ──
+  const counts = { emphysema:0, diagnostic:0, histoPending:0 };
+  COMPS.forEach(c => { counts[c.id] = 0; });
+  cases.forEach(e => {
+    (e.complications||[]).forEach(id => { if(counts[id]!==undefined) counts[id]++; });
+    if(e.emphysemaTrack) counts.emphysema++;
+    if(e.diagnosticSample===true) counts.diagnostic++;
+    if(e.diagnosticSample===null||e.diagnosticSample===undefined) counts.histoPending++;
   });
-  save(STATE);UI.editId=null;showToast(UI.editSection==='histology'?'Histology saved':'Case updated');
+  const noComp = cases.filter(e=>(e.complications||[]).length===0).length;
+  const avgLesion = avgOf(cases.map(e=>e.lesionSize));
+  const avgDist   = avgOf(cases.map(e=>e.distance));
+  const hospitals = {};
+  cases.forEach(e => { if(e.hospitalName) hospitals[e.hospitalName] = (hospitals[e.hospitalName]||0)+1; });
+  const lobeMap = {};
+  cases.forEach(e => { if(e.lobe) lobeMap[e.lobe] = (lobeMap[e.lobe]||0)+1; });
+
+  // Filter
+  function matches(e) {
+    if(search){
+      const hay=[e.diagnosis,e.histologyNotes,e.comments,e.complicationNotes,e.hospitalName,e.lobe,e.lesionType].filter(Boolean).join(" ").toLowerCase();
+      if(!hay.includes(search.toLowerCase())) return false;
+    }
+    if(fType && e.lesionType!==fType) return false;
+    if(fLobe && e.lobe!==fLobe) return false;
+    if(fDiag && ![e.diagnosis||"",e.histologyNotes||""].join(" ").toLowerCase().includes(fDiag.toLowerCase())) return false;
+    if(fComp){ const comp=COMPS.find(c=>c.label===fComp); if(comp&&!(e.complications||[]).includes(comp.id)) return false; }
+    return true;
+  }
+  const filtered = cases.filter(matches);
+  const hasFilter = !!(search||fType||fLobe||fDiag||fComp);
+
+  if (!accepted) {
+    return <div style={{height:"100vh",overflow:"auto",background:C.bg}}><Disclaimer onAccept={()=>setAccepted(true)}/></div>;
+  }
+
+  return (
+    <div style={{minHeight:"100vh",background:C.bg,color:"#e0e0e0",fontFamily:"'Segoe UI',system-ui,sans-serif",maxWidth:480,margin:"0 auto",paddingBottom:90}}>
+
+      {/* Header */}
+      <div style={{background:"linear-gradient(135deg,#111827,#1a2744)",padding:"14px 16px",borderBottom:`1px solid ${C.border}`,position:"sticky",top:0,zIndex:50}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+          <div style={{display:"flex",alignItems:"center",gap:10}}>
+            <span style={{fontSize:30}}>🫁</span>
+            <div>
+              <div style={{fontSize:19,fontWeight:800,color:"#fff",letterSpacing:"-0.5px"}}>LungBiopsy</div>
+              <div style={{fontSize:10,color:"#6b7fa3",textTransform:"uppercase",letterSpacing:"1px"}}>Tracker</div>
+            </div>
+          </div>
+          <div style={{background:"rgba(91,155,213,0.15)",border:"1px solid rgba(91,155,213,0.3)",borderRadius:10,padding:"6px 14px",textAlign:"center"}}>
+            <div style={{fontSize:22,fontWeight:800,color:C.blue,lineHeight:1}}>{total}</div>
+            <div style={{fontSize:10,color:"#6b7fa3",textTransform:"uppercase"}}>cases</div>
+          </div>
+        </div>
+        {counts.histoPending>0 && (
+          <div onClick={()=>setShowPending(p=>!p)} style={{marginTop:8,background:"rgba(240,165,0,0.1)",border:"1px solid rgba(240,165,0,0.25)",borderRadius:8,padding:"6px 12px",fontSize:12,color:C.amber,fontWeight:600,cursor:"pointer",display:"flex",alignItems:"center",gap:8}}>
+            <span>⏳</span><span>{counts.histoPending} case{counts.histoPending!==1?"s":""} awaiting histology — tap to view</span>
+          </div>
+        )}
+      </div>
+
+      {/* Tabs */}
+      <div style={{display:"flex",background:"#111827",borderBottom:`1px solid ${C.border}`,position:"sticky",top:73,zIndex:40}}>
+        {[["dashboard","📊 Dashboard"],["log","📋 Log"],["rates","📈 Rates"]].map(([id,lbl])=>(
+          <button key={id} onClick={()=>setTab(id)} style={{flex:1,padding:"11px 4px",background:"none",border:"none",fontSize:12,fontWeight:600,cursor:"pointer",color:tab===id?C.blue:"#6b7280",borderBottom:`2px solid ${tab===id?C.blue:"transparent"}`}}>{lbl}</button>
+        ))}
+      </div>
+
+      <div style={{padding:"14px"}}>
+
+        {/* ═══ DASHBOARD ═══ */}
+        {tab==="dashboard" && <>
+          <div style={{display:"flex",gap:8,marginBottom:16}}>
+            {[[total,"Total Cases",C.blue],[pct(noComp,total),"No Complication",C.green],[pct(counts.diagnostic,total),"Diagnostic Yield",C.lime]].map(([n,l,c])=>(
+              <div key={l} style={{flex:1,background:"rgba(255,255,255,0.04)",border:`1px solid ${C.border}`,borderRadius:10,padding:"11px 6px",textAlign:"center"}}>
+                <div style={{fontSize:18,fontWeight:800,color:c}}>{n}</div>
+                <div style={{fontSize:10,color:"#6b7280",marginTop:2,textTransform:"uppercase",letterSpacing:"0.5px"}}>{l}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Histology pending */}
+          {counts.histoPending>0 && showPending && (
+            <div style={{background:"rgba(240,165,0,0.04)",border:"1px solid rgba(240,165,0,0.2)",borderRadius:10,padding:8,marginBottom:10}}>
+              {cases.filter(e=>e.diagnosticSample===null||e.diagnosticSample===undefined).map((entry,_,arr)=>{
+                const idx=cases.length-cases.indexOf(entry);
+                return (
+                  <div key={entry.id} style={{background:"rgba(255,255,255,0.02)",borderRadius:8,padding:"8px 10px",marginBottom:5,border:"1px solid rgba(240,165,0,0.15)"}}>
+                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                      <div>
+                        <div style={{fontWeight:700,fontSize:12}}>Case #{idx}{entry.hospitalName&&<span style={{color:"#6b7fa3"}}> · {entry.hospitalName}</span>}</div>
+                        {entry.lobe&&<div style={{fontSize:11,color:C.blue}}>{entry.lobe}</div>}
+                        {entry.datePerformed&&<div style={{fontSize:11,color:"#6b7280"}}>{fmtD(entry.datePerformed)}</div>}
+                      </div>
+                      <button onClick={()=>{setTab("log");setExpandedId(entry.id);setShowPending(false);}} style={{fontSize:11,color:C.amber,background:"rgba(240,165,0,0.1)",border:"1px solid rgba(240,165,0,0.3)",borderRadius:6,padding:"3px 8px",cursor:"pointer",fontWeight:700}}>Add Result</button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Lobes */}
+          {Object.keys(lobeMap).length>0 && <>
+            <div style={secTitle}>Lobe Distribution</div>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:6,marginBottom:4}}>
+              {LOBES.map(l=>(
+                <div key={l} style={{background:"rgba(91,155,213,0.08)",border:"1px solid rgba(91,155,213,0.2)",borderRadius:8,padding:"7px 4px",textAlign:"center",opacity:lobeMap[l]?1:0.3}}>
+                  <div style={{fontSize:16,fontWeight:800,color:C.blue}}>{lobeMap[l]||0}</div>
+                  <div style={{fontSize:10,color:"#6b7fa3",fontWeight:700}}>{l}</div>
+                </div>
+              ))}
+            </div>
+          </>}
+
+          {/* Hospitals */}
+          {Object.keys(hospitals).length>0 && <>
+            <div style={secTitle}>By Hospital</div>
+            {Object.entries(hospitals).sort((a,b)=>b[1]-a[1]).map(([h,n])=>{
+              const open=selHosp===h;
+              return (
+                <div key={h}>
+                  <div onClick={()=>setSelHosp(open?null:h)} style={{display:"flex",justifyContent:"space-between",alignItems:"center",background:open?"rgba(91,155,213,0.08)":"rgba(255,255,255,0.03)",border:`1px solid ${open?"rgba(91,155,213,0.4)":C.border}`,borderRadius:9,padding:"9px 12px",marginBottom:4,cursor:"pointer"}}>
+                    <span style={{fontSize:13,fontWeight:600}}>🏥 {h}</span>
+                    <div style={{display:"flex",alignItems:"center",gap:6}}>
+                      <span style={{fontSize:12,color:"#6b7280"}}>{n} case{n!==1?"s":""}</span>
+                      <span style={{color:"#6b7280",fontSize:11}}>{open?"▲":"▼"}</span>
+                    </div>
+                  </div>
+                  {open && cases.filter(e=>e.hospitalName===h).map(entry=>{
+                    const idx=cases.length-cases.indexOf(entry);
+                    const hp=entry.diagnosticSample===null||entry.diagnosticSample===undefined;
+                    return (
+                      <div key={entry.id} style={{background:"rgba(255,255,255,0.02)",borderRadius:8,padding:"8px 10px",marginBottom:5,border:"1px solid rgba(91,155,213,0.15)",marginLeft:6}}>
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+                          <div>
+                            <div style={{fontWeight:700,fontSize:12}}>Case #{idx}{entry.caseRef&&<span style={{fontSize:10,background:"rgba(91,155,213,0.15)",color:C.blue,borderRadius:4,padding:"1px 5px",fontWeight:700,marginLeft:5}}>#{entry.caseRef}</span>}</div>
+                            {entry.lobe&&<div style={{fontSize:11,color:C.blue,marginTop:1}}>{entry.lobe}</div>}
+                            {hp?<div style={{fontSize:10,color:C.amber,fontWeight:600,marginTop:1}}>⏳ Histology pending</div>:entry.diagnosis&&<div style={{fontSize:10,color:C.lime,fontWeight:600,marginTop:1}}>🔬 {entry.diagnosis}</div>}
+                          </div>
+                          <button onClick={()=>{setTab("log");setExpandedId(entry.id);setSelHosp(null);}} style={{fontSize:11,color:C.blue,background:"rgba(91,155,213,0.1)",border:"1px solid rgba(91,155,213,0.25)",borderRadius:5,padding:"3px 7px",cursor:"pointer",fontWeight:700}}>View</button>
+                        </div>
+                        {(entry.complications||[]).length>0 && (
+                          <div style={{display:"flex",flexWrap:"wrap",gap:4,marginTop:5}}>
+                            {(entry.complications||[]).map(cid=>{const comp=COMPS.find(c=>c.id===cid);return comp?<Chip key={cid} comp={comp}/>:null;})}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </>}
+
+          {/* Complication overview */}
+          <div style={secTitle}>Complication Overview</div>
+          {COMPS.map(c=>{
+            const count=counts[c.id]||0;
+            return (
+              <div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",background:"rgba(255,255,255,0.03)",borderRadius:10,padding:"10px 12px",marginBottom:7,borderLeft:`4px solid ${c.color}`,border:`1px solid ${C.border}`,borderLeftWidth:4,borderLeftColor:c.color}}>
+                <div style={{display:"flex",alignItems:"center",gap:10}}>
+                  <span style={{display:"flex",alignItems:"center",justifyContent:"center",width:24}}><CompIcon comp={c} size={20}/></span>
+                  <span style={{fontSize:13,fontWeight:700}}>{c.label}</span>
+                </div>
+                <div style={{textAlign:"right"}}>
+                  <div style={{fontSize:18,fontWeight:800,color:c.color}}>{pct(count,total)}</div>
+                  <div style={{fontSize:11,color:"#6b7280"}}>{count} / {total}</div>
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Bar chart */}
+          {total>0 && <>
+            <div style={secTitle}>Visual Comparison</div>
+            <div style={{background:"rgba(255,255,255,0.03)",borderRadius:10,padding:13,border:`1px solid ${C.border}`}}>
+              {COMPS.map(c=>{
+                const p=total?((counts[c.id]||0)/total)*100:0;
+                return (
+                  <div key={c.id} style={{display:"flex",alignItems:"center",gap:7,marginBottom:8}}>
+                    <div style={{width:128,fontSize:11,color:"#aaa",display:"flex",alignItems:"center",gap:4,overflow:"hidden"}}><CompIcon comp={c} size={13}/><span style={{whiteSpace:"nowrap"}}>{c.label}</span></div>
+                    <div style={{flex:1,height:7,background:"rgba(255,255,255,0.07)",borderRadius:4,overflow:"hidden"}}>
+                      <div style={{height:"100%",width:`${Math.min(p,100)}%`,background:c.color,borderRadius:4}}/>
+                    </div>
+                    <div style={{width:38,fontSize:11,fontWeight:700,textAlign:"right",color:c.color}}>{p.toFixed(1)}%</div>
+                  </div>
+                );
+              })}
+            </div>
+          </>}
+        </>}
+
+        {/* ═══ LOG ═══ */}
+        {tab==="log" && <>
+          {/* Search */}
+          <div style={{position:"relative",marginBottom:9}}>
+            <span style={{position:"absolute",left:11,top:"50%",transform:"translateY(-50%)",fontSize:13,pointerEvents:"none"}}>🔍</span>
+            <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search diagnosis, notes, hospital..." style={{...inputSt,paddingLeft:33,paddingRight:search?32:12}}/>
+            {search&&<button onClick={()=>setSearch("")} style={{position:"absolute",right:10,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",color:"#6b7280",fontSize:15,cursor:"pointer",padding:0}}>✕</button>}
+          </div>
+
+          {/* Filter toggle */}
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:9}}>
+            <button onClick={()=>setShowFilters(p=>!p)} style={{display:"flex",alignItems:"center",gap:6,padding:"6px 11px",borderRadius:8,cursor:"pointer",fontSize:12,fontWeight:700,border:`1px solid ${hasFilter?"rgba(91,155,213,0.5)":C.border}`,background:hasFilter?"rgba(91,155,213,0.12)":"rgba(255,255,255,0.04)",color:hasFilter?C.blue:"#6b7280"}}>
+              <span>⚙️</span><span>{hasFilter?"Filters active":"Filter & Analyse"}</span><span style={{marginLeft:2}}>{showFilters?"▲":"▼"}</span>
+            </button>
+            {hasFilter&&<button onClick={()=>{setFType("");setFLobe("");setFDiag("");setFComp("");}} style={{fontSize:11,color:C.red,cursor:"pointer",padding:"4px 8px",border:"1px solid rgba(224,82,82,0.3)",borderRadius:6,background:"rgba(224,82,82,0.08)",fontWeight:700}}>Clear</button>}
+          </div>
+
+          {/* Filter panel */}
+          {showFilters && (
+            <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${C.border}`,borderRadius:10,padding:13,marginBottom:11}}>
+              <div style={{fontSize:10,fontWeight:700,color:"#6b7280",textTransform:"uppercase",letterSpacing:"1px",marginBottom:5}}>Lesion Type</div>
+              <Seg options={LTYPES} value={fType} onChange={setFType}/>
+              <div style={{fontSize:10,fontWeight:700,color:"#6b7280",textTransform:"uppercase",letterSpacing:"1px",margin:"9px 0 5px"}}>Lobe</div>
+              <Seg options={LOBES} value={fLobe} onChange={setFLobe}/>
+              <div style={{fontSize:10,fontWeight:700,color:"#6b7280",textTransform:"uppercase",letterSpacing:"1px",margin:"9px 0 5px"}}>Complication</div>
+              <Seg options={COMPS.map(c=>c.label)} value={fComp} onChange={setFComp}/>
+              <div style={{fontSize:10,fontWeight:700,color:"#6b7280",textTransform:"uppercase",letterSpacing:"1px",margin:"9px 0 5px"}}>Diagnosis Contains</div>
+              <input value={fDiag} onChange={e=>setFDiag(e.target.value)} placeholder="e.g. Adenocarcinoma..." style={inputSt}/>
+            </div>
+          )}
+
+          {/* Analysis summary */}
+          {hasFilter && (
+            <div style={{background:"rgba(91,155,213,0.08)",border:"1px solid rgba(91,155,213,0.2)",borderRadius:10,padding:"11px 13px",marginBottom:11}}>
+              <div style={{fontSize:13,fontWeight:700,color:C.blue,marginBottom:8}}>📊 {filtered.length} of {total} cases match</div>
+              {(()=>{
+                const dm={};
+                filtered.forEach(e=>{if(e.diagnosis){const d=e.diagnosis.trim();dm[d]=(dm[d]||0)+1;}});
+                const wd=filtered.filter(e=>e.diagnosis).length;
+                if(!Object.keys(dm).length) return <div style={{fontSize:12,color:"#6b7280",fontStyle:"italic"}}>No histology results yet in matched cases</div>;
+                return Object.entries(dm).sort((a,b)=>b[1]-a[1]).map(([diag,n])=>{
+                  const p=wd?((n/wd)*100).toFixed(0):0;
+                  return (
+                    <div key={diag} style={{marginBottom:7}}>
+                      <div style={{display:"flex",justifyContent:"space-between",marginBottom:2}}>
+                        <span style={{fontSize:12,color:"#e0e0e0",fontWeight:600}}>{diag}</span>
+                        <span style={{fontSize:12,color:C.blue,fontWeight:700}}>{n} ({p}%)</span>
+                      </div>
+                      <div style={{height:4,background:"rgba(255,255,255,0.07)",borderRadius:2}}>
+                        <div style={{height:"100%",width:`${p}%`,background:C.blue,borderRadius:2}}/>
+                      </div>
+                    </div>
+                  );
+                });
+              })()}
+            </div>
+          )}
+
+          <div style={{...secTitle,marginTop:0}}>Procedure Log ({filtered.length}{filtered.length!==total?` of ${total}`:""} {filtered.length===1?"entry":"entries"})</div>
+
+          {filtered.length===0 && (
+            <div style={{textAlign:"center",color:"#6b7280",padding:"28px 20px",fontStyle:"italic",fontSize:13}}>
+              {hasFilter?"No cases match.":"No entries yet. Tap + to add your first case."}
+            </div>
+          )}
+
+          {filtered.map(entry=>{
+            const idx=cases.length-cases.indexOf(entry);
+            const isOpen=expandedId===entry.id;
+            const hpend=entry.diagnosticSample===null||entry.diagnosticSample===undefined;
+            return (
+              <div key={entry.id} style={{background:"rgba(255,255,255,0.03)",borderRadius:10,padding:"11px 13px",marginBottom:8,border:`1px solid ${hpend?"rgba(240,165,0,0.25)":C.border}`}}>
+                <div style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}} onClick={()=>setExpandedId(isOpen?null:entry.id)}>
+                  <div style={{flex:1}}>
+                    <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
+                      <span style={{fontWeight:700,fontSize:14}}>Case #{idx}</span>
+                      {entry.hospitalName&&<span style={{fontSize:12,color:"#6b7fa3"}}>· {entry.hospitalName}</span>}
+                      {entry.caseRef&&<span style={{fontSize:11,background:"rgba(91,155,213,0.15)",color:C.blue,borderRadius:5,padding:"1px 6px",fontWeight:700}}>#{entry.caseRef}</span>}
+                    </div>
+                    {entry.lobe&&<div style={{fontSize:12,color:C.blue,marginTop:2}}>{entry.lobe}{entry.lesionType&&` · ${entry.lesionType}`}</div>}
+                    {hpend?<div style={{fontSize:11,color:C.amber,marginTop:2,fontWeight:600}}>⏳ Histology pending</div>:entry.diagnosis&&<div style={{fontSize:11,color:C.lime,marginTop:2,fontWeight:600}}>🔬 {entry.diagnosis}</div>}
+                  </div>
+                  <span style={{color:"#6b7280",fontSize:11,marginLeft:8,flexShrink:0}}>{isOpen?"▲":"▼"}</span>
+                </div>
+
+                <div style={{display:"flex",flexWrap:"wrap",gap:5,marginTop:7}}>
+                  {(entry.complications||[]).length===0
+                    ?<span style={{fontSize:11,color:"#6b7280",fontStyle:"italic"}}>No complications</span>
+                    :(entry.complications||[]).map(cid=>{const comp=COMPS.find(c=>c.id===cid);return comp?<Chip key={cid} comp={comp}/>:null;})}
+                </div>
+
+                {isOpen && (
+                  <div style={{marginTop:12,paddingTop:12,borderTop:`1px solid ${C.border}`}}>
+                    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:10}}>
+                      {[
+                        entry.datePerformed&&["Date",fmtD(entry.datePerformed)],
+                        entry.age&&["Age",`${entry.age} yrs`],
+                        entry.sex&&["Sex",entry.sex==="M"?"Male":"Female"],
+                        entry.supervision&&["Supervision",entry.supervision],
+                        entry.lobe&&["Lobe",entry.lobe],
+                        entry.lesionType&&["Lesion Type",entry.lesionType],
+                        entry.lesionSize&&["Lesion Size",`${entry.lesionSize} mm`],
+                        entry.distance&&["Distance",`${entry.distance} mm`],
+                        entry.needleSize&&["Needle",entry.needleSize],
+                        entry.passes&&["Passes",entry.passes],
+                        ["Emphysema",entry.emphysemaTrack?"Yes ⚠️":"No",entry.emphysemaTrack?C.amber:undefined],
+                      ].filter(Boolean).map(([l,v,c])=>(
+                        <div key={l}>
+                          <div style={{fontSize:10,color:"#6b7280",textTransform:"uppercase",letterSpacing:"0.8px"}}>{l}</div>
+                          <div style={{fontSize:13,fontWeight:700,color:c||"#e0e0e0",marginTop:1}}>{v}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {entry.complicationNotes&&<div style={{background:"rgba(255,255,255,0.03)",borderRadius:7,padding:"8px 10px",marginBottom:8,border:`1px solid ${C.border}`}}>
+                      <div style={{fontSize:10,color:"#6b7280",textTransform:"uppercase",letterSpacing:"0.8px",marginBottom:2}}>Complication Notes</div>
+                      <div style={{fontSize:12,color:"#ccc",lineHeight:1.5}}>{entry.complicationNotes}</div>
+                    </div>}
+                    {entry.comments&&<div style={{background:"rgba(255,255,255,0.03)",borderRadius:7,padding:"8px 10px",marginBottom:8,border:`1px solid ${C.border}`}}>
+                      <div style={{fontSize:10,color:"#6b7280",textTransform:"uppercase",letterSpacing:"0.8px",marginBottom:2}}>Comments</div>
+                      <div style={{fontSize:12,color:"#ccc",lineHeight:1.5}}>{entry.comments}</div>
+                    </div>}
+
+                    <div style={{display:"flex",gap:6,marginBottom:10}}>
+                      <button onClick={()=>openEdit(entry,"details")} style={{flex:1,padding:"7px",borderRadius:7,border:"1px solid rgba(91,155,213,0.3)",background:"rgba(91,155,213,0.08)",color:C.blue,fontSize:11,fontWeight:700,cursor:"pointer"}}>✎ Edit Details</button>
+                      <button onClick={()=>openEdit(entry,"complications")} style={{flex:1,padding:"7px",borderRadius:7,border:"1px solid rgba(91,155,213,0.3)",background:"rgba(91,155,213,0.08)",color:C.blue,fontSize:11,fontWeight:700,cursor:"pointer"}}>✎ Edit Complications</button>
+                    </div>
+
+                    <div style={{borderRadius:9,padding:"10px 12px",background:hpend?"rgba(240,165,0,0.06)":"rgba(163,230,53,0.06)",border:`1px solid ${hpend?"rgba(240,165,0,0.25)":"rgba(163,230,53,0.25)"}`}}>
+                      <div style={{fontSize:12,fontWeight:700,color:hpend?C.amber:C.lime,marginBottom:hpend?0:6}}>🔬 Histology {hpend?"Pending":"Result"}</div>
+                      {!hpend&&<>
+                        {entry.diagnosis&&<div style={{fontSize:13,fontWeight:700,marginBottom:3}}>{entry.diagnosis}</div>}
+                        {entry.histologyNotes&&<div style={{fontSize:12,color:"#aaa",lineHeight:1.5,marginBottom:4}}>{entry.histologyNotes}</div>}
+                        <div style={{fontSize:11,fontWeight:600,color:entry.diagnosticSample?C.green:C.red}}>{entry.diagnosticSample?"✅ Diagnostic sample":"❌ Non-diagnostic"}</div>
+                      </>}
+                      <button onClick={()=>openEdit(entry,"histology")} style={{marginTop:8,width:"100%",padding:"7px",borderRadius:7,cursor:"pointer",background:"transparent",border:`1px solid ${hpend?"rgba(240,165,0,0.4)":"rgba(163,230,53,0.3)"}`,color:hpend?C.amber:C.lime,fontSize:12,fontWeight:700}}>
+                        {hpend?"＋ Add Histology Result":"✎ Edit Histology Result"}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </>}
+
+        {/* ═══ RATES ═══ */}
+        {tab==="rates" && <>
+          <div style={{...secTitle,marginTop:0}}>Live Complication Rates</div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9,marginBottom:4}}>
+            {COMPS.map(c=>{
+              const p=total?((counts[c.id]||0)/total*100).toFixed(1):"0.0";
+              return (
+                <div key={c.id} style={{borderRadius:12,padding:"13px 10px",textAlign:"center",border:`1px solid ${C.border}`,background:c.bg}}>
+                  <div style={{marginBottom:3,display:"flex",justifyContent:"center"}}><CompIcon comp={c} size={26}/></div>
+                  <div style={{fontSize:24,fontWeight:900,lineHeight:1,color:c.color}}>{p}%</div>
+                  <div style={{fontSize:11,fontWeight:700,color:"#ccc",marginTop:3}}>{c.label}</div>
+                  <div style={{fontSize:10,color:"#6b7280",marginTop:1}}>{counts[c.id]||0} of {total}</div>
+                </div>
+              );
+            })}
+            {[[noComp,"🟢","No Complications","rgba(34,197,94,0.08)",C.green],[counts.diagnostic,"🔬","Diagnostic Yield","rgba(163,230,53,0.08)",C.lime]].map(([n,icon,lbl,bg,color])=>{
+              const p=total?((n/total)*100).toFixed(1):"0.0";
+              return (
+                <div key={lbl} style={{borderRadius:12,padding:"13px 10px",textAlign:"center",border:`1px solid ${C.border}`,background:bg}}>
+                  <div style={{fontSize:24,marginBottom:3}}>{icon}</div>
+                  <div style={{fontSize:24,fontWeight:900,lineHeight:1,color}}>{p}%</div>
+                  <div style={{fontSize:11,fontWeight:700,color:"#ccc",marginTop:3}}>{lbl}</div>
+                  <div style={{fontSize:10,color:"#6b7280",marginTop:1}}>{n} of {total}</div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div style={secTitle}>Procedural Averages</div>
+          <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${C.border}`,borderRadius:10,padding:"12px 14px",marginBottom:4}}>
+            {[["Avg Lesion Size",avgLesion?`${avgLesion} mm`:"—"],["Avg Distance",avgDist?`${avgDist} mm`:"—"],["Emphysema in Needle Track",pct(counts.emphysema,total)],["Histology received",cases.filter(e=>e.diagnosticSample!==null&&e.diagnosticSample!==undefined).length],["Histology pending",counts.histoPending]].map(([l,v])=>(
+              <div key={l} style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8,fontSize:13}}>
+                <span style={{color:"#aaa"}}>{l}</span><span style={{fontWeight:700,color:C.blue}}>{v}</span>
+              </div>
+            ))}
+          </div>
+
+          <div style={secTitle}>Reference Benchmarks</div>
+          <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${C.border}`,borderRadius:10,padding:"12px 14px"}}>
+            <div style={{fontSize:12,fontWeight:700,color:"#ccc",marginBottom:10}}>Published Literature Ranges</div>
+            {[["Haemoptysis (minor)","1–5%","#e05252"],["Pneumothorax","15–25%","#5b9bd5"],["Chest Drain Required","1–5%","#f0a500"],["Air Embolus","< 0.1%","#a855f7"],["Mortality","< 0.1%","#6b7280"],["Diagnostic Yield","80–95%","#a3e635"]].map(([l,r,c])=>(
+              <div key={l} style={{display:"flex",justifyContent:"space-between",marginBottom:7}}>
+                <span style={{fontSize:12,color:"#aaa"}}>{l}</span>
+                <span style={{fontSize:13,fontWeight:700,color:c}}>{r}</span>
+              </div>
+            ))}
+            <div style={{marginTop:10,fontSize:10,color:"#6b7280",borderTop:`1px solid ${C.border}`,paddingTop:8}}>⚠️ Rates vary by technique and patient cohort.</div>
+          </div>
+
+          <div style={{textAlign:"center",marginTop:14}}>
+            <button onClick={()=>setConfirmClear(true)} style={{background:"rgba(224,82,82,0.1)",border:"1px solid rgba(224,82,82,0.3)",color:C.red,padding:"8px 20px",borderRadius:7,fontSize:13,fontWeight:600,cursor:"pointer"}}>🗑 Reset All Data</button>
+          </div>
+        </>}
+      </div>
+
+      {/* FAB */}
+      <button onClick={openAdd} style={{position:"fixed",bottom:24,right:20,width:54,height:54,borderRadius:"50%",background:"linear-gradient(135deg,#5b9bd5,#3b7abf)",border:"none",color:"#fff",fontSize:26,cursor:"pointer",boxShadow:"0 4px 18px rgba(91,155,213,0.5)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:100}}>＋</button>
+
+      {/* ═══ ADD MODAL ═══ */}
+      {addOpen && (
+        <Overlay onClose={()=>setAddOpen(false)}>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginBottom:16}}>
+            {[0,1].map(i=><div key={i} style={{display:"flex",alignItems:"center"}}>
+              <div style={{width:9,height:9,borderRadius:"50%",background:i<=addStep?C.blue:"rgba(255,255,255,0.15)"}}/>
+              {i===0&&<div style={{width:36,height:2,background:addStep>0?C.blue:"rgba(255,255,255,0.1)"}}/>}
+            </div>)}
+          </div>
+
+          {addStep===0 ? (
+            <>
+              <ModalTitle main="New Biopsy Case" sub="Step 1 of 2 — Procedure details"/>
+              <FL label="Hospital Name"><input value={addForm.hospitalName} onChange={e=>setAddForm(p=>({...p,hospitalName:e.target.value}))} placeholder="e.g. Royal Marsden, UCLH..." style={inputSt}/></FL>
+              <FL label="Case Reference" hint="(your own code only)"><input value={addForm.caseRef} onChange={e=>setAddForm(p=>({...p,caseRef:e.target.value}))} placeholder="e.g. 150125-JB" style={inputSt}/></FL>
+              <FL label="Date Performed"><input type="date" value={addForm.datePerformed} onChange={e=>setAddForm(p=>({...p,datePerformed:e.target.value}))} style={{...inputSt,colorScheme:"dark"}}/></FL>
+              <div style={{display:"flex",gap:10}}>
+                <div style={{flex:1}}><FL label="Age"><input type="number" value={addForm.age} onChange={e=>setAddForm(p=>({...p,age:e.target.value}))} placeholder="67" min="0" style={inputSt}/></FL></div>
+                <div style={{flex:1}}><FL label="Sex"><Seg options={["M","F"]} value={addForm.sex} onChange={v=>setAddForm(p=>({...p,sex:v}))}/></FL></div>
+              </div>
+              <FL label="Supervision"><Seg options={SUPS} value={addForm.supervision} onChange={v=>setAddForm(p=>({...p,supervision:v}))}/></FL>
+              <FL label="Lobe"><Seg options={LOBES} value={addForm.lobe} onChange={v=>setAddForm(p=>({...p,lobe:v}))}/></FL>
+              <FL label="Lesion Type"><Seg options={LTYPES} value={addForm.lesionType} onChange={v=>setAddForm(p=>({...p,lesionType:v}))}/></FL>
+              <div style={{display:"flex",gap:10}}>
+                <div style={{flex:1}}><FL label="Lesion Size (mm)"><input type="number" value={addForm.lesionSize} onChange={e=>setAddForm(p=>({...p,lesionSize:e.target.value}))} placeholder="18" min="0" style={inputSt}/></FL></div>
+                <div style={{flex:1}}><FL label="Distance (mm)"><input type="number" value={addForm.distance} onChange={e=>setAddForm(p=>({...p,distance:e.target.value}))} placeholder="22" min="0" style={inputSt}/></FL></div>
+              </div>
+              <FL label="Emphysema in Needle Track"><Tog value={addForm.emphysemaTrack} onChange={v=>setAddForm(p=>({...p,emphysemaTrack:v}))} label="Emphysema Present"/></FL>
+              <div style={{display:"flex",gap:10}}>
+                <div style={{flex:1}}><FL label="Needle Size"><input value={addForm.needleSize} onChange={e=>setAddForm(p=>({...p,needleSize:e.target.value}))} placeholder="e.g. 18G" style={inputSt}/></FL></div>
+                <div style={{flex:1}}><FL label="Passes"><input type="number" value={addForm.passes} onChange={e=>setAddForm(p=>({...p,passes:e.target.value}))} placeholder="3" min="1" style={inputSt}/></FL></div>
+              </div>
+              <FL label="Comments" hint="(optional)"><textarea value={addForm.comments} onChange={e=>setAddForm(p=>({...p,comments:e.target.value}))} placeholder="Any additional notes..." style={taSt}/></FL>
+              <div style={{display:"flex",gap:8,marginTop:14}}>
+                <button style={cancelBt} onClick={()=>setAddOpen(false)}>Cancel</button>
+                <button style={saveBt} onClick={()=>setAddStep(1)}>Next →</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <ModalTitle main="Complications" sub="Step 2 of 2 — Select all that apply"/>
+              <div style={{background:"rgba(91,155,213,0.07)",borderRadius:9,padding:"8px 11px",marginBottom:12,fontSize:12,color:"#6b9fd4"}}>💡 Histology can be added later once results are back</div>
+              {COMPS.map(c=>(
+                <CompToggle key={c.id} comp={c} selected={!!addComps[c.id]} onToggle={()=>setAddComps(p=>({...p,[c.id]:!p[c.id]}))}/>
+              ))}
+              <FL label="Complication Notes" hint="(optional)">
+                <textarea value={addCompNotes} onChange={e=>setAddCompNotes(e.target.value)} placeholder="e.g. Small pneumothorax, resolved spontaneously..." style={taSt}/>
+              </FL>
+              <div style={{display:"flex",gap:8,marginTop:14}}>
+                <button style={cancelBt} onClick={()=>setAddStep(0)}>← Back</button>
+                <button style={saveBt} onClick={saveCase}>Save Case ✓</button>
+              </div>
+            </>
+          )}
+        </Overlay>
+      )}
+
+      {/* ═══ EDIT MODAL ═══ */}
+      {editEntry && (
+        <Overlay onClose={()=>setEditEntry(null)}>
+          <div style={{display:"flex",gap:4,marginBottom:14,background:"rgba(255,255,255,0.04)",borderRadius:9,padding:3}}>
+            {[["details","📋 Details"],["complications","⚠️ Complications"],["histology","🔬 Histology"]].map(([sec,lbl])=>(
+              <button key={sec} onClick={()=>setEditSec(sec)} style={{flex:1,padding:"7px 3px",borderRadius:7,border:"none",cursor:"pointer",fontSize:10,fontWeight:700,background:editSec===sec?"rgba(91,155,213,0.25)":"transparent",color:editSec===sec?C.blue:"#6b7280"}}>{lbl}</button>
+            ))}
+          </div>
+          <div style={{fontSize:10,color:"#6b7280",textAlign:"center",marginBottom:6,textTransform:"uppercase",letterSpacing:"1px"}}>
+            Editing Case {cases.length-cases.indexOf(editEntry)}{editEntry.hospitalName&&` · ${editEntry.hospitalName}`}
+          </div>
+
+          {editSec==="details" && <>
+            <ModalTitle main="Edit Case Details"/>
+            <FL label="Hospital Name"><input value={editForm.hospitalName} onChange={e=>setEditForm(p=>({...p,hospitalName:e.target.value}))} placeholder="e.g. Royal Marsden..." style={inputSt}/></FL>
+            <FL label="Case Reference" hint="(your own code only)"><input value={editForm.caseRef} onChange={e=>setEditForm(p=>({...p,caseRef:e.target.value}))} placeholder="e.g. 150125-JB" style={inputSt}/></FL>
+            <FL label="Date Performed"><input type="date" value={editForm.datePerformed} onChange={e=>setEditForm(p=>({...p,datePerformed:e.target.value}))} style={{...inputSt,colorScheme:"dark"}}/></FL>
+            <div style={{display:"flex",gap:10}}>
+              <div style={{flex:1}}><FL label="Age"><input type="number" value={editForm.age} onChange={e=>setEditForm(p=>({...p,age:e.target.value}))} placeholder="67" style={inputSt}/></FL></div>
+              <div style={{flex:1}}><FL label="Sex"><Seg options={["M","F"]} value={editForm.sex} onChange={v=>setEditForm(p=>({...p,sex:v}))}/></FL></div>
+            </div>
+            <FL label="Supervision"><Seg options={SUPS} value={editForm.supervision} onChange={v=>setEditForm(p=>({...p,supervision:v}))}/></FL>
+            <FL label="Lobe"><Seg options={LOBES} value={editForm.lobe} onChange={v=>setEditForm(p=>({...p,lobe:v}))}/></FL>
+            <FL label="Lesion Type"><Seg options={LTYPES} value={editForm.lesionType} onChange={v=>setEditForm(p=>({...p,lesionType:v}))}/></FL>
+            <div style={{display:"flex",gap:10}}>
+              <div style={{flex:1}}><FL label="Lesion Size (mm)"><input type="number" value={editForm.lesionSize} onChange={e=>setEditForm(p=>({...p,lesionSize:e.target.value}))} placeholder="18" style={inputSt}/></FL></div>
+              <div style={{flex:1}}><FL label="Distance (mm)"><input type="number" value={editForm.distance} onChange={e=>setEditForm(p=>({...p,distance:e.target.value}))} placeholder="22" style={inputSt}/></FL></div>
+            </div>
+            <FL label="Emphysema in Needle Track"><Tog value={editForm.emphysemaTrack} onChange={v=>setEditForm(p=>({...p,emphysemaTrack:v}))} label="Emphysema Present"/></FL>
+            <div style={{display:"flex",gap:10}}>
+              <div style={{flex:1}}><FL label="Needle Size"><input value={editForm.needleSize} onChange={e=>setEditForm(p=>({...p,needleSize:e.target.value}))} placeholder="e.g. 18G" style={inputSt}/></FL></div>
+              <div style={{flex:1}}><FL label="Passes"><input type="number" value={editForm.passes} onChange={e=>setEditForm(p=>({...p,passes:e.target.value}))} placeholder="3" style={inputSt}/></FL></div>
+            </div>
+            <FL label="Comments" hint="(optional)"><textarea value={editForm.comments} onChange={e=>setEditForm(p=>({...p,comments:e.target.value}))} style={taSt}/></FL>
+            <div style={{display:"flex",gap:8,marginTop:14}}>
+              <button style={cancelBt} onClick={()=>setEditEntry(null)}>Cancel</button>
+              <button style={saveBt} onClick={saveEdit}>Save Changes ✓</button>
+            </div>
+          </>}
+
+          {editSec==="complications" && <>
+            <ModalTitle main="Edit Complications" sub="Update or add delayed complications"/>
+            {COMPS.map(c=>(
+              <CompToggle key={c.id} comp={c} selected={!!editComps[c.id]} onToggle={()=>setEditComps(p=>({...p,[c.id]:!p[c.id]}))}/>
+            ))}
+            <FL label="Complication Notes" hint="(optional)">
+              <textarea value={editCompNotes} onChange={e=>setEditCompNotes(e.target.value)} placeholder="e.g. Small pneumothorax, resolved spontaneously..." style={taSt}/>
+            </FL>
+            <div style={{display:"flex",gap:8,marginTop:14}}>
+              <button style={cancelBt} onClick={()=>setEditEntry(null)}>Cancel</button>
+              <button style={saveBt} onClick={saveEdit}>Save Changes ✓</button>
+            </div>
+          </>}
+
+          {editSec==="histology" && <>
+            <ModalTitle main="Histology Result" sub={`Biopsy: ${fmtD(editEntry.createdAt)}${editEntry.lobe?` · ${editEntry.lobe}`:""}`}/>
+            <FL label="Diagnosis"><input value={editHisto.diagnosis} onChange={e=>setEditHisto(p=>({...p,diagnosis:e.target.value}))} placeholder="e.g. Adenocarcinoma, SCC, Benign..." style={inputSt}/></FL>
+            <FL label="Histology Notes" hint="(optional)"><textarea value={editHisto.histologyNotes} onChange={e=>setEditHisto(p=>({...p,histologyNotes:e.target.value}))} placeholder="e.g. Grade, mutation status, TNM staging..." style={taSt}/></FL>
+            <FL label="Diagnostic Sample Obtained?">
+              <div style={{display:"flex",gap:8}}>
+                {[{label:"✅ Yes — Diagnostic",val:true,c:C.green},{label:"❌ No — Non-diagnostic",val:false,c:C.red}].map(opt=>(
+                  <button key={String(opt.val)} onClick={()=>setEditHisto(p=>({...p,diagnosticSample:opt.val}))} style={{flex:1,padding:"9px 4px",borderRadius:9,cursor:"pointer",border:`1px solid ${editHisto.diagnosticSample===opt.val?opt.c:C.border}`,background:editHisto.diagnosticSample===opt.val?opt.c+"18":"rgba(255,255,255,0.04)",color:editHisto.diagnosticSample===opt.val?opt.c:"#aaa",fontSize:11,fontWeight:700}}>
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </FL>
+            <div style={{display:"flex",gap:8,marginTop:14}}>
+              <button style={cancelBt} onClick={()=>setEditEntry(null)}>Cancel</button>
+              <button style={{...saveBt,background:"linear-gradient(135deg,#4ade80,#16a34a)"}} onClick={saveEdit}>Save Result ✓</button>
+            </div>
+          </>}
+        </Overlay>
+      )}
+
+      {/* Confirm clear */}
+      {confirmClear && (
+        <Overlay onClose={()=>setConfirmClear(false)}>
+          <ModalTitle main="Reset All Data?" sub={`Permanently delete all ${total} records?`}/>
+          <div style={{display:"flex",gap:8,marginTop:14}}>
+            <button style={cancelBt} onClick={()=>setConfirmClear(false)}>Cancel</button>
+            <button style={{...saveBt,background:"#e05252"}} onClick={()=>{setCases([]);setTotal(0);setConfirmClear(false);showToast("All data cleared");}}>Delete All</button>
+          </div>
+        </Overlay>
+      )}
+
+      {/* Toast */}
+      {toast && (
+        <div style={{position:"fixed",bottom:88,left:"50%",transform:"translateX(-50%)",padding:"10px 22px",borderRadius:18,color:"#fff",fontSize:13,fontWeight:600,zIndex:300,background:"#1e6b3d",boxShadow:"0 4px 18px rgba(0,0,0,0.4)",whiteSpace:"nowrap"}}>
+          {toast}
+        </div>
+      )}
+    </div>
+  );
 }
 
-// ── Render ────────────────────────────────────────────────────
-function render(){
-  const root=document.getElementById('app');
-  root.innerHTML='';
-  let content;
-  if(UI.screen==='disclaimer')content=renderDisclaimer();
-  else if(UI.screen==='privacy')content=renderPrivacy();
-  else content=renderApp();
-  root.appendChild(content);
-}
 
-render();
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
 </body>
 </html>
